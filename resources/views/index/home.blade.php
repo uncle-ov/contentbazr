@@ -278,7 +278,7 @@
                 <div class="tm-intro-text-container position-relative" style="height: 100%;">
                     <h4 class="tm-text-primary mb-4">Post & delight your audience!</h4>
                     <p class="mb-4 tm-intro-text">
-                        The wide spectrum of content formats available means that you can reach your audience  wherever they are and however they wish to consume your content. Grab your audience’s  attention and get the views, clicks, shares and sales you want.
+                        The wide zzz spectrum of content formats available means that you can reach your audience  wherever they are and however they wish to consume your content. Grab your audience’s  attention and get the views, clicks, shares and sales you want.
                     </p>
                     <img src="{{url('/public/images/home/delight_audience.png')}}" alt="" style="margin-bottom: 40px; width: 300px;"/>
                 </div>
