@@ -819,4 +819,12 @@ class Helper
 		return false;
 	}
 
+	public function convertYouTubeToEmbed($youtubeUrl)
+	{
+		$pattern = '/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/';
+		$replacement = 'https://www.youtube.com/embed/$1';
+		$embedUrl = preg_replace($pattern, $replacement, $youtubeUrl);
+		return $embedUrl;
+	}
+
 } //<--- End Class

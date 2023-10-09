@@ -210,7 +210,7 @@
             
             <div style="padding-top: 30px;max-width: 560px;margin: 0 auto;">
                 <div class="embed-responsive embed-responsive-16by9" style="border-radius: 30px;border:10px solid #fff;box-shadow: 0px 20px 50px rgba(0,0,0,.2)">
-                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lYis6l8DlkA"></iframe>
+                  <iframe class="embed-responsive-item" src="{{ Helper::convertYouTubeToEmbed($settings->homepage_video) }}"></iframe>
                 </div>
             </div>
             <div style="padding: 15px;"></div>
