@@ -38,6 +38,13 @@
        </div><!-- end row -->
 
        <div class="row mb-3">
+         <label class="col-sm-2 col-form-label text-lg-end">Homepage Video</label>
+         <div class="col-sm-10">
+           <input type="text" value="{{ $settings->homepage_video }}" name="title" class="form-control">
+         </div>
+       </div><!-- end row -->
+
+       <div class="row mb-3">
          <label class="col-sm-2 col-form-labe text-lg-end">{{ trans('admin.link_terms') }}</label>
          <div class="col-sm-10">
            <input type="text" value="{{ $settings->link_terms }}" name="link_terms" class="form-control">
