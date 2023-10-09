@@ -1,10 +1,21 @@
 @extends('layouts.app')
 @section('content')
 
+<style>
+  .e404 {
+    font-size: 18em;
+  }
+
+  @media(max-width: 768px) {
+    .e404 {
+      font-size: 8em;
+    }
+  }
+</style>
 <section id="whatwedo" class="section py-5">
   <div class="container">
-      <div class="text-center" style="max-width:800px;margin:0 auto;">
-          <h1 style="font-size: 18em;">404</h1>
+      <div class="text-center">
+          <h1 class="e404">404</h1>
           <p>Sorry, we can't find the page you're looking for.</p>
 
           <div style="padding-top: 30px;"></div>
