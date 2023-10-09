@@ -90,7 +90,7 @@
   }
 
   hr.my-5 {
-    width: 350px !important;
+    width: 100% !important;
   }
   .row.tm-content-box {
     margin-left: 10px;
