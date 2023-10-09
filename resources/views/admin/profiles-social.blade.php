@@ -72,6 +72,13 @@
              </div>
            </div>
 
+           <div class="row mb-3">
+             <label class="col-sm-2 col-form-label text-lg-end">Tiktok</label>
+             <div class="col-sm-10">
+               <input value="{{ $settings->tiktok }}" name="tiktok" type="text" class="form-control" placeholder="{{ trans('admin.url_social') }}">
+             </div>
+           </div>
+
 						<div class="row mb-3">
 		          <div class="col-sm-10 offset-sm-2">
 		            <button type="submit" class="btn btn-dark mt-3 px-5">{{ __('admin.save') }}</button>

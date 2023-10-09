@@ -41,6 +41,10 @@
 				@if ($settings->pinterest != '')
 				<li class="list-inline-item"><a href="{{$settings->pinterest}}" target="_blank" class="ico-social"><i class="fab fa-pinterest"></i></a></li>
 				@endif
+
+				@if ($settings->tiktok != '')
+				<li class="list-inline-item"><a href="{{$settings->tiktok}}" target="_blank" class="ico-social"><i class="fab fa-tiktok"></i></a></li>
+				@endif
             </ul>
 
             <li>

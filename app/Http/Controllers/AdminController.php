@@ -647,6 +647,7 @@ class AdminController extends Controller
 			'instagram' => 'url',
 			'youtube' => 'url',
 			'pinterest' => 'url',
+			'tiktok' => 'url',
 		);
 
 		$this->validate($request, $rules);
@@ -657,6 +658,7 @@ class AdminController extends Controller
 		$sql->instagram = $request->instagram;
 		$sql->youtube = $request->youtube;
 		$sql->pinterest = $request->pinterest;
+		$sql->tiktok = $request->tiktok;
 
 		$sql->save();
 
