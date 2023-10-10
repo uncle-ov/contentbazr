@@ -9,7 +9,11 @@
     <meta name="theme-color" content="{{ $settings->color_default }}">
     <link rel="shortcut icon" href="{{ url('public/img', $settings->favicon) }}" />
 
+    @if(isset($page_title))
+    <title>{{ $page_title }}</title>
+    @else
     <title>@auth {{ auth()->user()->unseenNotifications() ? '('.auth()->user()->unseenNotifications().') ' : null }} @endauth @section('title')@show {{$settings->title.' - '.__('seo.welcome_subtitle')}}</title>
+    @endif
 
     @include('includes.css_general')
 
