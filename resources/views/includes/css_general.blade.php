@@ -18,7 +18,7 @@
     var error = "{{trans('misc.error')}}";
     var error_oops = "{{trans('misc.error_oops')}}";
     var resending_code = "{{trans('misc.resending_code')}}";
-    var isProfile = {{ request()->route()->named('profile') ? 'true' : 'false' }};
+    var isProfile = {{ request()->route() && request()->route()->named('profile') ? 'true' : 'false' }};
     var download = '{{trans('misc.download')}}';
     var downloading = '{{trans('misc.downloading')}}';
 
