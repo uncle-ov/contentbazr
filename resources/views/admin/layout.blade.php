@@ -6,8 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ url('public/img', $settings->favicon) }}" />
 
-    @if(isset($exception) && $exception->getStatusCode() == 404)
-    <title>Not Found</title>
+    @if(isset($page_title))
+    <title>{{ $page_title }}</title>
     @else
     <title>{{ __('admin.admin') }}</title>
     @endif
