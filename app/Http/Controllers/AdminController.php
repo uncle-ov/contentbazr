@@ -659,6 +659,7 @@ class AdminController extends Controller
 		$sql->youtube = $request->youtube;
 		$sql->pinterest = $request->pinterest;
 		$sql->tiktok = $request->tiktok;
+		$sql->header_code_snippets = $request->header_code_snippets;
 
 		$sql->save();
 
