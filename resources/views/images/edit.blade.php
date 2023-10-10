@@ -168,6 +168,7 @@
 									<label for="price">({{ $settings->currency_symbol }}) {{ trans('misc.price') }}</label>
 
 									@if (! $settings->default_price_photos)
+                  {{--
 									<div class="alert alert-primary">
 										<h6>{{trans('misc.price_formats')}}</h6>
 										<ul class="list-unstyled">
@@ -177,7 +178,8 @@
 											<li>{{trans('misc.vector_photo_price')}} {{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span id="v-price">{{ $data->price * 4 }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }} <small>{{trans('misc.if_included')}}</small></li>
 										</ul>
 										<small>{{trans('misc.price_minimum')}} {{Helper::amountFormat($settings->min_sale_amount)}} - {{trans('misc.price_maximum')}} {{Helper::amountFormat($settings->max_sale_amount)}}</small>
-									</div><!--{{----}}-->
+									</div>
+                  --}}
 								@endif
 							</div>
 						@endif
