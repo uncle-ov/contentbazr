@@ -6,7 +6,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ url('public/img', $settings->favicon) }}" />
 
+    @if(request()->is('404'))
     <title>{{ __('admin.admin') }}</title>
+    @else
+    <title>Not Found</title>
+    @endif
 
     <link href="{{ asset('public/css/core.min.css') }}?v={{$settings->version}}" rel="stylesheet">
     <link href="{{ asset('public/css/bootstrap.min.css') }}?v={{$settings->version}}" rel="stylesheet">
