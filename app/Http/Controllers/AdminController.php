@@ -382,6 +382,7 @@ class AdminController extends Controller
 		$sql->lightbox = $request->lightbox ?? 'off';
 		$sql->banner_cookies = $request->banner_cookies ?? false;
 		$sql->homepage_video = $request->homepage_video ?? '';
+		$sql->header_code_snippets = $request->header_code_snippets;
 		$sql->save();
 
 		// Default locale
@@ -659,7 +660,6 @@ class AdminController extends Controller
 		$sql->youtube = $request->youtube;
 		$sql->pinterest = $request->pinterest;
 		$sql->tiktok = $request->tiktok;
-		$sql->header_code_snippets = $request->header_code_snippets;
 
 		$sql->save();
 
