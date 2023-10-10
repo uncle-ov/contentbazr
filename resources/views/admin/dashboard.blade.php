@@ -171,7 +171,7 @@
 							  </div>
 							  <div class="flex-grow-1 ms-3">
 							    <h6 class="m-0 fw-light">
-										<a href="{{ url('photo', $image->id) }}" target="_blank">
+										<a href="{{ url('template', $image->id) }}" target="_blank">
 											{{ $image->title }}
 											</a>
 											<small class="float-end badge rounded-pill bg-{{ $image->status == 'active' ? 'success' : 'warning' }}">

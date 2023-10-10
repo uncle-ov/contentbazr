@@ -15,7 +15,7 @@
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 			<i class="bi bi-check2 me-1"></i>	{{ session('success_message') }}
 
-			<a class="text-white text-decoration-underline ms-2" href="{{ url('photo', $data->id) }}">
+			<a class="text-white text-decoration-underline ms-2" href="{{ url('template', $data->id) }}">
 			    {{ __('misc.view_photo') }} <i class="bi-arrow-right ms-1"></i>
 			</a>
 
@@ -53,7 +53,7 @@
 				<div class="card-body p-0">
 
 			<!-- form start -->
-      <form method="POST" action="{{ url('update/photo') }}" enctype="multipart/form-data" id="formUpload" files="true">
+      <form method="POST" action="{{ url('update/template') }}" enctype="multipart/form-data" id="formUpload" files="true">
 
       	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input type="hidden" name="id" value="{{ $data->id }}">

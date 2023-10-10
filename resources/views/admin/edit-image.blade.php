@@ -64,7 +64,7 @@
 						<div class="row mb-3">
 		          <div class="col-sm-10 offset-sm-2">
 		            <button type="submit" class="btn btn-dark mt-3 px-5 me-2">{{ __('admin.save') }}</button>
-                <a href="{{ url('photo', $data->id) }}" target="_blank" class="btn btn-link text-reset mt-3 px-3 e-none text-decoration-none">{{ __('admin.view') }} <i class="bi-box-arrow-up-right ms-1"></i></a>
+                <a href="{{ url('template', $data->id) }}" target="_blank" class="btn btn-link text-reset mt-3 px-3 e-none text-decoration-none">{{ __('admin.view') }} <i class="bi-box-arrow-up-right ms-1"></i></a>
 		          </div>
 		        </div>
 

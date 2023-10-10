@@ -53,7 +53,7 @@
                       $purchaseNull = false;
                       $image_photo = Storage::url(config('path.thumbnail').$purchase->images()->thumbnail);
                       $image_title = $purchase->images()->title;
-                      $image_url   = url('photo', $purchase->images()->id);
+                      $image_url   = url('template', $purchase->images()->id);
                       $download_url = url('purchase/stock', $purchase->images()->token_id);
 
 

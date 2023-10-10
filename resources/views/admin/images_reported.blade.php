@@ -43,7 +43,7 @@
                    <tr>
                      <td>{{ $report->id }}</td>
                      <td><a href="{{ url($report->user()->username) }}" target="_blank">{{ $report->user()->username }} <i class="bi-box-arrow-up-right"></i></a></td>
-                     <td><a href="{{ url('photo', $report->image()->id) }}" target="_blank">{{ str_limit($report->image()->title, 10, '...') }} <i class="bi-box-arrow-up-right"></i></a></td>
+                     <td><a href="{{ url('template', $report->image()->id) }}" target="_blank">{{ str_limit($report->image()->title, 10, '...') }} <i class="bi-box-arrow-up-right"></i></a></td>
 
                      @php if( $report->reason == 'copyright' ) {
                $reason = trans('admin.copyright');

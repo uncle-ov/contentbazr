@@ -55,7 +55,7 @@
                     <tr>
                       <td>{{ $image->id }}</td>
                       <td><img src="{{Storage::disk('azure')->url('uploads/images/'.$thumbnail)}}" width="50" /></td>
-                      <td><a href="{{ url('photo', $image->id) }}" title="{{$image->title}}" target="_blank">{{ str_limit($image->title, 10, '...') }} <i class="fa fa-external-link-square"></i></a></td>
+                      <td><a href="{{ url('template', $image->id) }}" title="{{$image->title}}" target="_blank">{{ str_limit($image->title, 10, '...') }} <i class="fa fa-external-link-square"></i></a></td>
                       <td>{{ $image->item_for_sale == 'sale' ? trans('misc.sale') : trans('misc.free')  }}</td>
                       <td>{{ $image->likes()->count() }}</td>
                       <td>{{ $image->downloads()->count() }}</td>
@@ -75,7 +75,7 @@
                       <td><span class="badge bg-{{$mode}}">{{ $_status }}</span></td>
                       <td>
 
-                   <a href="{{ url('edit/photo', $image->id) }}" class="btn btn-light border btn-sm padding-btn" target="_blank">
+                   <a href="{{ url('edit/template', $image->id) }}" class="btn btn-light border btn-sm padding-btn" target="_blank">
                       	<i class="bi bi-pencil-fill"></i>
                       	</a>
 

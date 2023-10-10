@@ -29,7 +29,7 @@
 				$slugUrl  = '/'.str_slug( $response->title );
 			} ?>
 	<url>
-         <loc>{{ url('photo',$response->id).$slugUrl }}</loc>
+         <loc>{{ url('template',$response->id).$slugUrl }}</loc>
          <lastmod>{{ date('Y-m-d', strtotime($response->date) ) }}</lastmod>
          <priority>0.8</priority>
    </url>

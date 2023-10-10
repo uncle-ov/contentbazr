@@ -29,7 +29,7 @@
 		</a><!-- end link -->
   @endif
 
-    <a class="list-group-item list-group-item-action d-flex justify-content-between @if (request()->is('user/dashboard/photos'))active @endif" href="{{ url('user/dashboard/photos') }}">
+    <a class="list-group-item list-group-item-action d-flex justify-content-between @if (request()->is('user/dashboard/templates'))active @endif" href="{{ url('user/dashboard/templates') }}">
 			<div>
 				<i class="bi bi-images me-2"></i>
 				<span>{{ trans_choice('misc.images_plural', 0) }}</span>

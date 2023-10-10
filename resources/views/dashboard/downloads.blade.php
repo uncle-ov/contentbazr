@@ -36,7 +36,7 @@
                     @php
                     $image_photo = Helper::getThumbUrl($downloads->thumbnail);
                     $image_title = $downloads->title;
-                    $image_url   = url('photo', $downloads->id);
+                    $image_url   = url('template', $downloads->id);
 
                     if ($downloads->type == 'subscription') {
                       $downloadUrl = url('subscription/stock', $downloads->token_id);

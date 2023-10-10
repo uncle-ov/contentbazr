@@ -34,7 +34,7 @@
 
 	  foreach ($sql as $key) {
 
-		$url_photo = url('photo', $key->id);
+		$url_photo = url('template', $key->id);
 		$url_video = url('video', $key->id);
 		$notyNormal = true;
 

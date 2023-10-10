@@ -13,7 +13,7 @@
         
         list($width, $height) = explode('x',$image->thumbnail_resolution);
     ?>
-<a class="item hovercard" data-w="{{$width}}" data-h="{{$height}}" href="{{ url('photo', $image->id ) }}/{{str_slug($image->title)}}" style="{{$background}}">
+<a class="item hovercard" data-w="{{$width}}" data-h="{{$height}}" href="{{ url('template', $image->id ) }}/{{str_slug($image->title)}}" style="{{$background}}">
 
 	@if ($image->item_for_sale == 'sale')
 		<small class="premium-crown">

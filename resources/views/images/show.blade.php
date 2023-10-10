@@ -75,7 +75,7 @@
 <meta property="og:type" content="website" />
 
 <meta property="og:site_name" content="{{$settings->title}}"/>
-<meta property="og:url" content="{{url("photo/$response->id").'/'.str_slug($response->title)}}"/>
+<meta property="og:url" content="{{url("template/$response->id").'/'.str_slug($response->title)}}"/>
 <meta property="og:image" content="{{$thumburl}}"/>
 <meta property="og:title" content="{{ $response->title.' - '.trans_choice('misc.photos_plural', 1 ).' #'.$response->id }}"/>
 <meta property="og:description" content="{{ Helper::removeLineBreak( e( $response->description ) ) }}"/>
@@ -380,10 +380,10 @@ other sizes /formats.</small></div>
  	<div class="row mb-3">
 
 			<div class="col-md-12">
-				<a class="btn btn-sm bg-white border e-none btn-category d-block mb-2" href="{{ url('edit/photo',$response->id) }}">{{trans('admin.edit')}}</a>
+				<a class="btn btn-sm bg-white border e-none btn-category d-block mb-2" href="{{ url('edit/template',$response->id) }}">{{trans('admin.edit')}}</a>
 			</div>
 			<div class="col-md-12">
-        <form method="POST" action="{{ url('delete/photo', $response->id) }}" accept-charset="UTF-8" class="d-inline">
+        <form method="POST" action="{{ url('delete/template', $response->id) }}" accept-charset="UTF-8" class="d-inline">
           @csrf
           <button type="button" class="btn btn-sm bg-white border e-none btn-category text-danger d-block w-100" id="deletePhoto">
               <i class="bi bi-trash me-1 "></i> {{trans('admin.delete')}}
@@ -739,7 +739,7 @@ other sizes /formats.</small></div>
 				  <div class="modal-body">
 
 				    <!-- form start -->
-			    <form method="POST" action="{{ url('report/photo') }}" enctype="multipart/form-data" id="formReport">
+			    <form method="POST" action="{{ url('report/template') }}" enctype="multipart/form-data" id="formReport">
 			    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			    	<input type="hidden" name="id" value="{{ $response->id }}">
 				    <!-- Start Form Group -->
@@ -782,8 +782,8 @@ other sizes /formats.</small></div>
  @if (auth()->check() && $response->user()->id != auth()->id() && $response->user()->paypal_account != '' || auth()->guest()  && $response->user()->paypal_account != '')
  <form id="form_pp" name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post"  style="display:none">
     <input type="hidden" name="cmd" value="_donations">
-    <input type="hidden" name="return" value="{{url('photo',$response->id)}}">
-    <input type="hidden" name="cancel_return"   value="{{url('photo',$response->id)}}">
+    <input type="hidden" name="return" value="{{url('template',$response->id)}}">
+    <input type="hidden" name="cancel_return"   value="{{url('template',$response->id)}}">
     <input type="hidden" name="currency_code" value="USD">
     <input type="hidden" name="item_name" value="{{trans('misc.support').' @'.$response->user()->username}} - {{$settings->title}}" >
     <input type="hidden" name="business" value="{{$response->user()->paypal_account}}">
