@@ -112,7 +112,6 @@ class ImagesController extends Controller
 	 */
 	public function show($id, $slug = null)
 	{
-		dd($id);
 		$response = Images::findOrFail($id);
 
 		if (auth()->check() && $response->user_id != auth()->id() && $response->status == 'pending' && auth()->user()->role != 'admin') {
