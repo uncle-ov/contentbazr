@@ -25,7 +25,9 @@
       {!! $settings->google_analytics !!}
     @endif
 
+    <!-- Start: Header code snippets -->
     {!! $settings->header_code_snippets !!}
+    <!-- End: Header code snippets -->
   </head>
   <body>
     <div class="overlay" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></div>
