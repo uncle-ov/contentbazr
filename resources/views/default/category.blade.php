@@ -6,6 +6,8 @@
 <section class="section section-sm">
 <?php
     $sub_cats = json_decode($category->tags_data);
+
+    dd($sub_cats);
 ?>
 <div class="container">
 
