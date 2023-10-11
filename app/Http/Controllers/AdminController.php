@@ -382,7 +382,8 @@ class AdminController extends Controller
 		$sql->lightbox = $request->lightbox ?? 'off';
 		$sql->banner_cookies = $request->banner_cookies ?? false;
 		$sql->homepage_video = $request->homepage_video ?? '';
-		$sql->header_code_snippets = $request->header_code_snippets;
+		$sql->header_code_snippets = $request->header_code_snippets ?? '';
+		dd($request->header_code_snippets)
 		$sql->save();
 
 		// Default locale

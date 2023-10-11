@@ -76,7 +76,7 @@
 			 <div class="row mb-3">
         <label class="col-sm-2 col-form-labe text-lg-end">Header Code Snippets</label>
         <div class="col-sm-10">
-          <textarea value="{{ $settings->header_code_snippets }}" name="header_code_snippets" class="form-control" placeholder="Paste html codes here"></textarea>
+          <textarea name="header_code_snippets" class="form-control" placeholder="Paste html codes here">{! $settings->header_code_snippets !}</textarea>
         </div>
       </div><!-- end row -->
 
