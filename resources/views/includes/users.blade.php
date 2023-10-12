@@ -39,7 +39,7 @@ if (auth()->check()) {
 
 			<div class="d-block mb-4 mt-3">
 				<div class="row">
-
+					{{dd(json_decode($images[0]->thumbnail))}}
 					<div class="col-4 px-1">
 						<img src="{{ isset($images[0]) ? Storage::url(config('path.thumbnail').json_decode($images[0]->thumbnail)[0]->name) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
 					</div>
