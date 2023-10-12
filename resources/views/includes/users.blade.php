@@ -41,16 +41,15 @@ if (auth()->check()) {
 				<div class="row">
 
 					<div class="col-4 px-1">
-								{{dd($images[0])}}
-								<img src="{{ isset($images[0]) ? Storage::url(config('path.thumbnail').$images[0]->thumbnail) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
+						<img src="{{ isset($images[0]) ? Storage::url(config('path.thumbnail').$images[0]->thumbnail->name) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
 					</div>
 
 					<div class="col-4 px-1">
-						<img src="{{ isset($images[1]) ? Storage::url(config('path.thumbnail').$images[1]->thumbnail) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
+						<img src="{{ isset($images[1]) ? Storage::url(config('path.thumbnail').$images[1]->thumbnail->name) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
 					</div>
 
 					<div class="col-4 px-1">
-						<img src="{{ isset($images[2]) ? Storage::url(config('path.thumbnail').$images[2]->thumbnail) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1 me-1">
+						<img src="{{ isset($images[2]) ? Storage::url(config('path.thumbnail').$images[2]->thumbnail->name) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1 me-1">
 					</div>
 
 				</div>
