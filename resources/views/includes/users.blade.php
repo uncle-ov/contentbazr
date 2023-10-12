@@ -41,7 +41,7 @@ if (auth()->check()) {
 				<div class="row">
 
 					<div class="col-4 px-1">
-								dd($images[0]);
+								{{dd($images[0])}}
 								<img src="{{ isset($images[0]) ? Storage::url(config('path.thumbnail').$images[0]->thumbnail) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
 					</div>
 
