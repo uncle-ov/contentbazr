@@ -22,7 +22,7 @@
   <a href="{{ URL('category/'.$category->slug) }}" class="btn btn-main btn-secondary" style="float: left;">
     Go Back
   </a>
-  <?php $sub_cats = json_decode($category->tags_data); ?>
+  <?php $sub_cats = json_decode($category->tags_data); dd($sub_cats); ?>
   <select class="form-select" style="display:inline-block;width:auto;" onChange="window.location.href=this.value">
       <optgroup label="<?php echo $category->name; ?>">
       <option value="<?php echo URL('category/'.$cat_slug); ?>">View all</option>
