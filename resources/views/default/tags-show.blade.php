@@ -3,7 +3,7 @@
 @section('title'){{ $title.' - ' }}@endsection
 
 @section('content')
-<?php $sub_cats = json_decode($category->tags_data); dd($sub_cats, $category->tags_data); ?>
+<?php $sub_cats = json_decode($category->tags_data); ?>
 
 <section class="section section-sm">
 

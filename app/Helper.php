@@ -827,4 +827,12 @@ class Helper
 		return $embedUrl;
 	}
 
+	public function cleanupTags($tags)
+	{
+		$clean_tags = str_replace('\"', '', $tags);
+		$clean_tags = str_replace('"', '', $clean_tags);
+
+		return $clean_tags;
+	}
+
 } //<--- End Class

@@ -59,7 +59,7 @@
             <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Sub Categories</label>
 		          <div class="col-sm-10">
-		            <input type="text" value="{{ $categories->tags }}" class="form-control tagin" id="tagInput" name="tags" placeholder="Enter tags/sub categories">
+		            <input type="text" value="{{ Helper::cleanupTags($categories->tags) }}" class="form-control tagin" id="tagInput" name="tags" placeholder="Enter tags/sub categories">
 		            <small class="d-block">Please avoid special characters and separate each sub cateory with comma.</small>
 		          </div>
 		        </div>
