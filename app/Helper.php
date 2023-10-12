@@ -831,6 +831,8 @@ class Helper
 	{
 		$clean_tags = str_replace('\"', '', $tags);
 		$clean_tags = str_replace('"', '', $clean_tags);
+		$clean_tags = str_replace('[', '', $clean_tags);
+		$clean_tags = str_replace(']', '', $clean_tags);
 
 		return $clean_tags;
 	}
