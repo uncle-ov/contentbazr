@@ -29,7 +29,7 @@
       <option value="<?php echo URL('category/'.$cat_slug); ?>">View all</option>
       <?php foreach($sub_cats as $dis_slug => $distag) { ?>
         <option <?php if($dis_slug == $slug) echo ' selected'; ?> value="<?php echo URL('tags') . '/' . $dis_slug; ?>">
-            <?php echo $distag; ?>
+            <?php echo ucfirst($distag); ?>
         </option>
       <?php } ?>
       </optgroup>

@@ -24,7 +24,7 @@
       <option value="<?php echo URL('category/'.$category->slug); ?>">View all</option>
       <?php foreach($sub_cats as $slug => $distag) { ?>
         <option value="<?php echo URL('tags') . '/' . $slug; ?>">
-            <?php echo $distag; ?>
+            <?php echo ucfirst($distag); ?>
         </option>
       <?php } ?>
   </select>
