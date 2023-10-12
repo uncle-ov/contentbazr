@@ -1431,7 +1431,7 @@ $(document).ready(function() {
 
 	$('.show_hidden_tags').on('click', function(e) {
 		e.preventDefault();
-		$(this).parent().find('.cb_tags').removeClass('hide_tag');
+		$(this).parent().find('.cb_tag').removeClass('hide_tag');
 		$(this).hide();
 	})
 })(jQuery);
