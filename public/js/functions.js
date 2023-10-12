@@ -1428,4 +1428,9 @@ $(document).ready(function() {
 		$(this).text($(this).text() == 'Show All' ? 'Show Less' : 'Show All')
 			.toggleClass('btn btn-sm bg-white border e-none btn-category mb-2');
 	})
+
+	$('.show_hidden_tags').on('click', function() {
+		$(this).parent().find('.cb_tags').removeClass('hide_tag');
+		$(this).hide();
+	})
 })(jQuery);

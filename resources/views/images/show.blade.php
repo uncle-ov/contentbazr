@@ -305,12 +305,26 @@
 	   $countTags = count($tags);
 	 @endphp
 
-	   @for ($i = 0; $i < $countTags; ++$i)
-	   <a href="{{url('tags', str_replace(' ', '_', trim($tags[$i]))) }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
-	   	{{ $tags[$i] }}
-	   </a>
-	   @endfor
+  <div class="tags_wrap">
+	  @for ($i = 0; $i < $countTags; ++$i)
+      <a
+        href="{{url('tags', str_replace(' ', '_', trim($tags[$i]))) }}"
+        class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i > 0 ?? 'hide_tag' }}"
+      >
+        {{ $tags[$i] }}
+      </a>
+	  @endfor
+
+    @if($countTags > 0)
+    <a
+      href="#"
+      class="btn btn-sm bg-white border e-none btn-category mb-2 show_hidden_tags"
+    >
+      {{ $countTags - 1 }}+
+    </a>
+    @endif
     </div>
+  </div>
     <div><small>Click on the first tag (e.g., id1309) to see the same design in
 other sizes /formats.</small></div>
 </div><!-- End Block -->

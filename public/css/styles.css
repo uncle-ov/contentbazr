@@ -1271,6 +1271,9 @@ ul.list-stats li {
   width: auto;
 }
 
+.hide_tag {
+  display: none !important;
+}
 @media(max-width: 730px) {
     .auth_logo {
         display: block;
