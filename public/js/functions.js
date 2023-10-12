@@ -1429,7 +1429,8 @@ $(document).ready(function() {
 			.toggleClass('btn btn-sm bg-white border e-none btn-category mb-2');
 	})
 
-	$('.show_hidden_tags').on('click', function() {
+	$('.show_hidden_tags').on('click', function(e) {
+		e.preventDefault();
 		$(this).parent().find('.cb_tags').removeClass('hide_tag');
 		$(this).hide();
 	})

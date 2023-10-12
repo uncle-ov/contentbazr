@@ -309,7 +309,7 @@
 	  @for ($i = 0; $i < $countTags; ++$i)
       <a
         href="{{url('tags', str_replace(' ', '_', trim($tags[$i]))) }}"
-        class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i > 0 ?? 'hide_tag' }}"
+        class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i > 0 ? 'hide_tag' : '' }}"
       >
         {{ $tags[$i] }}
       </a>
