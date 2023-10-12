@@ -20,7 +20,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <h2>Browse Tags</h2>
+        <h4 class="mt-5">Browse Tags</h4>
 
         <div class="show_more_on_click">
           <?php
