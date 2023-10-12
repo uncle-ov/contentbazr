@@ -1423,6 +1423,8 @@ $(document).ready(function() {
 
 	$('.show_more_on_click > .show_all').on('click', function(e) {
 		e.preventDefault();
-		$(this).parent().addClass('open');
+		$(this).parent().toggleClass('open');
+
+		$(this).text($(this).text() == 'Show All' ? 'Show Less' : 'Show All');
 	})
 })(jQuery);

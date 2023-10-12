@@ -1265,7 +1265,8 @@ ul.list-stats li {
 }
 
 .show_more_on_click.open > .show_all {
-  display: none;
+  position: relative;
+  height: auto;
 }
 
 @media(max-width: 730px) {
