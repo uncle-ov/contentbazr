@@ -23,16 +23,17 @@
         <h2>Browse Tags</h2>
 
         <div class="show_more_on_click">
-        <?php
-          foreach($categories as $category) {
-            $sub_cats = json_decode($category->tags_data);
-        ?>
-        <?php foreach ($sub_cats as $slug => $distag) { ?>
-        <a href="{{ URL('tags') . '/' . $slug }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
-          {{ $distag }}
-        </a>
-        <?php } ?>
-        <?php } ?>
+          <?php
+            foreach($categories as $category) {
+              $sub_cats = json_decode($category->tags_data);
+          ?>
+          <?php foreach ($sub_cats as $slug => $distag) { ?>
+          <a href="{{ URL('tags') . '/' . $slug }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
+            {{ $distag }}
+          </a>
+          <?php } ?>
+          <?php } ?>
+          <a class="show_all">Show All</a>
         </div>
       </div>
     </div>

@@ -1247,7 +1247,7 @@ ul.list-stats li {
   max-height: none;
 }
 
-.show_more_on_click::after {
+.show_more_on_click > .show_all {
   content: "Show all";
   display: flex;
   position: absolute;
@@ -1264,7 +1264,7 @@ ul.list-stats li {
   cursor: pointer;
 }
 
-.show_more_on_click.open::after {
+.show_more_on_click.open > .show_all {
   display: none;
 }
 

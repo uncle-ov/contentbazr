@@ -1421,7 +1421,8 @@ $(document).ready(function() {
 
 			});
 
-	$('.show_more_on_click').on('click', function() {
-		$(this).addClass('open');
+	$('.show_more_on_click > .show_all').on('click', function(e) {
+		e.preventDefault();
+		$(this).parent().addClass('open');
 	})
 })(jQuery);
