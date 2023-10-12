@@ -27,11 +27,12 @@
           foreach($categories as $category) {
             $sub_cats = json_decode($category->tags_data);
         ?>
-        @foreach ($sub_cats as $slug => $distag)
+        <?php foreach ($sub_cats as $slug => $distag) { ?>
         <a href="{{ URL('tags') . '/' . $slug }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
           {{ $tdistag }}
         </a>
-        @endforeach
+        <?php } ?>
+        <?php } ?>
         </div>
       </div>
     </div>
