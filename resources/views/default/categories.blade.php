@@ -31,7 +31,7 @@
         <a href="{{ URL('tags') . '/' . $slug }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
           {{ $tdistag }}
         </a>
-        @endfor
+        @endforeach
         </div>
       </div>
     </div>
