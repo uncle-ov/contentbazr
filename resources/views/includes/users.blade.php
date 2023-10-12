@@ -39,17 +39,16 @@ if (auth()->check()) {
 
 			<div class="d-block mb-4 mt-3">
 				<div class="row">
-					{{dd(Helper::getThumbUrl($images[0]))}}
 					<div class="col-4 px-1">
-						<img src="{{ isset($images[0]) ? Storage::url(config('path.thumbnail').json_decode($images[0]->thumbnail)[0]->name) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
+						<img src="{{ isset($images[0]) ? Helper::getThumbUrl($images[0]->thumbnail) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
 					</div>
 
 					<div class="col-4 px-1">
-						<img src="{{ isset($images[1]) ? Storage::url(config('path.thumbnail').json_decode($images[1]->thumbnail)[0]->name) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
+						<img src="{{ isset($images[1]) ? Helper::getThumbUrl($images[1]->thumbnail) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1">
 					</div>
 
 					<div class="col-4 px-1">
-						<img src="{{ isset($images[2]) ? Storage::url(config('path.thumbnail').json_decode($images[2]->thumbnail)[0]->name) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1 me-1">
+						<img src="{{ isset($images[2]) ? Helper::getThumbUrl($images[2]->thumbnail) : asset('public/img/placeholder.jpg') }}" width="95" class="image-card-user me-1 me-1">
 					</div>
 
 				</div>
