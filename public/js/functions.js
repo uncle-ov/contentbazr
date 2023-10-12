@@ -1425,6 +1425,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		$(this).parent().toggleClass('open');
 
-		$(this).text($(this).text() == 'Show All' ? 'Show Less' : 'Show All');
+		$(this).text($(this).text() == 'Show All' ? 'Show Less' : 'Show All')
+			.toggleClass('btn btn-sm bg-white border e-none btn-category mb-2');
 	})
 })(jQuery);
