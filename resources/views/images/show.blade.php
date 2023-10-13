@@ -240,13 +240,10 @@
           <div class="carousel-inner" role="listbox">
               <?php if(!empty($response->vimeo_link)):
                 $video_width = $response->video_dimension == '16:9' ? '100%' : '400px';
-                $vimeo_embed = 'https://player.vimeo.com/video/' . str_replace('https://vimeo.com/', '', $response->vimeo_link);
             ?>
             <div class="item active">
                 <div style="width: <?php echo $video_width; ?>;margin:0 auto;">
-                    <div class="embed-responsive embed-responsive-<?php echo str_replace(':', 'by', $response->video_dimension); ?>">
-                        <iframe src="<?php echo $vimeo_embed; ?>?autoplay=1&muted=1" frameborder="0" allow="autoplay" allowfullscreen style="min-height: 200px;background:black;"></iframe>
-                    </div>
+                  <?php Helper::renderEmbedVideo($response)
                 </div>
             </div>
             <?php endif; ?>
