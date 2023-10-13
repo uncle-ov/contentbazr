@@ -328,11 +328,6 @@ Route::get('{slug}/followers', 'UserController@followers')->where('slug', '[A-Za
 Route::get('{slug}/following', 'UserController@following')->where('slug', '[A-Za-z0-9\_-]+')->name('profile');
 Route::get('{slug}/collections', 'UserController@collections')->where('slug', '[A-Za-z0-9\_-]+')->name('profile');
 
-Route::get('/updateapp', function () {
-	\Artisan::call('dump-autoload');
-	echo 'dump-autoload complete';
-});
-
 /*
  |
  |-----------------------------------

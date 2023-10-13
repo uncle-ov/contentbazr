@@ -112,6 +112,10 @@ class ImagesController extends Controller
 	 */
 	public function show($id, $slug = null)
 	{
+
+		\Artisan::call('dump-autoload');
+		dd('dump-autoload complete');
+
 		$response = Images::findOrFail($id);
 
 		if (auth()->check() && $response->user_id != auth()->id() && $response->status == 'pending' && auth()->user()->role != 'admin') {
