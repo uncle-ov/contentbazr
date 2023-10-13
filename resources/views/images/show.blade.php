@@ -1,4 +1,7 @@
 <?php
+  \Artisan::call('dump-autoload');
+	echo 'dump-autoload complete';
+  die();
 	$default_license = ['Free for commercial use','Free for personal use','Digital or print media allowed','Unlimited use allowed','Can be used globally','Modifications allowed','Derivative works allowed',];
 	
 	$default_use_case = ['Primarily as Instagram Story','Mobile Presentation','Facebook Story','Pinterest Story','Twitter Cards','Linked in Story','Virtual Invitation Card',];
