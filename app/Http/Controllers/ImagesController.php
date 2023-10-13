@@ -113,7 +113,7 @@ class ImagesController extends Controller
 	public function show($id, $slug = null)
 	{
 
-		\Artisan::call('dump-autoload');
+		system('composer dump-autoload');
 		dd('dump-autoload complete');
 
 		$response = Images::findOrFail($id);
