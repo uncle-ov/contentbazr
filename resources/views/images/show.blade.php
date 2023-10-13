@@ -243,7 +243,7 @@
             ?>
             <div class="item active">
                 <div style="width: <?php echo $video_width; ?>;margin:0 auto;">
-                  {{ Helper::renderEmbedVideo($response) }}
+                  {{ renderEmbedVideo($response) }}
                 </div>
             </div>
             <?php endif; ?>
