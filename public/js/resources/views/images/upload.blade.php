@@ -190,8 +190,8 @@
                 </div>
 
                 <div class="mb-3">
-                  <label>Add Vimeo Video (link)</label>
-                  <input type="text" class="form-control" placeholder="Add vimeo video link" name="vimeo_link" value="{{ old('vimeo_link') }}">
+                  <label>Add Vimeo/Streamable Video (link)</label>
+                  <input type="text" class="form-control" placeholder="Add vimeo/streamable video link" name="vimeo_link" value="{{ old('vimeo_link') }}">
                 </div>
 
                 <div class="mb-3">

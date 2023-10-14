@@ -184,8 +184,8 @@
                 
                 
                 <div class="mb-3">
-                  <label>Vimeo Video (link)</label>
-                  <input type="text" class="form-control" value="{{$data->vimeo_link}}" placeholder="Add vimeo video link" name="vimeo_link">
+                  <label>Vimeo/Streamable Video (link)</label>
+                  <input type="text" class="form-control" value="{{$data->vimeo_link}}" placeholder="Add vimeo/streamable video link" name="vimeo_link">
                 </div>
 
                 <div class="mb-3">
