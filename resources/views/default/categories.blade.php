@@ -28,9 +28,11 @@
               $sub_cats = json_decode($category->tags_data);
           ?>
           <?php foreach ($sub_cats as $slug => $distag) { ?>
+          <?php if(!empty($distag)) { ?>
           <a href="{{ URL('tags') . '/' . $slug }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
             {{ $distag }}
           </a>
+          <?php } ?>
           <?php } ?>
           <?php } ?>
           <a class="show_all">Show All</a>

@@ -23,9 +23,11 @@
   <select class="form-select" style="display:inline-block;width:auto;" onChange="window.location.href=this.value">
       <option value="<?php echo URL('category/'.$category->slug); ?>">View all</option>
       <?php foreach($sub_cats as $slug => $distag) { ?>
+        <?php if(!empty($distag)) { ?>
         <option value="<?php echo URL('tags') . '/' . $slug; ?>">
             <?php echo ucfirst($distag); ?>
         </option>
+        <?php } ?>
       <?php } ?>
   </select>
 </div>
