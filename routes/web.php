@@ -368,7 +368,9 @@ Route::group(['middleware' => 'role'], function () {
 
 	// Members
 	Route::get('panel/admin/members', 'AdminUserController@index')->name('members');
+	Route::get('panel/admin/members/new', 'AdminUserController@new')->name('members');
 	Route::get('panel/admin/members/edit/{id}', 'AdminUserController@edit')->name('members');
+	Route::post('panel/admin/members/create', 'AdminUserController@createUser');
 	Route::post('panel/admin/members/edit/{id}', 'AdminUserController@update');
 	Route::post('panel/admin/members/{id}', 'AdminUserController@destroy')->name('user.destroy');
 
