@@ -19,7 +19,7 @@
 			<div class="card shadow-custom border-0">
 				<div class="card-body p-lg-5">
 
-          @include('auth.inc.registration-form')
+          @include('auth.inc.registration-form', ['admin_user_creation' => true])
 
 				 </div><!-- card-body -->
  			</div><!-- card  -->
