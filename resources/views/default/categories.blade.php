@@ -30,7 +30,7 @@
           <?php foreach ($sub_cats as $slug => $distag) { ?>
           <?php if(!empty($distag)) { ?>
           <a href="{{ URL('tags') . '/' . $slug }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
-            {{ $category->name . '-' . $distag }}
+            {{ $distag }}
           </a>
           <?php } ?>
           <?php } ?>
