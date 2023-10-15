@@ -21,8 +21,9 @@ use App\Models\Comments;
 use App\Models\CollectionsImages;
 use App\Models\Pages;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
 use App\Models\Countries;
+use Validator;
 
 class AdminUserController extends Controller
 {
