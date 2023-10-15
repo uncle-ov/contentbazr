@@ -6,7 +6,7 @@
       <i class="bi-chevron-right me-1 fs-6"></i>
       <a class="text-reset" href="{{ url('panel/admin/members') }}">{{ __('admin.members') }}</a>
       <i class="bi-chevron-right me-1 fs-6"></i>
-      <span class="text-muted">{{ __('admin.edit') }}</span>
+      <span class="text-muted">New</span>
   </h5>
 
 <div class="content">
