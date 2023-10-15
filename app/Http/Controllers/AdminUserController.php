@@ -92,7 +92,7 @@ class AdminUserController extends Controller
 		} else {
 			$country = Countries::whereCountryCode(\Helper::userCountry())->first();
 
-			return User::create([
+			User::create([
 				'username' => $data['username'],
 				'name' => '',
 				'bio' => '',
