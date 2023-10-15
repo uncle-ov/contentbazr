@@ -77,7 +77,7 @@ class AdminUserController extends Controller
 	public function createUser(Request $request)
 	{
 		$validation = [
-			'username' => 'required|min:3|max:15|ascii_only|alpha_dash|letters|unique:users|unique:pages,slug|unique:reserved,name',
+			'username' => 'required|min:3|max:15|letters|unique:users|unique:pages,slug|unique:reserved,name',
 			'email' => 'required|email|max:255|unique:users',
 			'password' => 'required|min:8|confirmed',
 		];
