@@ -70,7 +70,7 @@ class AdminUserController extends Controller
 	 */
 	public function new()
 	{
-		$data = [];
+		$data = ['admin_user_creation' => true];
 		return view('admin.new-member')->withData($data);
 	}
 
