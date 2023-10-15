@@ -5,6 +5,10 @@
     <a class="text-reset" href="{{ url('panel/admin') }}">{{ __('admin.dashboard') }}</a>
       <i class="bi-chevron-right me-1 fs-6"></i>
       <span class="text-muted">{{ __('admin.members') }} ({{$data->total()}})</span>
+
+      <a href="{{ url('panel/admin/members/new') }}" class="btn btn-sm btn-dark float-lg-end mt-1 mt-lg-0">
+        <i class="bi-plus-lg"></i> {{ trans('misc.add_new') }}
+      </a>
   </h5>
 
 <div class="content">
