@@ -7,8 +7,6 @@
       <a class="text-reset" href="{{ url('panel/admin/members') }}">{{ __('admin.members') }}</a>
       <i class="bi-chevron-right me-1 fs-6"></i>
       <span class="text-muted">{{ __('admin.edit') }}</span>
-      <i class="bi-chevron-right me-1 fs-6"></i>
-      <span class="text-muted">{{ $data->username }}</span>
   </h5>
 
 <div class="content">
