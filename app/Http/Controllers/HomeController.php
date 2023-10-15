@@ -284,7 +284,8 @@ class HomeController extends Controller
 
       $category = Categories::where('slug', 'like', '' . $cat_slug . '')->first();
 
-      dd($category);
+      if (!$category)
+        abort('404');
 
       $images = Query::tagsImages($slug);
 
