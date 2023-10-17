@@ -133,7 +133,7 @@ class AdminController extends Controller
 
 	public function coupons()
 	{
-		$data = Coupon->get();
+		$data = Coupon::get();
 
 		return view('admin.coupons')->withData($data);
 	}
