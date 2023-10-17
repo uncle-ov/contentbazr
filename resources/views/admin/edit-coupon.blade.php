@@ -21,7 +21,7 @@
 
 					 <form method="post" action="{{ url('panel/admin/coupons/save') }}" enctype="multipart/form-data">
              @csrf
-
+            {{ dd($coupon) }}
 		        <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Discount Code</label>
 		          <div class="col-sm-10">

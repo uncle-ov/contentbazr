@@ -152,8 +152,6 @@ class AdminController extends Controller
 		if (empty($coupon))
 			abort('404');
 
-		dd($coupon);
-
 		return view('admin.edit-coupon')->with('coupon', $coupon);
 	}
 
