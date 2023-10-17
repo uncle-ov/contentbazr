@@ -145,10 +145,22 @@ class AdminController extends Controller
 		return view('admin.add-coupon')->withData($data);
 	}
 
+	public function editCoupon($id)
+	{
+		$coupon = Coupon::find($id);
+
+		if (empty($coupon))
+			abort('404');
+
+		$data = ['coupon' => $coupon];
+
+		return view('admin.edit-coupon')->withData($data);
+	}
+
 	public function createCoupon(Request $request)
 	{
 		$rules = [
-			'coupon_code' => 'required|unique:coupons',
+			'coupon_code' => 'required',
 			'discount' => 'required|integer',
 			'discount_type' => 'required',
 			'start_date' => 'required',
@@ -157,7 +169,15 @@ class AdminController extends Controller
 
 		$this->validate($request, $rules);
 
-		$sql = new Coupon();
+		if (!empty($request->coupon_id)) {
+			$sql = Coupon::find($request->coupon_id);
+
+			if (empty($coupon))
+				return back()->withErrors(['error' => "Coupon not found"]);
+		} else {
+			$sql = new Coupon();
+		}
+
 		$sql->coupon_code = $request->coupon_code;
 		$sql->discount = $request->discount;
 		$sql->discount_type = $request->discount_type;
@@ -166,7 +186,7 @@ class AdminController extends Controller
 		$sql->description = $request->description ?? '';
 		$sql->save();
 
-		return redirect('panel/admin/coupons')->withSuccessMessage("New coupon was successfully saved.");
+		return redirect('panel/admin/coupons')->withSuccessMessage("Coupon was successfully saved.");
 	}
 
 	public function deleteCoupon($id)
