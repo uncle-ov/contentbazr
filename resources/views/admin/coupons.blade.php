@@ -59,9 +59,9 @@
                          <i class="far fa-edit"></i>
                        </a>
 
-                      <form method="POST" action="{{ url('panel/admin/coupons/delete', $coupon->id) }}" accept-charset="UTF-8" class="d-inline-block align-top">
+                      <form method="POST" action="{{ url('panel/admin/coupons/delete', $coupon->id) }}" accept-charset="UTF-8" class="d-inline-block align-top" onsubmit="return confirm('Are you sure you want to delete this coupon?')">
                         @csrf
-                        <button class="btn btn-link text-danger e-none fs-5 p-0 actionDelete" type="button"><i class="bi-trash-fill"></i></button>
+                        <button class="btn btn-link text-danger e-none fs-5 p-0 actionDelete" type="submit"><i class="bi-trash-fill"></i></button>
                       </form>
 
 										</td>
