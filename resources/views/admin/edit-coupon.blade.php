@@ -21,18 +21,18 @@
 
 					 <form method="post" action="{{ url('panel/admin/coupons/save') }}" enctype="multipart/form-data">
              @csrf
-            {{ dd($coupon) }}
+
 		        <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Discount Code</label>
 		          <div class="col-sm-10">
-		            <input value="{{ old('discount_code') }}" placeholder="Enter discount code" name="coupon_code" value="{{ $coupon->coupon_code }}" type="text" class="form-control">
+		            <input placeholder="Enter discount code" name="coupon_code" value="{{ $coupon->coupon_code }}" type="text" class="form-control">
 		          </div>
 		        </div>
 
 		        <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Discount</label>
 		          <div class="col-sm-10">
-		            <input value="{{ old('discount') }}" name="discount" value="{{ $coupon->discount }}" placeholder="Enter discount" type="number" class="form-control">
+		            <input name="discount" value="{{ $coupon->discount }}" placeholder="Enter discount" type="number" class="form-control">
 		          </div>
 		        </div>
 
@@ -49,14 +49,14 @@
             <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Start Date</label>
 		          <div class="col-sm-10">
-		            <input value="{{ old('start_date') }}" name="start_date" value="{{ $coupon->start_date }}" type="datetime-local" class="form-control">
+		            <input name="start_date" value="{{ $coupon->start_date }}" type="datetime-local" class="form-control">
 		          </div>
 		        </div>
 
             <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">End Date</label>
 		          <div class="col-sm-10">
-		            <input value="{{ old('end_date') }}" name="end_date" value="{{ $coupon->end_date }}" type="datetime-local" class="form-control">
+		            <input name="end_date" value="{{ $coupon->end_date }}" type="datetime-local" class="form-control">
 		          </div>
 		        </div>
 
