@@ -6,7 +6,7 @@
       <i class="bi-chevron-right me-1 fs-6"></i>
       <span class="text-muted">Coupons ({{$data->count()}})</span>
 
-			<a href="{{ url('panel/admin/categories/add') }}" class="btn btn-sm btn-dark float-lg-end mt-1 mt-lg-0">
+			<a href="{{ url('panel/admin/coupons/add') }}" class="btn btn-sm btn-dark float-lg-end mt-1 mt-lg-0">
 				<i class="bi-plus-lg"></i> {{ trans('misc.add_new') }}
 			</a>
   </h5>
@@ -55,11 +55,11 @@
                      <td>{{ $coupon->start_date }}</td>
                      <td>{{ $coupon->end_date }}</td>
                      <td>
-                       <a href="{{ url('panel/admin/categories/edit/').'/'.$coupon->id }}" class="text-reset fs-5 me-2">
+                       <a href="{{ url('panel/admin/coupons/edit/').'/'.$coupon->id }}" class="text-reset fs-5 me-2">
                          <i class="far fa-edit"></i>
                        </a>
 
-                      <form method="POST" action="{{ url('panel/admin/categories/delete', $coupon->id) }}" accept-charset="UTF-8" class="d-inline-block align-top">
+                      <form method="POST" action="{{ url('panel/admin/coupons/delete', $coupon->id) }}" accept-charset="UTF-8" class="d-inline-block align-top">
                         @csrf
                         <button class="btn btn-link text-danger e-none fs-5 p-0 actionDelete" type="button"><i class="bi-trash-fill"></i></button>
                       </form>

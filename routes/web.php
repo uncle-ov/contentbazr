@@ -345,7 +345,7 @@ Route::group(['middleware' => 'role'], function () {
 
 	// Coupons
 	Route::get('panel/admin/coupons', 'AdminController@coupons')->name('coupons');
-	Route::get('panel/admin/coupons/add', 'AdminController@addCoupons')->name('coupons');
+	Route::get('panel/admin/coupons/add', 'AdminController@addCoupon')->name('coupons');
 	Route::post('panel/admin/coupons/add', 'AdminController@createCoupon');
 	Route::post('panel/admin/coupons/delete/{id}', 'AdminController@deleteCoupon');
 
