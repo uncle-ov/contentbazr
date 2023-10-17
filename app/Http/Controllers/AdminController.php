@@ -159,7 +159,7 @@ class AdminController extends Controller
 	{
 		$rules = [
 			'coupon_code' => 'required',
-			'discount' => 'required|integer',
+			'discount' => 'required',
 			'discount_type' => 'required',
 			'start_date' => 'required',
 			'end_date' => 'required',
