@@ -98,6 +98,12 @@
               </li><!-- /end list -->
             @endif
 
+            <li class="nav-item">
+                <a href="{{ url('panel/admin/coupons') }}" class="nav-link text-truncate @if (request()->is('panel/admin/coupons')) active @endif">
+                    <i class="bi-receipt-cutoff me-2"></i> Coupons
+                </a>
+            </li><!-- /end list -->
+
               @if (auth()->user()->hasPermission('purchases'))
               <li class="nav-item">
                   <a href="{{ url('panel/admin/purchases') }}" class="nav-link text-truncate @if (request()->is('panel/admin/purchases')) active @endif">

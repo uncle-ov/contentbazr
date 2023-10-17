@@ -343,6 +343,12 @@ Route::group(['middleware' => 'role'], function () {
 	// Dashboard
 	Route::get('panel/admin', 'AdminController@dashboard')->name('dashboard');
 
+	// Coupons
+	Route::get('panel/admin/coupons', 'AdminController@coupons')->name('coupons');
+	Route::get('panel/admin/coupons/add', 'AdminController@addCoupons')->name('coupons');
+	Route::post('panel/admin/coupons/add', 'AdminController@createCoupon');
+	Route::post('panel/admin/coupons/delete/{id}', 'AdminController@deleteCoupon');
+
 	// Categories
 	Route::get('panel/admin/categories', 'AdminController@categories')->name('categories');
 	Route::get('panel/admin/categories/add', 'AdminController@addCategories')->name('categories');

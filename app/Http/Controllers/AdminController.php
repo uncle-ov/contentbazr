@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use App\Models\Coupon;
 use App\Models\AdminSettings;
 use App\Models\Notifications;
 use App\Models\Categories;
@@ -129,6 +130,52 @@ class AdminController extends Controller
 		]);
 
 	} //<--- End Method
+
+	public function coupons()
+	{
+		$data = Coupon::orderBy('name')->get();
+
+		return view('admin.coupons')->withData($data);
+	}
+
+	public function addCoupon()
+	{
+		$data = Coupon::orderBy('name')->get();
+
+		return view('admin.add-coupon')->withData($data);
+	}
+
+	public function createCoupon(Request $request)
+	{
+		$rules = [
+			'coupon_code' => 'required|unique:coupons',
+			'discount' => 'required|integer',
+			'discount_type' => 'required',
+			'start_date' => 'required',
+			'end_date' => 'required',
+		];
+
+		$this->validate($request, $rules);
+
+		$sql = new Coupon();
+		$sql->coupon_code = $request->coupon_code;
+		$sql->discount = $request->discount;
+		$sql->discount_type = $request->discount_type;
+		$sql->start_date = $request->start_date;
+		$sql->end_date = $request->end_date;
+		$sql->description = $request->description ?? '';
+		$sql->save();
+
+		return redirect('panel/admin/coupons')->withSuccessMessage("New coupon was successfully saved.");
+	}
+
+	public function deleteCoupon($id)
+	{
+		$coupon = Coupon::find($id);
+		$coupon->delete();
+
+		return redirect('panel/admin/coupons');
+	} //<--- END METHOD
 
 	// START
 	public function categories()
