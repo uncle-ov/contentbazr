@@ -25,21 +25,21 @@
 		        <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Discount Code</label>
 		          <div class="col-sm-10">
-		            <input value="{{ old('discount_code') }}" name="discount_code" type="text" class="form-control">
+		            <input value="{{ old('discount_code') }}" placeholder="Enter discount code" name="coupon_code" type="text" class="form-control">
 		          </div>
 		        </div>
 
 		        <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Discount</label>
 		          <div class="col-sm-10">
-		            <input value="{{ old('discount') }}" name="discount" type="number" class="form-control">
+		            <input value="{{ old('discount') }}" name="discount" placeholder="Enter discount" type="number" class="form-control">
 		          </div>
 		        </div>
 
 		        <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Discount Type</label>
 		          <div class="col-sm-10">
-		            <select class="form-control">
+		            <select class="form-control" name="discount_type">
                   <option value="percentage">Percentage</option>
                   <option value="fixed">Fixed</option>
                 </select>
@@ -49,21 +49,21 @@
             <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Start Date</label>
 		          <div class="col-sm-10">
-		            <input value="{{ old('start_date') }}" name="start_date" type="datetime" class="form-control">
+		            <input value="{{ old('start_date') }}" name="start_date" type="datetime-local" class="form-control">
 		          </div>
 		        </div>
 
             <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">End Date</label>
 		          <div class="col-sm-10">
-		            <input value="{{ old('end_date') }}" name="end_date" type="datetime" class="form-control">
+		            <input value="{{ old('end_date') }}" name="end_date" type="datetime-local" class="form-control">
 		          </div>
 		        </div>
 
             <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Description</label>
 		          <div class="col-sm-10">
-		            <textarea name="description" class="form-control">{{ old('description') }}</textarea>
+		            <textarea name="description" class="form-control" placeholder="Enter a description">{{ old('description') }}</textarea>
 		          </div>
 		        </div>
 
