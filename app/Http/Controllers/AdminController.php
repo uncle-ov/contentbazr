@@ -170,7 +170,7 @@ class AdminController extends Controller
 		if (!empty($request->coupon_id)) {
 			$sql = Coupon::find($request->coupon_id);
 
-			if (empty($coupon))
+			if (empty($sql))
 				return back()->withErrors(['error' => "Coupon not found"]);
 		} else {
 			$sql = new Coupon();
