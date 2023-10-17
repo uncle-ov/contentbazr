@@ -51,10 +51,9 @@
                      <td>{{ $coupon->coupon_code }}</td>
                      <td>{{ $coupon->discount }}</td>
                      <td>{{ $coupon->discount_type }}</td>
-                     <td>{{ $coupon->start_date }}</td>
+                     <td><span class="badge bg-{{ isCouponValid($coupon) ? 'success' : 'warning' }}">{{ isCouponValid($coupon) ? 'Valid' : 'Invalid' }}</span></td>
                      <td>{{ $coupon->start_date }}</td>
                      <td>{{ $coupon->end_date }}</td>
-                     <td><span class="badge bg-{{ coupon_is_active($coupon) ? 'success' : 'warning' }}">{{ coupon_is_active($coupon) ? 'Active' : 'Inactive' }}</span></td>
                      <td>
                        <a href="{{ url('panel/admin/categories/edit/').'/'.$coupon->id }}" class="text-reset fs-5 me-2">
                          <i class="far fa-edit"></i>

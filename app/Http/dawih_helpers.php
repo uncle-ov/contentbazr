@@ -35,3 +35,14 @@ function renderEmbedVideo($response)
 
   return null;
 }
+
+function isCouponValid($coupon)
+{
+  // Check if the current date is within the valid range
+  $current_date = date('Y-m-d H:i:s');
+  if ($current_date < $coupon->start_date || $current_date > $coupon->end_date) {
+    return false;
+  }
+
+  return true;
+}
