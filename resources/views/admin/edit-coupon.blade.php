@@ -49,14 +49,14 @@
             <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Start Date</label>
 		          <div class="col-sm-10">
-		            <input name="start_date" value="{{ date('Y-m-d H:i:s', strtotime($coupon->start_date)) }}" type="datetime-local" class="form-control">
+		            <input name="start_date" value="{{ $coupon->start_date }}" type="datetime-local" class="form-control">
 		          </div>
 		        </div>
 
             <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">End Date</label>
 		          <div class="col-sm-10">
-		            <input name="end_date" value="{{ date('Y-m-d H:i:s', strtotime($coupon->end_date)) }}" type="datetime-local" class="form-control">
+		            <input name="end_date" value="{{ $coupon->end_date }}" type="datetime-local" class="form-control">
 		          </div>
 		        </div>
 

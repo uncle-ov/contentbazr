@@ -155,7 +155,7 @@ class AdminController extends Controller
 		return view('admin.edit-coupon')->with('coupon', $coupon);
 	}
 
-	public function createCoupon(Request $request)
+	public function saveCoupon(Request $request)
 	{
 		$rules = [
 			'coupon_code' => 'required',
