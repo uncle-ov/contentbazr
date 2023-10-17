@@ -152,9 +152,7 @@ class AdminController extends Controller
 		if (empty($coupon))
 			abort('404');
 
-		$data = ['coupon' => $coupon];
-
-		return view('admin.edit-coupon')->withData($data);
+		return view('admin.edit-coupon')->with('coupon', $coupon);
 	}
 
 	public function createCoupon(Request $request)
