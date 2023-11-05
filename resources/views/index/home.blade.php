@@ -77,6 +77,10 @@
   }
 }
 @media (max-width: 768px) {
+    .margt-15-mobile {
+        margin-top: 15px;
+    }
+
   .hero {
     text-align: center;
   }
@@ -216,10 +220,10 @@
             <div style="padding: 15px;"></div>
             
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-6 margt-15-mobile">
                     <img alt="microsoft" src="{{ URL('public/images/home/microsoft1.png') }}" style="max-width: 700px; width: 100%;" />
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 margt-15-mobile">
                     <img alt="microsoft" src="{{ URL('public/images/home/microsoft2.png') }}" style="max-width: 700px; width: 100%;" />
                 </div>
             </div>
