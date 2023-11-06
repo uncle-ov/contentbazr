@@ -93,6 +93,8 @@ function applyOrRemoveCoupon($current_url_path)
   if (!empty($_GET['add_coupon_code'])) {
     $code = $_GET['add_coupon_code'];
 
+    dd($code);
+
     if (isCouponValid($code)) {
       applyCoupon($code);
 
