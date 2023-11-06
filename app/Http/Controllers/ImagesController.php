@@ -115,6 +115,7 @@ class ImagesController extends Controller
 		$response = Images::findOrFail($id);
 
 		$coupon_applied = couponApplied();
+		$invalid_coupon = false;
 
 		// apply coupon
 		if (!empty($_GET['add_coupon_code'])) {
@@ -124,7 +125,7 @@ class ImagesController extends Controller
 				applyCoupon($code);
 				$coupon_applied = $code;
 			} else {
-				return back()->withErrors(['error' => "Invalid coupon code"]);
+				$invalid_coupon = true;
 			}
 		}
 
@@ -281,6 +282,7 @@ class ImagesController extends Controller
 		return view('images.show')->with([
 			'response' => $response,
 			'coupon_applied' => $coupon_applied,
+			'invalid_coupon' => $invalid_coupon,
 			'textFollow' => $textFollow ?? null,
 			'icoFollow' => $icoFollow ?? null,
 			'activeFollow' => $activeFollow ?? null,

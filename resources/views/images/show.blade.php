@@ -981,8 +981,12 @@ other sizes /formats.</small></div>
                   </li>
                 </ul>
 
-                <div class="alert alert-danger py-2 display-none" id="errorPurchase">
-                  <ul class="list-unstyled m-0" id="showErrorsPurchase"></ul>
+                <div class="alert alert-danger py-2 {{ $invalid_coupon ? '' : 'display-none' }}" id="errorPurchase">
+                  <ul class="list-unstyled m-0" id="showErrorsPurchase">
+                    @if($invalid_coupon)
+                    <li>Invalid coupon code.</li>
+                    @endif
+                  </ul>
                 </div>
 
                 <button type="submit" @if ($paymentsGatewaysEnabled == 1 && auth()->user()->funds == 0.0) @else disabled @endif
