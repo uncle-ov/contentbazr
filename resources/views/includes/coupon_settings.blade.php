@@ -19,7 +19,7 @@
       <small class="">Discount:</small>
     </div>
     <div class="col-auto">
-      <small>- {{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span
+      <small id="couponSavings">- {{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span
           id="total">{{ $discountSavings }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
         {{ $settings->currency_code }}</small>
     </div>

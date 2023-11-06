@@ -69,6 +69,13 @@ function isCouponValid($coupon_code)
   return true;
 }
 
+function couponSavings($price, $coupon_code = null)
+{
+  $discounted_price = applyCouponToPrice($price, $coupon_code);
+
+  return $price - $discounted_price;
+}
+
 function applyCouponToPrice($price, $coupon_code = null)
 {
   if (empty($coupon_code))

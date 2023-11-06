@@ -16,6 +16,8 @@
 	  var priceYear = button.data('price-year') // Extract info from data-* attributes
 	  var priceYearGross = button.data('price-year-gross') // Extract info from data-* attributes
 	  var priceYearTotal = button.data('price-year-total') // Extract info from data-* attributes
+	  var couponSavings = button.data('coupon-savings')
+	  var couponSavingsYear = button.data('coupon-savings-year')
 
 
 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -42,10 +44,12 @@
 	    taxes(priceYearGross);
 	    modal.find('#subtotal').html(priceYear);
 	    modal.find('#total').html(priceYearTotal);
+	    modal.find('#couponSavings').html(couponSavingsYear);
 	  } else {
 	    taxes(priceGross);
 	    modal.find('#subtotal').html(price);
 	    modal.find('#total').html(priceTotal);
+	    modal.find('#couponSavings').html('-'+couponSavings);
 	  }
 
 	});// show.bs.modal

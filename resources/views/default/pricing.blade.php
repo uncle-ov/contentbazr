@@ -70,12 +70,14 @@
                 <a
                   data-plan-id="{{ $plan->plan_id }}"
                   data-plan-name="{{ __('misc.plan_name', ['plan' => $plan->name]) }}"
-                  data-price="{{ Helper::amountFormatDecimal($plan->price) }}"
-                  data-price-total="{{ Helper::amountFormatDecimal($plan->price, true) }}"
-                  data-price-gross="{{ $plan->price }}"
-                  data-price-year="{{ Helper::amountFormatDecimal($plan->price_year) }}"
-                  data-price-year-gross="{{ $plan->price_year }}"
-                  data-price-year-total="{{ Helper::amountFormatDecimal($plan->price_year, true) }}"
+                  data-price="{{ Helper::amountFormatDecimal(applyCouponToPrice($plan->price)) }}"
+                  data-price-total="{{ Helper::amountFormatDecimal(applyCouponToPrice($plan->price), true) }}"
+                  data-price-gross="{{ applyCouponToPrice($plan->price) }}"
+                  data-price-year="{{ Helper::amountFormatDecimal(applyCouponToPrice($plan->price_year)) }}"
+                  data-price-year-gross="{{ applyCouponToPrice($plan->price_year) }}"
+                  data-price-year-total="{{ Helper::amountFormatDecimal(applyCouponToPrice($plan->price_year), true) }}"
+                  data-coupon-savings="{{ Helper::amountFormatDecimal(couponSavings($plan->price), true) }}"
+                  data-coupon-savings-year="{{ Helper::amountFormatDecimal(couponSavings($plan->price_year), true) }}"
                   href="@auth javascript:void(0); @else{{ url('/login') }}@endauth"
                   @if (auth()->check() && ! auth()->user()->getSubscription()) data-bs-toggle="modal" data-bs-target="#checkout" @endif
                     class="w-100 btn btn-lg btn-custom @if (auth()->check() && auth()->user()->getSubscription()) disabled @endif">
