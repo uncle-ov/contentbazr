@@ -20,6 +20,20 @@
     @if ($settings->google_analytics != '')
       {!! $settings->google_analytics !!}
     @endif
+
+    <style>
+     .coupon_applied {
+        background: #ffeed8;
+        padding: 7px 15px;
+        border-radius: 5px;
+        border: 1px dashed rgba(0,0,0,.1);
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 13px;
+        line-height: 24px;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <div class="overlay" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></div>
