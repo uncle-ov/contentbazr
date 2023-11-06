@@ -2,6 +2,7 @@
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 
 function renderVimeoEmbed($response)
 {
@@ -92,12 +93,12 @@ function applyCouponToPrice($price, $coupon_code = null)
 
 function removeCoupon()
 {
-  return cookie()->queue(cookie()->forget('cb_coupon_code'));
+  return Cookie::queue(Cookie::forget('cb_coupon_code'));
 }
 
 function applyCoupon($coupon)
 {
-  return cookie()->queue(cookie('cb_coupon_code', $coupon, 1440));
+  return Cookie::queue(Cookie::make('cb_coupon_code', $coupon, 1440));
 }
 
 function applyOrRemoveCoupon($current_url_path)
@@ -128,7 +129,7 @@ function applyOrRemoveCoupon($current_url_path)
 
 function couponApplied()
 {
-  $coupon = request()->cookie('cb_coupon_code');
+  $coupon = Cookie::get('cb_coupon_code');
 
   if ($coupon) {
     return isCouponValid($coupon) ? $coupon : false;
