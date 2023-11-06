@@ -123,6 +123,8 @@ class ImagesController extends Controller
 			if (isCouponValid($code)) {
 				applyCoupon($code);
 				$coupon_applied = $code;
+			} else {
+				return back()->withErrors(['error' => "Invalid coupon code"]);
 			}
 		}
 
