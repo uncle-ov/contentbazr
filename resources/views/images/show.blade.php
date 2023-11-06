@@ -62,19 +62,6 @@
     $stock_name = '';
 ?>
 @extends('layouts.app')
-<style>
-  .coupon_applied {
-    background: #ffeed8;
-    padding: 7px 15px;
-    border-radius: 5px;
-    border: 1px dashed rgba(0,0,0,.1);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 13px;
-    line-height: 24px;
-    text-align: center;
-  }
-</style>
 @section('title'){{ $response->title.' - '.trans_choice('misc.photos_plural', 1 ).' #'.$response->id.' - ' }}@endsection
 
 @section('description_custom'){{ $response->title.' - '.trans_choice('misc.photos_plural', 1 ).' #'.$response->id.' - ' }} @if ($response->description != ''){{ Helper::removeLineBreak(e($response->description)).' - ' }}@endif @endsection
@@ -1326,27 +1313,6 @@ $(document).on('click','.deleteComment',function () {
         }
       }
     });
-
-(function($) {
-  $(document).ready(function() {
-    $('#applyCouponCode').on('change', function() {
-      var val = $(this).val();
-
-      var href = '#';
-      var current_link = window.location.href.split('?')[0];
-
-      if(val != '') {
-        href = current_link + '?add_coupon_code=' + val;
-      }
-
-      $('#sendCouponCode').attr('href', href);
-    })
-  
-  @if($show_checkout_modal)
-    $('#checkout').modal('show');
-  @endif
-  })
-}(jQuery))
 
 </script>
 
