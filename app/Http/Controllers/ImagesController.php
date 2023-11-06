@@ -288,11 +288,11 @@ class ImagesController extends Controller
 		}
 
 		$show_checkout_modal = (
-			!empty($_GET['coupon_applied'])
-			|| !empty($_GET['invalid_coupon'])
-			|| !empty($_GET['coupon_removed'])
-			|| !empty($_GET['add_coupon_code'])
-			|| !empty($_GET['remove_coupon_code'])
+			isset($_GET['coupon_applied'])
+			|| isset($_GET['invalid_coupon'])
+			|| isset($_GET['coupon_removed'])
+			|| isset($_GET['add_coupon_code'])
+			|| isset($_GET['remove_coupon_code'])
 		);
 
 		return view('images.show')->with([
