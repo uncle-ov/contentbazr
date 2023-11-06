@@ -130,6 +130,8 @@ class StripeController extends Controller
 
     $itemPrice = $this->priceItem($this->request->license, $priceItem, $this->request->type);
 
+    $itemPrice = applyCouponToPrice($itemPrice);
+
   	$amount = $this->settings->currency_code == 'JPY' ? Helper::amountGross($itemPrice) : (Helper::amountGross($itemPrice)*100);
   	$currency_code = $this->settings->currency_code;
   	$description = trans('misc.stock_photo_purchase');

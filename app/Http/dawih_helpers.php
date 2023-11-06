@@ -42,6 +42,9 @@ function renderEmbedVideo($response)
 
 function isCouponValid($coupon_code)
 {
+  if (empty($coupon_code))
+    return false;
+
   $coupon = Coupon::where('code', $coupon_code)->first();
 
   $current_date = date('Y-m-d H:i:s');
@@ -52,8 +55,11 @@ function isCouponValid($coupon_code)
   return true;
 }
 
-function applyCouponToPrice($price, $coupon_code)
+function applyCouponToPrice($price, $coupon_code = null)
 {
+  if (empty($coupon_code))
+    $coupon_code = couponApplied();
+
   if (!isCouponValid($coupon_code))
     return $price;
 

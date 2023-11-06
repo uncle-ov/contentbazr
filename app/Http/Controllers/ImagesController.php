@@ -283,9 +283,7 @@ class ImagesController extends Controller
 		// Item price
 		$itemPrice = $this->settings->default_price_photos ?: $response->price;
 
-		if ($coupon_applied) {
-			$itemPrice = applyCouponToPrice($itemPrice, $coupon_applied);
-		}
+		$itemPrice = applyCouponToPrice($itemPrice);
 
 		$show_checkout_modal = (
 			isset($_GET['coupon_applied'])
@@ -656,6 +654,8 @@ class ImagesController extends Controller
 			$itemPrice = $planUser->interval == 'month'
 				? Helper::calculatePriceGrossByDownloads($planUser->plan->price, $planUser->plan->downloads_per_month, true)
 				: Helper::calculatePriceGrossByDownloads($planUser->plan->price_year, $planUser->plan->downloads_per_month);
+
+			$itemPrice = applyCouponToPrice($itemPrice);
 
 			if ($planUser->plan->download_limits != 0 && $dailyDownloads >= $planUser->plan->download_limits) {
 				return back()->withError(__('misc.reached_daily_download'));
