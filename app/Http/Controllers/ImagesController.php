@@ -136,7 +136,7 @@ class ImagesController extends Controller
 		}
 
 		// remove coupon
-		if (!empty($_GET['remove_coupon_code'])) {
+		if (isset($_GET['remove_coupon_code'])) {
 			removeCoupon();
 			$current_url_path .= '?coupon_removed';
 

@@ -79,7 +79,7 @@ function applyCouponToPrice($price, $coupon_code = null)
 
 function removeCoupon()
 {
-  dd(cookie()->forget('cb_coupon_code'));
+  cookie()->queue(cookie()->forget('cb_coupon_code'));
 }
 
 function applyCoupon($coupon)
