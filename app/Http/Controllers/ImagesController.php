@@ -112,10 +112,12 @@ class ImagesController extends Controller
 	 */
 	public function show($id, $slug = null)
 	{
+		$current_url_path = '/template/' . $id . '/' . $slug;
+
 		$response = Images::findOrFail($id);
 
 		$coupon_applied = couponApplied();
-		$invalid_coupon = false;
+		$invalid_coupon = !empty($_GET['invalid_coupon']) ? true : false;
 
 		// apply coupon
 		if (!empty($_GET['add_coupon_code'])) {
@@ -123,16 +125,22 @@ class ImagesController extends Controller
 
 			if (isCouponValid($code)) {
 				applyCoupon($code);
-				$coupon_applied = $code;
+
+				$current_url_path .= '?coupon_applied';
 			} else {
 				$invalid_coupon = true;
+				$current_url_path .= '?invalid_coupon';
 			}
+
+			return redirect($current_url_path);
 		}
 
 		// remove coupon
 		if (!empty($_GET['remove_coupon_code'])) {
 			removeCoupon();
-			$coupon_applied = false;
+			$current_url_path .= '?coupon_removed';
+
+			return redirect($current_url_path);
 		}
 
 		if (auth()->check() && $response->user_id != auth()->id() && $response->status == 'pending' && auth()->user()->role != 'admin') {
