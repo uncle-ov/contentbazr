@@ -119,7 +119,6 @@ function applyOrRemoveCoupon($current_url_path)
 
   // remove coupon
   if (isset($_GET['remove_coupon_code'])) {
-    dd(cookie()->queue(cookie()->forget('cb_coupon_code')));
     removeCoupon();
     $current_url_path .= '?coupon_removed';
 
