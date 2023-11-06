@@ -117,8 +117,8 @@ class ImagesController extends Controller
 		$coupon_applied = couponApplied();
 
 		// apply coupon
-		if (!empty($_GET['coupon_code'])) {
-			$code = $_GET['coupon_code'];
+		if (!empty($_GET['add_coupon_code'])) {
+			$code = $_GET['add_coupon_code'];
 
 			if (isCouponValid($code)) {
 				applyCoupon($code);

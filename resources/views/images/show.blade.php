@@ -964,7 +964,7 @@ other sizes /formats.</small></div>
                         <div class="coupon_applied">Coupon Applied: {{ $coupon_applied }}</div>
                       </div>
                       <div class="col-4">
-                        <button type="button" class="btn btn-outline-danger" style="width: 100%;">Remove</button>
+                        <a href="{{ Request::url() }}?remove_coupon_code" class="btn btn-outline-danger" style="width: 100%;">Remove</button>
                       </div>
                       @endif
                     </div>
@@ -1328,11 +1328,15 @@ $(document).on('click','.deleteComment',function () {
     var current_link = window.location.href.split('?')[0];
 
     if(val != '') {
-      href = current_link + '?coupon_code=' + val;
+      href = current_link + '?add_coupon_code=' + val;
     }
 
     $('#sendCouponCode').attr('href', href);
   })
+
+  @if(!empty($_GET['add_coupon_code']) || !empty($_GET['remove_coupon_code']))
+  $('#checkout').modal('show');
+  @endif
 
 </script>
 
