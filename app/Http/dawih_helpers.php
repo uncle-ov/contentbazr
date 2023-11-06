@@ -98,7 +98,7 @@ function removeCoupon()
 
 function applyCoupon($coupon)
 {
-  return Cookie::queue(Cookie::make('cb_coupon_code', $coupon, 1440));
+  return setcookie('cb_coupon_code', $coupon, (time() + 3600), '/');
 }
 
 function applyOrRemoveCoupon($current_url_path)
