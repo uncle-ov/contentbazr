@@ -964,7 +964,7 @@ other sizes /formats.</small></div>
                         <div class="coupon_applied">Coupon Applied: {{ $coupon_applied }}</div>
                       </div>
                       <div class="col-4">
-                        <a href="{{ Request::url() }}?remove_coupon_code" class="btn btn-outline-danger" style="width: 100%;">Remove</button>
+                        <a href="{{ Request::url() }}?remove_coupon_code" class="btn btn-outline-danger" style="width: 100%;">Remove</a>
                       </div>
                       @endif
                     </div>
