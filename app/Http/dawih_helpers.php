@@ -87,7 +87,7 @@ function applyCoupon($coupon)
   return cookie()->queue(cookie('cb_coupon_code', $coupon, 1440));
 }
 
-function applyOrRemoveCoupon()
+function applyOrRemoveCoupon($current_url_path)
 {
   // apply coupon
   if (!empty($_GET['add_coupon_code'])) {
