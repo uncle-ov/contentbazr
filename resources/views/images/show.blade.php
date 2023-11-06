@@ -1321,22 +1321,26 @@ $(document).on('click','.deleteComment',function () {
       }
     });
 
-  $('#applyCouponCode').on('key-up', function() {
-    var val = $(this).val();
+(function($) {
+  $(document).ready(function() {
+    $('#applyCouponCode').on('keyup', function() {
+      var val = $(this).val();
 
-    var href = '#';
-    var current_link = window.location.href.split('?')[0];
+      var href = '#';
+      var current_link = window.location.href.split('?')[0];
 
-    if(val != '') {
-      href = current_link + '?add_coupon_code=' + val;
-    }
+      if(val != '') {
+        href = current_link + '?add_coupon_code=' + val;
+      }
 
-    $('#sendCouponCode').attr('href', href);
+      $('#sendCouponCode').attr('href', href);
+    })
+
+    @if(!empty($_GET['add_coupon_code']) || !empty($_GET['remove_coupon_code']))
+    $('#checkout').modal('show');
+    @endif
   })
-
-  @if(!empty($_GET['add_coupon_code']) || !empty($_GET['remove_coupon_code']))
-  $('#checkout').modal('show');
-  @endif
+}(jQuery))
 
 </script>
 
