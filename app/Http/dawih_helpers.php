@@ -87,11 +87,11 @@ function applyCoupon($coupon)
 
 function couponApplied()
 {
-  $request = Request::capture();
+  $request = Request();
+
+  $coupon = $request->cookie('cb_coupon_code');
 
   if ($request->hasCookie('cb_coupon_code')) {
-    $coupon = $request->cookie('cb_coupon_code');
-
     return isCouponValid($coupon) ? $coupon : false;
   }
 
