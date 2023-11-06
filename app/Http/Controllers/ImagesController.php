@@ -280,9 +280,9 @@ class ImagesController extends Controller
 		$paymentsGatewaysEnabled = PaymentGateways::where('enabled', '1')->count();
 
 		// Item price
-		$itemPrice = $this->settings->default_price_photos ?: $response->price;
+		$itemActualPrice = $this->settings->default_price_photos ?: $response->price;
 
-		$itemPrice = applyCouponToPrice($itemPrice);
+		$itemPrice = applyCouponToPrice($itemActualPrice);
 
 		$show_checkout_modal = (
 			isset($_GET['coupon_applied'])
@@ -310,6 +310,7 @@ class ImagesController extends Controller
 			'images' => $images,
 			'comments_sql' => $comments_sql,
 			'paymentsGatewaysEnabled' => $paymentsGatewaysEnabled,
+			'itemActualPrice' => $itemActualPrice,
 			'itemPrice' => $itemPrice,
 			'token' => $response->token_id,
 			'stock_size' => $stockImages[0]->size,

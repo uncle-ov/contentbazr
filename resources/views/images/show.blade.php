@@ -590,7 +590,16 @@ other sizes /formats.</small></div>
 
 
       <!-- btn-sale -->
-  		<button class="btn btn-custom btn-lg d-block w-100" data-type="small" id="downloadBtn" @if (auth()->check() && auth()->id() != $response->user_id) data-bs-toggle="modal" data-bs-target="#checkout" type="button" @else type="submit" @endif>
+  		<button
+        class="btn btn-custom btn-lg d-block w-100"
+        data-type="small"
+        id="downloadBtn"
+        @if (auth()->check() && auth()->id() != $response->user_id)
+        data-bs-toggle="modal" data-bs-target="#checkout" type="button"
+        @else
+        type="submit"
+        @endif
+      >
 
      @if (auth()->check() && auth()->id() == $response->user_id)
        <i class="bi-cloud-arrow-down me-1"></i> {{trans('misc.download')}}
@@ -598,7 +607,7 @@ other sizes /formats.</small></div>
        <i class="bi bi-cart2 me-1"></i>
        {{trans('misc.buy')}}
 
-       <span id="priceItem">{{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span id="itemPrice">{{$itemPrice}}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }} <small class="sm-currency-code">{{$settings->currency_code}}</small></span>
+       <span id="priceItem">{{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span id="itemPrice">{{$itemActualPrice}}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }} <small class="sm-currency-code">{{$settings->currency_code}}</small></span>
      @endif
 
   		</button>
