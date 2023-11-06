@@ -421,8 +421,17 @@ class HomeController extends Controller
     if ($plans->count() == 0 || $settings->sell_option == 'off') {
       abort(404);
     }
+    $current_url_path = '/pricing';
+    $coupon_applied = couponApplied();
+    $invalid_coupon = isset($_GET['invalid_coupon']) ? true : false;
 
-    return view('default.pricing')->withPlans($plans);
+    applyOrRemoveCoupon($current_url_path);
+
+    return view('default.pricing')->with([
+      'plans' => $plans,
+      'coupon_applied' => $coupon_applied,
+      'invalid_coupon' => $invalid_coupon,
+    ]);
   }
 
   public function tags()

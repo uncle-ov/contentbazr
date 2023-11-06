@@ -258,7 +258,11 @@
           </small>
 
           <div class="alert alert-danger py-2 display-none" id="errorPurchase">
-              <ul class="list-unstyled m-0" id="showErrorsPurchase"></ul>
+              <ul class="list-unstyled m-0" id="showErrorsPurchase">
+                @if(!empty($invalid_coupon))
+                <li>Invalid coupon code.</li>
+                @endif
+              </ul>
             </div>
 
             <button type="submit" class="btn btn-success w-100" id="subscribe"><i></i> {{ __('misc.pay') }}</button>
