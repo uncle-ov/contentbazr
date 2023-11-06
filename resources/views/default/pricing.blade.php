@@ -251,6 +251,8 @@
                 </div>
               </div>
             </li>
+
+            @include('includes.coupon_settings')
           </ul>
 
           <small class="d-block mb-3 text-muted">
