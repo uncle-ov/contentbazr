@@ -88,5 +88,29 @@
     @yield('javascript')
 
      <div id="bodyContainer"></div>
+
+
+     <script>
+      (function($) {
+        $(document).ready(function() {
+          $('#applyCouponCode').on('change', function() {
+            var val = $(this).val();
+      
+            var href = '#';
+            var current_link = window.location.href.split('?')[0];
+      
+            if(val != '') {
+              href = current_link + '?add_coupon_code=' + val;
+            }
+      
+            $('#sendCouponCode').attr('href', href);
+          })
+        
+        @if($show_checkout_modal)
+          $('#checkout').modal('show');
+        @endif
+        })
+      }(jQuery))
+      </script>
      </body>
 </html>
