@@ -287,8 +287,17 @@ class ImagesController extends Controller
 			$itemPrice = applyCouponToPrice($itemPrice, $coupon_applied);
 		}
 
+		$show_checkout_modal = (
+			!empty($_GET['coupon_applied'])
+			|| !empty($_GET['invalid_coupon'])
+			|| !empty($_GET['coupon_removed'])
+			|| !empty($_GET['add_coupon_code'])
+			|| !empty($_GET['remove_coupon_code'])
+		);
+
 		return view('images.show')->with([
 			'response' => $response,
+			'show_checkout_modal' => $show_checkout_modal,
 			'coupon_applied' => $coupon_applied,
 			'invalid_coupon' => $invalid_coupon,
 			'textFollow' => $textFollow ?? null,

@@ -1350,9 +1350,9 @@ $(document).on('click','.deleteComment',function () {
       $('#sendCouponCode').attr('href', href);
     })
   
-  @if(!empty($_GET['coupon_applied']) || !empty($_GET['invalid_coupon']) || !empty($_GET['coupon_removed']) || !empty($_GET['add_coupon_code']) || !empty($_GET['remove_coupon_code']))
+  @if($show_checkout_modal)
     $('#checkout').modal('show');
-    @endif
+  @endif
   })
 }(jQuery))
 
