@@ -1323,7 +1323,7 @@ $(document).on('click','.deleteComment',function () {
 
 (function($) {
   $(document).ready(function() {
-    $('#applyCouponCode').on('keyup', function() {
+    $('#applyCouponCode').on('change', function() {
       var val = $(this).val();
 
       var href = '#';
