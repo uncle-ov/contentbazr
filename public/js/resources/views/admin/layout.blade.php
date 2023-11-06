@@ -29,6 +29,19 @@
      :root {
        --color-default: {{ $settings->color_default }} !important;
      }
+
+
+     .coupon_applied {
+        background: #ffeed8;
+        padding: 7px 15px;
+        border-radius: 5px;
+        border: 1px dashed rgba(0,0,0,.1);
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 13px;
+        line-height: 24px;
+        text-align: center;
+      }
      </style>
 
     @yield('css')
