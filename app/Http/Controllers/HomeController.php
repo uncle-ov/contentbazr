@@ -425,13 +425,7 @@ class HomeController extends Controller
     $coupon_applied = couponApplied();
     $invalid_coupon = isset($_GET['invalid_coupon']) ? true : false;
 
-    $show_checkout_modal = (
-      isset($_GET['coupon_applied'])
-      || isset($_GET['invalid_coupon'])
-      || isset($_GET['coupon_removed'])
-      || isset($_GET['add_coupon_code'])
-      || isset($_GET['remove_coupon_code'])
-    );
+    $show_checkout_modal = false;
 
     applyOrRemoveCoupon($current_url_path);
 

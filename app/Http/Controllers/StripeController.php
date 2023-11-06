@@ -19,7 +19,8 @@ class StripeController extends Controller
 {
   use Traits\FunctionsTrait;
 
-  public function __construct( AdminSettings $settings, Request $request) {
+  public function __construct(AdminSettings $settings, Request $request)
+  {
     $this->settings = $settings::first();
     $this->request = $request;
   }
@@ -27,30 +28,30 @@ class StripeController extends Controller
   // Add Funds to wallet
   public function show()
   {
-    if (! $this->request->expectsJson()) {
-        abort(404);
+    if (!$this->request->expectsJson()) {
+      abort(404);
     }
 
     // Get Payment Gateway
     $payment = PaymentGateways::whereId($this->request->payment_gateway)->whereName('Stripe')->firstOrFail();
 
     //<---- Validation
-		$validator = Validator::make($this->request->all(), [
-      'amount' => 'required|integer|min:'.$this->settings->min_deposits_amount.'|max:'.$this->settings->max_deposits_amount,
+    $validator = Validator::make($this->request->all(), [
+      'amount' => 'required|integer|min:' . $this->settings->min_deposits_amount . '|max:' . $this->settings->max_deposits_amount,
       'payment_gateway' => 'required'
     ]);
 
-			if ($validator->fails()) {
-			        return response()->json([
-					        'success' => false,
-					        'errors' => $validator->getMessageBag()->toArray(),
-					    ]);
-			    }
+    if ($validator->fails()) {
+      return response()->json([
+        'success' => false,
+        'errors' => $validator->getMessageBag()->toArray(),
+      ]);
+    }
 
     $email = auth()->user()->email;
 
-  	$feeStripe   = $payment->fee;
-  	$centsStripe =  $payment->fee_cents;
+    $feeStripe = $payment->fee;
+    $centsStripe = $payment->fee_cents;
 
     $taxes = $this->settings->tax_on_wallet ? ($this->request->amount * auth()->user()->isTaxable()->sum('percentage') / 100) : 0;
 
@@ -60,33 +61,35 @@ class StripeController extends Controller
       $amountFixed = number_format($this->request->amount + ($this->request->amount * $feeStripe / 100) + $centsStripe + $taxes, 2, '.', '');
     }
 
-  	$amountGross = ($this->request->amount);
-  	$amount   = $this->settings->currency_code == 'JPY' ? $amountFixed : ($amountFixed*100);
-  	$currency_code = $this->settings->currency_code;
-  	$description = trans('misc.add_funds_desc');
-  	$nameSite = $this->settings->title;
+    $amountGross = ($this->request->amount);
+    $amount = $this->settings->currency_code == 'JPY' ? $amountFixed : ($amountFixed * 100);
+    $currency_code = $this->settings->currency_code;
+    $description = trans('misc.add_funds_desc');
+    $nameSite = $this->settings->title;
 
     $stripe = new \Stripe\StripeClient($payment->key_secret);
 
     $checkout = $stripe->checkout->sessions->create([
-      'line_items' => [[
-        'price_data' => [
-          'currency' => $currency_code,
-          'product_data' => [
-            'name' => $description,
+      'line_items' => [
+        [
+          'price_data' => [
+            'currency' => $currency_code,
+            'product_data' => [
+              'name' => $description,
+            ],
+            'unit_amount' => $amount,
           ],
-          'unit_amount' => $amount,
-        ],
-        'quantity' => 1,
-      ]],
+          'quantity' => 1,
+        ]
+      ],
       'mode' => 'payment',
 
-          'metadata' => [
-            'userId' => auth()->id(),
-            'amount' => $this->request->amount,
-            'taxes' => $this->settings->tax_on_wallet ? auth()->user()->taxesPayable() : null,
-            'mode' => 'deposit'
-          ],
+      'metadata' => [
+        'userId' => auth()->id(),
+        'amount' => $this->request->amount,
+        'taxes' => $this->settings->tax_on_wallet ? auth()->user()->taxesPayable() : null,
+        'mode' => 'deposit'
+      ],
 
       'payment_method_types' => ['card'],
       'customer_email' => auth()->user()->email,
@@ -99,13 +102,13 @@ class StripeController extends Controller
       'success' => true,
       'url' => $checkout->url,
     ]);
-  }// End Add funds
+  } // End Add funds
 
   // Process Purchase
   public function buy()
   {
-    if (! $this->request->expectsJson()) {
-        abort(404);
+    if (!$this->request->expectsJson()) {
+      abort(404);
     }
 
     // Get Payment Gateway
@@ -115,16 +118,16 @@ class StripeController extends Controller
     $image = Images::where('token_id', $this->request->token)->firstOrFail();
 
     //<---- Validation
-		$validator = Validator::make($this->request->all(), [
+    $validator = Validator::make($this->request->all(), [
       'payment_gateway' => 'required'
     ]);
 
-		if ($validator->fails()) {
-		        return response()->json([
-				        'success' => false,
-				        'errors' => $validator->getMessageBag()->toArray(),
-				    ]);
-		    }
+    if ($validator->fails()) {
+      return response()->json([
+        'success' => false,
+        'errors' => $validator->getMessageBag()->toArray(),
+      ]);
+    }
 
     $priceItem = $this->settings->default_price_photos ?: $image->price;
 
@@ -132,33 +135,35 @@ class StripeController extends Controller
 
     $itemPrice = applyCouponToPrice($itemPrice);
 
-  	$amount = $this->settings->currency_code == 'JPY' ? Helper::amountGross($itemPrice) : (Helper::amountGross($itemPrice)*100);
-  	$currency_code = $this->settings->currency_code;
-  	$description = trans('misc.stock_photo_purchase');
+    $amount = $this->settings->currency_code == 'JPY' ? Helper::amountGross($itemPrice) : (Helper::amountGross($itemPrice) * 100);
+    $currency_code = $this->settings->currency_code;
+    $description = trans('misc.stock_photo_purchase');
 
     $stripe = new \Stripe\StripeClient($payment->key_secret);
 
     $checkout = $stripe->checkout->sessions->create([
-      'line_items' => [[
-        'price_data' => [
-          'currency' => $currency_code,
-          'product_data' => [
-            'name' => $description,
+      'line_items' => [
+        [
+          'price_data' => [
+            'currency' => $currency_code,
+            'product_data' => [
+              'name' => $description,
+            ],
+            'unit_amount' => $amount,
           ],
-          'unit_amount' => $amount,
-        ],
-        'quantity' => 1,
-      ]],
+          'quantity' => 1,
+        ]
+      ],
       'mode' => 'payment',
 
-          'metadata' => [
-            'userId' => auth()->id(),
-            'token' => $this->request->token,
-            'license' => $this->request->license,
-            'type' => $this->request->type,
-            'taxes' => auth()->user()->taxesPayable(),
-            'mode' => 'sale'
-          ],
+      'metadata' => [
+        'userId' => auth()->id(),
+        'token' => $this->request->token,
+        'license' => $this->request->license,
+        'type' => $this->request->type,
+        'taxes' => auth()->user()->taxesPayable(),
+        'mode' => 'sale'
+      ],
 
       'payment_method_types' => ['card'],
       'customer_email' => auth()->user()->email,
@@ -172,12 +177,12 @@ class StripeController extends Controller
       'url' => $checkout->url,
     ]);
 
-  }// End method buy
+  } // End method buy
 
   public function subscription()
   {
-    if (! $this->request->expectsJson()) {
-        abort(404);
+    if (!$this->request->expectsJson()) {
+      abort(404);
     }
 
     $plan = Plans::wherePlanId($this->request->plan)->whereStatus('1')->firstOrFail();
@@ -185,8 +190,8 @@ class StripeController extends Controller
     // Check Subscription
     if (auth()->user()->getSubscription()) {
       return response()->json([
-          'success' => false,
-          'errors' => ['error' => trans('misc.subscription_exists')],
+        'success' => false,
+        'errors' => ['error' => trans('misc.subscription_exists')],
       ]);
     }
 
@@ -194,6 +199,8 @@ class StripeController extends Controller
     $stripe = new \Stripe\StripeClient($payment->key_secret);
     $planId = $plan->plan_id;
     $planPrice = $this->request->interval == 'month' ? $plan->price : $plan->price_year;
+
+    $planPrice = applyCouponToPrice($planPrice);
 
     // Verify Plan Exists
     try {
@@ -218,34 +225,34 @@ class StripeController extends Controller
       $this->createPlan($payment->key_secret, $plan, $this->request->interval);
     }
 
-      try {
+    try {
 
-        // Create New subscription
-        $metadata = [
-          'interval' => $this->request->interval,
-          'taxes' => auth()->user()->taxesPayable()
-        ];
+      // Create New subscription
+      $metadata = [
+        'interval' => $this->request->interval,
+        'taxes' => auth()->user()->taxesPayable()
+      ];
 
-        $checkout = auth()->user()->newSubscription('main', $planId)
+      $checkout = auth()->user()->newSubscription('main', $planId)
         ->withMetadata($metadata)
-          ->checkout([
-            'success_url' => route('success.subscription', ['alert' => 'payment']),
-            'cancel_url' => url('pricing'),
+        ->checkout([
+          'success_url' => route('success.subscription', ['alert' => 'payment']),
+          'cancel_url' => url('pricing'),
         ]);
 
-        return response()->json([
-          'success' => true,
-          'url' => $checkout->url,
-        ]);
+      return response()->json([
+        'success' => true,
+        'url' => $checkout->url,
+      ]);
 
-      } catch (\Exception $exception) {
+    } catch (\Exception $exception) {
 
-        \Log::debug($exception);
+      \Log::debug($exception);
 
-        return response()->json([
-          'success' => false,
-          'errors' => ['error' => $exception->getMessage()]
-        ]);
+      return response()->json([
+        'success' => false,
+        'errors' => ['error' => $exception->getMessage()]
+      ]);
     }
   }
 
@@ -269,15 +276,15 @@ class StripeController extends Controller
 
     // If it does not exist we create the plan
     $stripe->plans->create([
-        'currency' => $this->settings->currency_code,
-        'interval' => $interval,
-        'interval_count' => $interval_count,
-        "product" => [
-            "name" => trans('misc.subscription_plan', ['name' => $plan->name]),
-        ],
-        'nickname' => $plan->name,
-        'id' => $plan->plan_id,
-        'amount' => $this->settings->currency_code == 'JPY' ? $price : ($price * 100),
+      'currency' => $this->settings->currency_code,
+      'interval' => $interval,
+      'interval_count' => $interval_count,
+      "product" => [
+        "name" => trans('misc.subscription_plan', ['name' => $plan->name]),
+      ],
+      'nickname' => $plan->name,
+      'id' => $plan->plan_id,
+      'amount' => $this->settings->currency_code == 'JPY' ? $price : ($price * 100),
     ]);
   }
 
