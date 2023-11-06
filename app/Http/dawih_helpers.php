@@ -87,6 +87,32 @@ function applyCoupon($coupon)
   return cookie()->queue(cookie('cb_coupon_code', $coupon, 1440));
 }
 
+function applyOrRemoveCoupon()
+{
+  // apply coupon
+  if (!empty($_GET['add_coupon_code'])) {
+    $code = $_GET['add_coupon_code'];
+
+    if (isCouponValid($code)) {
+      applyCoupon($code);
+
+      $current_url_path .= '?coupon_applied';
+    } else {
+      $current_url_path .= '?invalid_coupon';
+    }
+
+    return redirect($current_url_path);
+  }
+
+  // remove coupon
+  if (isset($_GET['remove_coupon_code'])) {
+    removeCoupon();
+    $current_url_path .= '?coupon_removed';
+
+    return redirect($current_url_path);
+  }
+}
+
 function couponApplied()
 {
   $coupon = request()->cookie('cb_coupon_code');

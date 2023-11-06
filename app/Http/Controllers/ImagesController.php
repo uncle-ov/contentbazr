@@ -119,28 +119,7 @@ class ImagesController extends Controller
 		$coupon_applied = couponApplied();
 		$invalid_coupon = isset($_GET['invalid_coupon']) ? true : false;
 
-		// apply coupon
-		if (!empty($_GET['add_coupon_code'])) {
-			$code = $_GET['add_coupon_code'];
-
-			if (isCouponValid($code)) {
-				applyCoupon($code);
-
-				$current_url_path .= '?coupon_applied';
-			} else {
-				$current_url_path .= '?invalid_coupon';
-			}
-
-			return redirect($current_url_path);
-		}
-
-		// remove coupon
-		if (isset($_GET['remove_coupon_code'])) {
-			removeCoupon();
-			$current_url_path .= '?coupon_removed';
-
-			return redirect($current_url_path);
-		}
+		applyOrRemoveCoupon();
 
 		if (auth()->check() && $response->user_id != auth()->id() && $response->status == 'pending' && auth()->user()->role != 'admin') {
 			abort(404);

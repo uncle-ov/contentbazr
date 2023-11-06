@@ -974,11 +974,11 @@ other sizes /formats.</small></div>
                   <li class="list-group-item py-1 px-0">
                     <div class="row">
                       <div class="col">
-                        <small class="fw-bold">Discount:</small>
+                        <small class="">Discount:</small>
                       </div>
-                      <div class="col-auto fw-bold">
-                        <small>{{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span
-                            id="total">-{{ $discountSavings }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
+                      <div class="col-auto">
+                        <small>- {{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span
+                            id="total">{{ $discountSavings }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
                           {{ $settings->currency_code }}</small>
                       </div>
                     </div>
