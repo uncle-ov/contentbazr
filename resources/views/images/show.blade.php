@@ -1349,14 +1349,8 @@ $(document).on('click','.deleteComment',function () {
 
       $('#sendCouponCode').attr('href', href);
     })
-
-    @if(
-      !empty($_GET['coupon_applied'])
-      || !empty($_GET['invalid_coupon'])
-      || !empty($_GET['coupon_removed'])
-      || !empty($_GET['add_coupon_code'])
-      || !empty($_GET['remove_coupon_code'])
-    )
+  
+  @if(!empty($_GET['coupon_applied']) || !empty($_GET['invalid_coupon']) || !empty($_GET['coupon_removed']) || !empty($_GET['add_coupon_code']) || !empty($_GET['remove_coupon_code']))
     $('#checkout').modal('show');
     @endif
   })

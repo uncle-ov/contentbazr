@@ -73,25 +73,19 @@ function applyCouponToPrice($price, $coupon_code)
 
 function removeCoupon()
 {
-  $response = new Response('set cookie');
-
-  return $response->cookie('cb_coupon_code', null, -1);
+  cookie()->queue(cookie()->forget('cb_coupon_code'));
 }
 
 function applyCoupon($coupon)
 {
-  $response = new Response('set cookie');
-
-  return $response->cookie('cb_coupon_code', $coupon, 1440);
+  return cookie()->queue(cookie('cb_coupon_code', $coupon, 1440));
 }
 
 function couponApplied()
 {
-  $request = Request();
+  $coupon = request()->cookie('cb_coupon_code');
 
-  $coupon = $request->cookie('cb_coupon_code');
-
-  if ($request->hasCookie('cb_coupon_code')) {
+  if ($coupon) {
     return isCouponValid($coupon) ? $coupon : false;
   }
 
