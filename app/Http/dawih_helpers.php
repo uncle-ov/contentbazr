@@ -127,9 +127,18 @@ function applyOrRemoveCoupon($current_url_path)
   }
 }
 
+function getSavedCouponFromCookie()
+{
+  if (isset($_COOKIE['cb_coupon_code'])) {
+    return $_COOKIE['cb_coupon_code'];
+  }
+
+  return null;
+}
+
 function couponApplied()
 {
-  $coupon = Cookie::get('cb_coupon_code');
+  $coupon = getSavedCouponFromCookie();
 
   if ($coupon) {
     return isCouponValid($coupon) ? $coupon : false;
