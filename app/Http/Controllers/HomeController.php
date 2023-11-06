@@ -425,6 +425,14 @@ class HomeController extends Controller
     $coupon_applied = couponApplied();
     $invalid_coupon = isset($_GET['invalid_coupon']) ? true : false;
 
+    $show_checkout_modal = (
+      isset($_GET['coupon_applied'])
+      || isset($_GET['invalid_coupon'])
+      || isset($_GET['coupon_removed'])
+      || isset($_GET['add_coupon_code'])
+      || isset($_GET['remove_coupon_code'])
+    );
+
     applyOrRemoveCoupon($current_url_path);
 
     return view('default.pricing')->with([
@@ -433,6 +441,7 @@ class HomeController extends Controller
       'invalid_coupon' => $invalid_coupon,
       'discountSavings' => null,
       'itemActualPrice' => null,
+      'show_checkout_modal' => $show_checkout_modal,
     ]);
   }
 
