@@ -1,4 +1,8 @@
 <?php
+use App\Models\Coupon;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 function renderVimeoEmbed($response)
 {
   $vimeo_embed = 'https://player.vimeo.com/video/' . str_replace('https://vimeo.com/', '', $response->vimeo_link);
@@ -36,13 +40,60 @@ function renderEmbedVideo($response)
   return null;
 }
 
-function isCouponValid($coupon)
+function isCouponValid($coupon_code)
 {
-  // Check if the current date is within the valid range
+  $coupon = Coupon::where('code', $coupon_code)->first();
+
   $current_date = date('Y-m-d H:i:s');
-  if ($current_date < $coupon->start_date || $current_date > $coupon->end_date) {
+  if (!$coupon || $current_date < $coupon->start_date || $current_date > $coupon->end_date) {
     return false;
   }
 
   return true;
+}
+
+function applyCouponToPrice($price, $coupon_code)
+{
+  if (!isCouponValid($coupon_code))
+    return $price;
+
+  $coupon = Coupon::where('code', $coupon_code)->first();
+
+  if (!$coupon)
+    return $price;
+
+  if ($coupon->discount_type === 'fixed') {
+    $discountedPrice = $price - $coupon->discount;
+  } else {
+    $discountedPrice = $price - ($price * ($coupon->discount / 100));
+  }
+
+  return $discountedPrice < $price ? max($discountedPrice, 0) : $price;
+}
+
+function removeCoupon()
+{
+  $response = new Response('set cookie');
+
+  return $response->cookie('cb_coupon_code', null, -1);
+}
+
+function applyCoupon($coupon)
+{
+  $response = new Response('set cookie');
+
+  return $response->cookie('cb_coupon_code', $coupon, 1440);
+}
+
+function couponApplied()
+{
+  $request = Request::capture();
+
+  if ($request->hasCookie('cb_coupon_code')) {
+    $coupon = $request->cookie('cb_coupon_code');
+
+    return isCouponValid($coupon) ? $coupon : false;
+  }
+
+  return false;
 }

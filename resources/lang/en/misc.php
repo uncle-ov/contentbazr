@@ -3,11 +3,11 @@
 return array(
 
 	/*
-		|--------------------------------------------------------------------------
-		| Miscellaneous Language Lines
-		|--------------------------------------------------------------------------
-		|
-		*/
+		 |--------------------------------------------------------------------------
+		 | Miscellaneous Language Lines
+		 |--------------------------------------------------------------------------
+		 |
+		 */
 	'title_2_index' => 'Free and Premium High Quality Templates',
 	'search' => 'Search',
 	'images' => 'Templates',
@@ -677,8 +677,8 @@ return array(
 	// Not remove :width and :height
 	'photo_formats_available' => 'Invalid format :formats format permitted.',
 	// Not remove :formats
-	'give_thanks' => 'Give thanks!',
-	'thanks_to_author_sharing' => 'Give thanks to @:username for sharing this template for free, the easiest way, sharing on social networks.',
+	'give_thanks' => 'Thank you!',
+	'thanks_to_author_sharing' => 'Please appreciate :username for sharing this fantastic template for free. Sharing it on social media is the simplest way to show your appreciation.',
 	// Not remove :username
 	'downloading' => 'Downloading...',
 	'error_active_captcha' => "You can't enable captcha without first setting API Keys. set up in Dashboard > Google",

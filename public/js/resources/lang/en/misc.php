@@ -3,191 +3,198 @@
 return array(
 
 	/*
-	|--------------------------------------------------------------------------
-	| Miscellaneous Language Lines
-	|--------------------------------------------------------------------------
-	|
-	*/
-	'title_2_index'             =>      'Free and Premium High Quality Templates',
-	'search' 		            =>        'Search',
-	'images'                    =>      'Templates',
-	'images_plural'             =>      'Template|Templates', // plural 1 Image 2 Images
-	'photos_plural'             =>      'Template|Templates', // plural 1 Template 2 Templates
-	'explore' 		            =>        'Explore',
-	'upload' 		            =>        'Upload',
-	'error_oops'			    =>        'Oops...',
-	'error'					    =>        'Error occurred',
-	'popular'				    =>        'Popular',
-	'latest'				    =>        'Latest',
-	'result_of'                 =>      'Result of',
-	'more'			            =>        'More',
-	'no_results_found'          =>      'No results have been found',
-	'location'                  =>      'Location',
-	'find'                      =>      'Find',
-	'any'                       =>      'Any',
-	'all'                       =>      'All',
-	'results_for_your_search'   =>      'result for your search|results for your search',
-	'sign_in_or_sign_up'        =>      'Sign in or Sign up',
-	'available'                 =>      'available',
-	'delete_account_confirm'	=>        'Sure you want to delete your account, you cannot turn it back activated?',
-	'tags'					    =>        'Tags',
-	'description'			    =>        'Description',
-	'title'					    =>        'Title',
-	'optional'					=>        'Optional',
-	'username_no_edit'          =>      'It can not be edited',
-	'full_name_misc'            =>      'Full name',
-	'username_misc'             =>      'Username',
-	'website_misc'              =>      'Website',
-	'bio_misc'                  =>      'Bio',
-	'save_changes'              =>      'Save changes',
-	'email_notifications'       =>      'Email notifications',
-	'blocked_users'             =>      'Blocked users',
-	'username_on_twitter'       =>      'Username on Twitter',
-	'messages_private'          =>      'Messages Private',
-	'old_password'              =>      'Old password',
-	'new_password'              =>      'New password',
-	'password_confirmation'     =>      'Confirm password',
-	'password_incorrect'        =>      'Your current password is not correct.',
-	'delete_all'                =>      'Delete all',
-	'no_notifications'          =>      'You have no notifications',
-	'no_messages'               =>      'You have no messages',
-	'avatar'                    =>      'Avatar',
-	'cover'                     =>      'Cover',
-	'delete'                    =>      'Delete',
-	'max_size'                  =>      'The template must be greater than or equal to',
-	'formats_available'         =>      'Invalid format JPG, GIF and PNG format permitted.',
-	'please_select_image'       =>      'Please select a Template',
-	'width_height_min'          =>      'The template must be greater than, or equal to 400 x 200px',
-	'width_height_min_avatar'   =>      'The photo must be greater than, or equal to 128 x 128',
-	'select_image'              =>      'Select a template',
-	'send_wait'                 =>      'Sending...',
-	'send_success'              =>      'Submitted successfully',
-	'attach_file'               =>      'Attach file',
-	'attach_file_or_image'      =>      'Attach file or Template',
-	'attach_image'              =>      'Attach template',
-	'upload'                    =>      'UPLOAD',
-	'yes'                       =>      'Yes',
-	'no'                        =>      'No',
-	'in'                        =>      'in',
-	'placeholder_tags'          =>      'Type something and hit enter',
-	'select_file'               =>      'Select a file',
-	'add_project'               =>      'Add to project?',
-	'click_select_image'        =>      'Drag and drop or click to upload a template',
-	'attach_file_support'       =>      'Files support:',
-	'maximum_tags'              =>      'Maximum :limit tags', // Not remove :limit
-	'width_min'                 =>      'The template must be greater than, or equal to :data px in width', // Not remove :data
-	'height_min'                =>      'The template must be greater than, or equal to :data px in height', // Not remove :data
-	'none'                      =>      'None',
-	'wecolme_users'             =>      'Welcome :name to :site_name', // :name is the name of the registered user and :site site name
-	'by'                        =>      'by',
-	'like'                      =>      'Like',
-	'unlike'                    =>      'Unlike',
-	'published'                 =>      'Published on',
-	'views'                     =>      'Views',
-	'likes'                     =>      'Likes',
-	'comments'                  =>      'Comments',
-	'share'                     =>      'Share',
-	'next'                      =>      'Next',
-	'previous'                  =>      'Previous',
-	'more_by'                   =>      'More by',
-	'view_more'                 =>      'View more...',
-	'view_less'                 =>      'View less...',
-	'reported_success'          =>      'The report has been sent successfully',
-	'success_update'            =>      'It has been updated successfully',
-	'updated'                   =>      'Updated',
-	'created'                   =>      'Created',
-	'type'                      =>      'Type',
-	'public'                    =>      'Public',
-	'private'                   =>      'Private',
-	'preview'                   =>      'Preview',
-	'please_wait'               =>      'Please wait...',
-	'example'                   =>      'Example',
-	'status'                    =>      'Status',
-	'expire'                    =>      'Expire',
-	'active'                    =>      'Active',
-	'pending'                   =>      'Pending',
-	'stopped'                   =>      'Stopped',
-	'expired'                   =>      'Expired',
-	'balance'                   =>      'Balance',
-	'total'                     =>      'Total',
-	'activate_ad'               =>      'Activate',
-	'price'                     =>      'Price',
-	'email_valid'               =>      'Please enter a valid email',
-	'email_exists_invite'       =>      'This email already exists in your database',
-	'for'                       =>      'for',
-	'welcome'                   =>      'Welcome!',
-	'categories'                =>      'Templates',
-	'category'                  =>      'Category',
-	'browse_by_category'        =>      'Browse stock templates by category',
-	'title_search_bar'          =>      "Find templates: eg. 'Animals'",
-	'members'                   =>      'Members',
-	'downloads'                 =>      'Downloads',
-	'download'                  =>      'Download',
-	'earnings'                  =>      'Earnings',
-	'stock_photos'              =>      'Stock Templates',
-	'about'                     =>      'About',
-	'links'                     =>      'Links',
-	'success'                   =>      'success',
-	'add_new'                   =>      'Add New',
-	'delete_confirm'	        =>        'Are you sure?',
-	'cancel_confirm'	        =>        'No, cancel!',
-	'yes_confirm'	            =>        'Yes, delete it!',
-	'confirm_delete_category'   =>        'All templates in this category will go to Uncategorized',
-	'recent'                    =>      'Recent',
-	'signup_free'               =>      "Sign up, it's free!",
-	'most_commented'            =>      'Most Commented',
-	'most_viewed'               =>      'Most Viewed',
-	'most_downloads'            =>      'Most Downloads',
-	'language'                  =>      'Language',
-	'online'                    =>      'Online',
-	'view_all'                  =>      'View all',
-	'add_tag'                   =>      'Add a tag and press Enter or comma',
-	'add_tags_guide'            =>      'Press Enter or comma to add tag',
-	'collections'               =>      'Collections',
-	'country'                   =>      'Country',
-	'thumbnail'                 =>      'Thumbnail',
-	'uploaded_by'               =>      'Uploaded By',
-	'featured'                  =>      'Featured',
-	'featured_on'               =>      'Featured on',
+		|--------------------------------------------------------------------------
+		| Miscellaneous Language Lines
+		|--------------------------------------------------------------------------
+		|
+		*/
+	'title_2_index' => 'Free and Premium High Quality Templates',
+	'search' => 'Search',
+	'images' => 'Templates',
+	'images_plural' => 'Template|Templates',
+	// plural 1 Image 2 Images
+	'photos_plural' => 'Template|Templates',
+	// plural 1 Template 2 Templates
+	'explore' => 'Explore',
+	'upload' => 'Upload',
+	'error_oops' => 'Oops...',
+	'error' => 'Error occurred',
+	'popular' => 'Popular',
+	'latest' => 'Latest',
+	'result_of' => 'Result of',
+	'more' => 'More',
+	'no_results_found' => 'No results have been found',
+	'location' => 'Location',
+	'find' => 'Find',
+	'any' => 'Any',
+	'all' => 'All',
+	'results_for_your_search' => 'result for your search|results for your search',
+	'sign_in_or_sign_up' => 'Sign in or Sign up',
+	'available' => 'available',
+	'delete_account_confirm' => 'Sure you want to delete your account, you cannot turn it back activated?',
+	'tags' => 'Tags',
+	'description' => 'Description',
+	'title' => 'Title',
+	'optional' => 'Optional',
+	'username_no_edit' => 'It can not be edited',
+	'full_name_misc' => 'Full name',
+	'username_misc' => 'Username',
+	'website_misc' => 'Website',
+	'bio_misc' => 'Bio',
+	'save_changes' => 'Save changes',
+	'email_notifications' => 'Email notifications',
+	'blocked_users' => 'Blocked users',
+	'username_on_twitter' => 'Username on Twitter',
+	'messages_private' => 'Messages Private',
+	'old_password' => 'Old password',
+	'new_password' => 'New password',
+	'password_confirmation' => 'Confirm password',
+	'password_incorrect' => 'Your current password is not correct.',
+	'delete_all' => 'Delete all',
+	'no_notifications' => 'You have no notifications',
+	'no_messages' => 'You have no messages',
+	'avatar' => 'Avatar',
+	'cover' => 'Cover',
+	'delete' => 'Delete',
+	'max_size' => 'The template must be greater than or equal to',
+	'formats_available' => 'Invalid format JPG, GIF and PNG format permitted.',
+	'please_select_image' => 'Please select a Template',
+	'width_height_min' => 'The template must be greater than, or equal to 400 x 200px',
+	'width_height_min_avatar' => 'The photo must be greater than, or equal to 128 x 128',
+	'select_image' => 'Select a template',
+	'send_wait' => 'Sending...',
+	'send_success' => 'Submitted successfully',
+	'attach_file' => 'Attach file',
+	'attach_file_or_image' => 'Attach file or Template',
+	'attach_image' => 'Attach template',
+	'upload' => 'UPLOAD',
+	'yes' => 'Yes',
+	'no' => 'No',
+	'in' => 'in',
+	'placeholder_tags' => 'Type something and hit enter',
+	'select_file' => 'Select a file',
+	'add_project' => 'Add to project?',
+	'click_select_image' => 'Drag and drop or click to upload a template',
+	'attach_file_support' => 'Files support:',
+	'maximum_tags' => 'Maximum :limit tags',
+	// Not remove :limit
+	'width_min' => 'The template must be greater than, or equal to :data px in width',
+	// Not remove :data
+	'height_min' => 'The template must be greater than, or equal to :data px in height',
+	// Not remove :data
+	'none' => 'None',
+	'wecolme_users' => 'Welcome :name to :site_name',
+	// :name is the name of the registered user and :site site name
+	'by' => 'by',
+	'like' => 'Like',
+	'unlike' => 'Unlike',
+	'published' => 'Published on',
+	'views' => 'Views',
+	'likes' => 'Likes',
+	'comments' => 'Comments',
+	'share' => 'Share',
+	'next' => 'Next',
+	'previous' => 'Previous',
+	'more_by' => 'More by',
+	'view_more' => 'View more...',
+	'view_less' => 'View less...',
+	'reported_success' => 'The report has been sent successfully',
+	'success_update' => 'It has been updated successfully',
+	'updated' => 'Updated',
+	'created' => 'Created',
+	'type' => 'Type',
+	'public' => 'Public',
+	'private' => 'Private',
+	'preview' => 'Preview',
+	'please_wait' => 'Please wait...',
+	'example' => 'Example',
+	'status' => 'Status',
+	'expire' => 'Expire',
+	'active' => 'Active',
+	'pending' => 'Pending',
+	'stopped' => 'Stopped',
+	'expired' => 'Expired',
+	'balance' => 'Balance',
+	'total' => 'Total',
+	'activate_ad' => 'Activate',
+	'price' => 'Price',
+	'email_valid' => 'Please enter a valid email',
+	'email_exists_invite' => 'This email already exists in your database',
+	'for' => 'for',
+	'welcome' => 'Welcome!',
+	'categories' => 'Templates',
+	'category' => 'Category',
+	'browse_by_category' => 'Browse stock templates by category',
+	'title_search_bar' => "Find templates: eg. 'Animals'",
+	'members' => 'Members',
+	'downloads' => 'Downloads',
+	'download' => 'Download',
+	'earnings' => 'Earnings',
+	'stock_photos' => 'Stock Templates',
+	'about' => 'About',
+	'links' => 'Links',
+	'success' => 'success',
+	'add_new' => 'Add New',
+	'delete_confirm' => 'Are you sure?',
+	'cancel_confirm' => 'No, cancel!',
+	'yes_confirm' => 'Yes, delete it!',
+	'confirm_delete_category' => 'All templates in this category will go to Uncategorized',
+	'recent' => 'Recent',
+	'signup_free' => "Sign up, it's free!",
+	'most_commented' => 'Most Commented',
+	'most_viewed' => 'Most Viewed',
+	'most_downloads' => 'Most Downloads',
+	'language' => 'Language',
+	'online' => 'Online',
+	'view_all' => 'View all',
+	'add_tag' => 'Add a tag and press Enter or comma',
+	'add_tags_guide' => 'Press Enter or comma to add tag',
+	'collections' => 'Collections',
+	'country' => 'Country',
+	'thumbnail' => 'Thumbnail',
+	'uploaded_by' => 'Uploaded By',
+	'featured' => 'Featured',
+	'featured_on' => 'Featured on',
 
-	'how_use_image'             =>      'How they can use this template',
-	'use_free'                  =>      'Free for commercial use',
-	'use_free_personal'         =>      'Free for personal use',
-	'use_editorial_only'        =>      'Editorial use only',
-	'use_web_only'              =>      'Use only on websites',
-	'attribution_required'      =>      'Attribution required',
-	'no_images_published' 		=>        'Yet have not been published any template',
-	'sort'              		=>        'Sort',
-	'all_countries'             =>      'All countries...',
-	'reset'                     =>      'Reset',
-	'with_photos'               =>      'With Templates',
-	'member_since'              =>      'Member since',
-	'menu'                      =>      'Menu',
-	'images_available_category' =>      'template available in this category|templates available in this category', // Plural
-	'license_and_use'           =>      'License and Use',
-	'attribution_required'      =>      'Attribution required',
-	'no_attribution_required'   =>      'No attribution required',
-	'exif_data'                 =>      'Exif Data',
-	'photo_taken_with'          =>      'Template taken with',
+	'how_use_image' => 'How they can use this template',
+	'use_free' => 'Free for commercial use',
+	'use_free_personal' => 'Free for personal use',
+	'use_editorial_only' => 'Editorial use only',
+	'use_web_only' => 'Use only on websites',
+	'attribution_required' => 'Attribution required',
+	'no_images_published' => 'Yet have not been published any template',
+	'sort' => 'Sort',
+	'all_countries' => 'All countries...',
+	'reset' => 'Reset',
+	'with_photos' => 'With Templates',
+	'member_since' => 'Member since',
+	'menu' => 'Menu',
+	'images_available_category' => 'template available in this category|templates available in this category',
+	// Plural
+	'license_and_use' => 'License and Use',
+	'attribution_required' => 'Attribution required',
+	'no_attribution_required' => 'No attribution required',
+	'exif_data' => 'Exif Data',
+	'photo_taken_with' => 'Template taken with',
 
-	'details'                   =>      'Details',
-	'image_type'                =>      'Template type',
-	'resolution'                =>      'Resolution',
-	'file_size'                 =>      'File size',
-	'collection'                =>      'Collection',
-	'color_palette'             =>      'Color Palette',
-	'report_photo'              =>      'Report Template',
-	'already_sent_report'       =>      'Already sent an report',
-	'thanks'                    =>      'Thanks!',
-	'add_collection'            =>      'Add to Collection',
-	'create_collection'         =>      'Create Collection',
-	'no_have_collections'       =>      'You have not created any collections',
-	'note_add_collections'      =>      'Click the collection to add or remove',
-	'successfully_added'        =>      'Successfully added',
-	'successfully_removed'      =>      'Successfully removed',
-	'similar_photos'            =>      'More Like This',
-	'no_comments_yet'           =>      'No comments yet',
-	'loading'                   =>      'Loading...',
+	'details' => 'Details',
+	'image_type' => 'Template type',
+	'resolution' => 'Resolution',
+	'file_size' => 'File size',
+	'collection' => 'Collection',
+	'color_palette' => 'Color Palette',
+	'report_photo' => 'Report Template',
+	'already_sent_report' => 'Already sent an report',
+	'thanks' => 'Thanks!',
+	'add_collection' => 'Add to Collection',
+	'create_collection' => 'Create Collection',
+	'no_have_collections' => 'You have not created any collections',
+	'note_add_collections' => 'Click the collection to add or remove',
+	'successfully_added' => 'Successfully added',
+	'successfully_removed' => 'Successfully removed',
+	'similar_photos' => 'More Like This',
+	'no_comments_yet' => 'No comments yet',
+	'loading' => 'Loading...',
 	'select_your_country' => 'Select your country',
 	'please_select_category' => 'Please select a category',
 	'alert_delete_account' => 'Are you sure you want to delete your account? if you delete your account, you can not activate again and will be deleted all your templates and data.',
@@ -217,15 +224,18 @@ return array(
 	'camera' => 'Camera',
 
 	// Size Images
-	's'                =>      'S', // SMALL
-	'm'                =>      'M', // MEDIUM
-	'l'                =>      'L', // LARGE
+	's' => 'S',
+	// SMALL
+	'm' => 'M',
+	// MEDIUM
+	'l' => 'L',
+	// LARGE
 
 	// Version 1.4
 	'confirm_email' => 'Please confirm your email',
 
 	// Version 2.0
-	'cookies_text'  => 'This site uses cookies, by continuing to use the service, you accept our use of cookies',
+	'cookies_text' => 'This site uses cookies, by continuing to use the service, you accept our use of cookies',
 	'agree' => 'I agree',
 	'theme' => 'Theme',
 	'choose_image' => 'Choose Template',
@@ -297,24 +307,33 @@ return array(
 	'add_funds_desc' => 'Add funds - ContentBazr',
 	'debit_credit_card' => 'Debit / Credit Card',
 	'handling_fee' => 'Handling fee',
-	'amount_minimum' => 'The minimum amount is :symbol:min :code', // Not remove :symbol:min and :code
-	'amount_minimum2' => 'The minimum amount is :min:symbol :code', // Not remove :symbol:min and :code
-	'amount_maximum' => 'The maximum amount is :symbol:max :code', // Not remove :symbol:min and :code
-	'amount_maximum2' => 'The maximum amount is :max:symbol :code', // Not remove :symbol:min and :code
+	'amount_minimum' => 'The minimum amount is :symbol:min :code',
+	// Not remove :symbol:min and :code
+	'amount_minimum2' => 'The minimum amount is :min:symbol :code',
+	// Not remove :symbol:min and :code
+	'amount_maximum' => 'The maximum amount is :symbol:max :code',
+	// Not remove :symbol:min and :code
+	'amount_maximum2' => 'The maximum amount is :max:symbol :code',
+	// Not remove :symbol:min and :code
 
 	'item_for_sale' => 'Item for sale?',
 	'no_free' => 'Item Free',
 	'yes_for_sale' => 'Item for sale',
-	'price_minimum_sale' => 'The minimum price is :symbol:min :code', // Not remove :symbol:min and :code
-	'price_minimum_sale2' => 'The minimum price is :min:symbol :code', // Not remove :symbol:min and :code
-	'price_maximum_sale' => 'The maximum price is :symbol:max :code', // Not remove :symbol:min and :code
-	'price_maximum_sale2' => 'The maximum price is :max:symbol :code', // Not remove :symbol:min and :code
+	'price_minimum_sale' => 'The minimum price is :symbol:min :code',
+	// Not remove :symbol:min and :code
+	'price_minimum_sale2' => 'The minimum price is :min:symbol :code',
+	// Not remove :symbol:min and :code
+	'price_maximum_sale' => 'The maximum price is :symbol:max :code',
+	// Not remove :symbol:min and :code
+	'price_maximum_sale2' => 'The maximum price is :max:symbol :code',
+	// Not remove :symbol:min and :code
 	'price_required' => 'The Price field is required',
 	'buy' => 'Buy',
 	'sale' => 'Sale',
 	'free' => 'Free',
 	'not_enough_funds' => 'You do not have enough funds.',
-	'user_gain' => 'You will receive :percentage% for each sale', // Not remove :percentage
+	'user_gain' => 'You will receive :percentage% for each sale',
+	// Not remove :percentage
 	'premium' => 'Premium',
 	'has_bought' => 'has bought',
 	'amount_min_withdrawal' => 'The minimum amount for withdrawals',
@@ -348,14 +367,17 @@ return array(
 	// Version 2.7
 	'type_image' => 'Type of Image?',
 	'image' => 'Image (JPG, PNG, GIF)',
-	'featured_photos' => 'Featured Templates', // Just translate 'Featured and 'Templates'
+	'featured_photos' => 'Featured Templates',
+	// Just translate 'Featured and 'Templates'
 	'subtitle_featured_home' => 'Featured templates chosen by hand by us',
 	'type_vector_graphic' => 'Image and Vector graphic (AI, EPS, PSD, SVG)',
 	'vector_graphic' => 'Vector Graphic',
 	'select_vector' => 'Select a file (AI, EPS, PSD, SVG)',
 	'max_size_vector' => 'The file must be greater than or equal to',
-	'v' => 'V', // Vector
-	'file_validation' => 'The file must be format: :values', // No delete :values
+	'v' => 'V',
+	// Vector
+	'file_validation' => 'The file must be format: :values',
+	// No delete :values
 
 	// Version 3.2
 	'popular_categories' => 'Popular categories:',
@@ -421,11 +443,11 @@ return array(
 	'allow_free_photos' => 'Allow free templates',
 
 	// Version 3.8
-	'all_time'   => 'All time',
-	'today'      => "Today",
-	'this_week'  => 'This week',
+	'all_time' => 'All time',
+	'today' => "Today",
+	'this_week' => 'This week',
 	'this_month' => 'This month',
-	'this_year'  => 'This year',
+	'this_year' => 'This year',
 
 	// Version 4.0
 	'desc_footer_social' => 'We\'re social. Follow us on any of these platforms.',
@@ -459,7 +481,8 @@ return array(
 	'print' => 'Print',
 	'view' => 'View',
 	'referrals' => 'Referrals',
-	'referrals_desc' => 'Welcome to your referral panel. Share your link and earn :percentage% of your referrals first transaction, be it a subscription or purchase!',// Not remove :percentage
+	'referrals_desc' => 'Welcome to your referral panel. Share your link and earn :percentage% of your referrals first transaction, be it a subscription or purchase!',
+	// Not remove :percentage
 	'referral_system' => 'Referral system',
 	'percentage_referred' => 'Percentage of profit for each referral',
 	'total_registered_users' => 'Total registered users',
@@ -474,8 +497,10 @@ return array(
 	'referral_commission_applied' => 'Referral commission was applied',
 	'error_active_system_referrals' => 'You cannot activate the Referral System if your commission fee is equal to 0',
 	'referral_transaction_limit' => 'Limit of transactions by referrals',
-	'referrals_welcome_desc' => 'Welcome to your referral panel. Share your link and earn :percentage% of your referrals.',// Not remove :percentage
-	'total_transactions_per_referral' => 'You will earn :percentage% for the first transaction of your referral|You will earn :percentage% for the first :total transactions of your referral', // Not remove :percentage and :total
+	'referrals_welcome_desc' => 'Welcome to your referral panel. Share your link and earn :percentage% of your referrals.',
+	// Not remove :percentage
+	'total_transactions_per_referral' => 'You will earn :percentage% for the first transaction of your referral|You will earn :percentage% for the first :total transactions of your referral',
+	// Not remove :percentage and :total
 	'total_transactions_referral_unlimited' => 'You will earn :percentage% for each transaction of your referral',
 	'error_fee_commission_zero' => 'Your fee commission cannot be 0% if the Referral System is enabled',
 	'security' => 'Security',
@@ -483,7 +508,8 @@ return array(
 	'two_step_auth' => 'Two-Step Authentication',
 	'two_step_auth_info' => 'A code will be sent to your email every time you log in',
 	'two_step_authentication_code' => 'Two-Step Authentication Code',
-	'your_code_is' => 'Your code is: :code', // Not remove :code
+	'your_code_is' => 'Your code is: :code',
+	// Not remove :code
 	'enter_code' => 'Enter the code',
 	'2fa_title_modal' => 'We have sent you a code to your email',
 	'code_2fa_invalid' => 'The code you entered is invalid',
@@ -567,7 +593,8 @@ return array(
 	'unused_downloads_added_next_month' => 'Unused downloads will be added the following month',
 	'download_limit_renewed_monthly' => 'The download limit is renewed every month',
 	'no_daily_download_limits' => 'No daily download limits',
-	'downloads_per_day' => ':number downloads per day',// Not remove :number
+	'downloads_per_day' => ':number downloads per day',
+	// Not remove :number
 	'cancel_subscription_any_time' => 'Cancel your subscription at any time',
 	'suscribe' => 'Suscribe',
 	'subscribed' => 'Subscribed',
@@ -581,16 +608,21 @@ return array(
 	'faq_pricing_3_reply' => 'Unused downloads will roll over to the next month if you have an auto-renewing subscription enabled. If auto-renew is disabled when your subscription term ends, you will lose all accumulated downloads.',
 	'faq_pricing_4' => 'Can I cancel my subscription?',
 	'faq_pricing_4_reply' => 'Yes, you can cancel your subscription at any time. You will be able to continue downloading until the end of your billing cycle.',
-	'prices_and_excludes_tax' => 'Prices is in :currency and excludes tax',// Not remove :currency
-	'plan_name' => ':plan plan', // Not remove :plan
+	'prices_and_excludes_tax' => 'Prices is in :currency and excludes tax',
+	// Not remove :currency
+	'plan_name' => ':plan plan',
+	// Not remove :plan
 	'billed_monthly' => 'Billed monthly',
 	'billed_yearly' => 'Billed yearly',
-	'confirm_payment_in' => 'Confirm your payment in :app', // Not remove :app
-	'confirm_amount' => 'Confirm the amount :amount of the payment to be made', // Not remove :amount
+	'confirm_payment_in' => 'Confirm your payment in :app',
+	// Not remove :app
+	'confirm_amount' => 'Confirm the amount :amount of the payment to be made',
+	// Not remove :amount
 	'confirm_payment_line' => 'Additional confirmation is required to process the payment. Continue to the checkout page by clicking the button below.',
 	'extra_confirmation' => 'Extra confirmation is needed to process your payment. Please confirm your payment by filling out your payment details below.',
 	'confirm_payment' => 'Confirm the payment',
-	'pay_amount' => 'Pay :amount', // Not remove :amount
+	'pay_amount' => 'Pay :amount',
+	// Not remove :amount
 	'payment_successful' => 'Payment Successful',
 	'payment_cancelled' => 'Payment Cancelled',
 	'payment_already_successfully_confirmed' => 'This payment was already successfully confirmed.',
@@ -603,7 +635,8 @@ return array(
 	'subscription_canceled' => 'Subscription canceled',
 	'cancelled' => 'Cancelled',
 	'please_confirm_payment' => 'Please confirm the payment',
-	'your_amount_payment' => 'Your :amount payment', // Not remove :amount
+	'your_amount_payment' => 'Your :amount payment',
+	// Not remove :amount
 	'payment_processing' => 'Payment Processing',
 	'payment_processing_info' => 'This payment is currently processing. Refresh this page from time to time to see its status.',
 	'stripe_payment_info' => 'A valid payment method is needed to process your payment. Please confirm your payment by filling out your payment details below.',
@@ -613,16 +646,20 @@ return array(
 	'stripe_text_info_1' => 'Your payment will be processed by',
 	'stripe_text_info_2' => 'Payment details',
 	'stripe_text_info_3' => 'Remember payment method for future usage',
-	'stripe_text_info_4' => 'Confirm your :amount payment with', // Not remove :amount
+	'stripe_text_info_4' => 'Confirm your :amount payment with',
+	// Not remove :amount
 	'stripe_text_info_5' => 'Please provide your name and e-mail address.',
-	'subscription_plan' => 'Plan :name',// Not remove  :name
+	'subscription_plan' => 'Plan :name',
+	// Not remove  :name
 	'subscription_exists' => 'You have an active subscription.',
-	'agree_subscription' => 'By clicking pay you agree to the :terms and authorize ContentBazr to charge your payment method on a recurring basis. You may cancel at any time.', // Not remove :term
+	'agree_subscription' => 'By clicking pay you agree to the :terms and authorize ContentBazr to charge your payment method on a recurring basis. You may cancel at any time.',
+	// Not remove :term
 	'terms_services' => 'Terms of service',
 	'subscription' => 'Subscription',
 	'subscription_success' => 'Subscription created successfully!',
 	'notify_subscription' => 'If you do not see your subscription active, refresh the page, otherwise contact us.',
-	'subscription_to_plan' => ':plan plan subscription',// Not remove :plan
+	'subscription_to_plan' => ':plan plan subscription',
+	// Not remove :plan
 	'not_subscribed' => "You don't have any subscription",
 	'plan' => 'Plan',
 	'billed' => 'Billed',
@@ -636,10 +673,13 @@ return array(
 	'included_your_subscription' => 'Included in your subscription',
 	'via_subscription' => 'Via subscription',
 	'reached_download_limit_plan' => 'You have reached the download limit of your plan',
-	'photo_dimensions_validation' => 'The template must be greater than or equal to :widthx:height px', // Not remove :width and :height
-	'photo_formats_available' => 'Invalid format :formats format permitted.',// Not remove :formats
-	'give_thanks' => 'Give thanks!',
-	'thanks_to_author_sharing' => 'Give thanks to @:username for sharing this template for free, the easiest way, sharing on social networks.', // Not remove :username
+	'photo_dimensions_validation' => 'The template must be greater than or equal to :widthx:height px',
+	// Not remove :width and :height
+	'photo_formats_available' => 'Invalid format :formats format permitted.',
+	// Not remove :formats
+	'give_thanks' => 'Thank you!',
+	'thanks_to_author_sharing' => 'Please appreciate :username for sharing this fantastic template for free. Sharing it on social media is the simplest way to show your appreciation.',
+	// Not remove :username
 	'downloading' => 'Downloading...',
 	'error_active_captcha' => "You can't enable captcha without first setting API Keys. set up in Dashboard > Google",
 

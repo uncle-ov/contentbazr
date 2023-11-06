@@ -48,10 +48,10 @@
                  @foreach ($data as $coupon)
                    <tr>
                      <td>{{ $coupon->id }}</td>
-                     <td>{{ $coupon->coupon_code }}</td>
+                     <td>{{ $coupon->code }}</td>
                      <td>{{ $coupon->discount }}</td>
                      <td>{{ $coupon->discount_type }}</td>
-                     <td><span class="badge bg-{{ isCouponValid($coupon) ? 'success' : 'warning' }}">{{ isCouponValid($coupon) ? 'Valid' : 'Invalid' }}</span></td>
+                     <td><span class="badge bg-{{ isCouponValid($coupon->code) ? 'success' : 'warning' }}">{{ isCouponValid($coupon->code) ? 'Valid' : 'Invalid' }}</span></td>
                      <td>{{ $coupon->start_date }}</td>
                      <td>{{ $coupon->end_date }}</td>
                      <td>

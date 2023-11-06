@@ -176,7 +176,7 @@ class AdminController extends Controller
 			$sql = new Coupon();
 		}
 
-		$sql->coupon_code = $request->coupon_code;
+		$sql->code = $request->coupon_code;
 		$sql->discount = $request->discount;
 		$sql->discount_type = $request->discount_type;
 		$sql->start_date = $request->start_date;

@@ -25,7 +25,7 @@
 		        <div class="row mb-3">
 		          <label class="col-sm-2 col-form-label text-lg-end">Discount Code</label>
 		          <div class="col-sm-10">
-		            <input placeholder="Enter discount code" name="coupon_code" value="{{ $coupon->coupon_code }}" type="text" class="form-control">
+		            <input placeholder="Enter discount code" name="coupon_code" value="{{ $coupon->code }}" type="text" class="form-control">
 		          </div>
 		        </div>
 

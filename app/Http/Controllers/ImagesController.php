@@ -114,6 +114,24 @@ class ImagesController extends Controller
 	{
 		$response = Images::findOrFail($id);
 
+		$coupon_applied = couponApplied();
+
+		// apply coupon
+		if (!empty($_GET['coupon_code'])) {
+			$code = $_GET['coupon_code'];
+
+			if (isCouponValid($code)) {
+				applyCoupon($code);
+				$coupon_applied = $code;
+			}
+		}
+
+		// remove coupon
+		if (!empty($_GET['remove_coupon_code'])) {
+			removeCoupon();
+			$coupon_applied = false;
+		}
+
 		if (auth()->check() && $response->user_id != auth()->id() && $response->status == 'pending' && auth()->user()->role != 'admin') {
 			abort(404);
 		} else if (auth()->guest() && $response->status == 'pending') {
@@ -254,9 +272,13 @@ class ImagesController extends Controller
 		// Item price
 		$itemPrice = $this->settings->default_price_photos ?: $response->price;
 
+		if ($coupon_applied) {
+			$itemPrice = applyCouponToPrice($itemPrice, $coupon_applied);
+		}
 
 		return view('images.show')->with([
 			'response' => $response,
+			'coupon_applied' => $coupon_applied,
 			'textFollow' => $textFollow ?? null,
 			'icoFollow' => $icoFollow ?? null,
 			'activeFollow' => $activeFollow ?? null,
