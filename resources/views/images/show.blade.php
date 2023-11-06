@@ -969,6 +969,22 @@ other sizes /formats.</small></div>
                       </div>
                     </div>
                   </li>
+
+                  @if($coupon_applied)
+                  <li class="list-group-item py-1 px-0">
+                    <div class="row">
+                      <div class="col">
+                        <small class="fw-bold">Discount:</small>
+                      </div>
+                      <div class="col-auto fw-bold">
+                        <small>{{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span
+                            id="total">-{{ $discountSavings }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
+                          {{ $settings->currency_code }}</small>
+                      </div>
+                    </div>
+                  </li>
+                  @endif
+
                   <li>
                     <div class="row" style="margin-top: 15px;">
                       @if(!$coupon_applied)

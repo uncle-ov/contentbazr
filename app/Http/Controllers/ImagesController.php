@@ -310,6 +310,7 @@ class ImagesController extends Controller
 			'images' => $images,
 			'comments_sql' => $comments_sql,
 			'paymentsGatewaysEnabled' => $paymentsGatewaysEnabled,
+			'discountSavings' => $itemActualPrice - $itemPrice,
 			'itemActualPrice' => $itemActualPrice,
 			'itemPrice' => $itemPrice,
 			'token' => $response->token_id,
