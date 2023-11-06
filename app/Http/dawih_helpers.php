@@ -40,6 +40,19 @@ function renderEmbedVideo($response)
   return null;
 }
 
+function redirect_now($url, $code = 302)
+{
+  try {
+    \App::abort($code, '', ['Location' => $url]);
+  } catch (\Exception $exception) {
+    $previousErrorHandler = set_exception_handler(function () { });
+    restore_error_handler();
+    call_user_func($previousErrorHandler, $exception);
+    die;
+  }
+}
+
+
 function isCouponValid($coupon_code)
 {
   if (empty($coupon_code))
@@ -101,9 +114,7 @@ function applyOrRemoveCoupon($current_url_path)
       $current_url_path .= '?invalid_coupon';
     }
 
-    dd($current_url_path);
-
-    return redirect($current_url_path);
+    redirect_now($current_url_path);
   }
 
   // remove coupon
@@ -111,7 +122,7 @@ function applyOrRemoveCoupon($current_url_path)
     removeCoupon();
     $current_url_path .= '?coupon_removed';
 
-    return redirect($current_url_path);
+    redirect_now($current_url_path);
   }
 }
 
