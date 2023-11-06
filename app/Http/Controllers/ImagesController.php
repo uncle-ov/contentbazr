@@ -117,7 +117,7 @@ class ImagesController extends Controller
 		$response = Images::findOrFail($id);
 
 		$coupon_applied = couponApplied();
-		$invalid_coupon = !empty($_GET['invalid_coupon']) ? true : false;
+		$invalid_coupon = isset($_GET['invalid_coupon']) ? true : false;
 
 		// apply coupon
 		if (!empty($_GET['add_coupon_code'])) {
@@ -128,7 +128,6 @@ class ImagesController extends Controller
 
 				$current_url_path .= '?coupon_applied';
 			} else {
-				$invalid_coupon = true;
 				$current_url_path .= '?invalid_coupon';
 			}
 
