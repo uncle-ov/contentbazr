@@ -431,6 +431,8 @@ class HomeController extends Controller
       'plans' => $plans,
       'coupon_applied' => $coupon_applied,
       'invalid_coupon' => $invalid_coupon,
+      'discountSavings' => null,
+      'itemActualPrice' => null,
     ]);
   }
 
