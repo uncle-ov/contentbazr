@@ -297,7 +297,7 @@
   @php
 	  $tags = explode(',', $response->tags);
 	  $countTags = count($tags);
-    $tag_limit = 1;
+    $tag_limit = 7;
 	@endphp
 
   <div class="tags_wrap">
