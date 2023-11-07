@@ -1434,4 +1434,11 @@ $(document).ready(function() {
 		$(this).parent().find('.cb_tag').removeClass('hide_tag');
 		$(this).hide();
 	})
+
+	$('.hide_hidable_tags').on('click', function(e) {
+		e.preventDefault();
+		$(this).parent().find('.hide_hidable_tags').addClass('hide_tag');
+
+		$('.show_hidden_tags').show();
+	})
 })(jQuery);

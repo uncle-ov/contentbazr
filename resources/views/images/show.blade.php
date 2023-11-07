@@ -304,18 +304,21 @@
 	  @for ($i = 0; $i < $countTags; ++$i)
       <a
         href="{{url('tags', str_replace(' ', '_', trim($tags[$i]))) }}"
-        class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i > $tag_limit ? 'hide_tag' : '' }}"
+        class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i > $tag_limit ? 'cb_hidable_tags hide_tag' : '' }}"
       >
         {{ $tags[$i] }}
       </a>
 	  @endfor
+    <a href="#" class="btn btn-sm bg-white border e-none btn-category mb-2 hide_hidable_tags cb_tag cb_hidable_tags hide_tag">
+      Show less
+    </a>
 
     @if($countTags > $tag_limit)
     <a
       href="#"
       class="btn btn-sm bg-white border e-none btn-category mb-2 show_hidden_tags"
     >
-      {{ $countTags - ($tag_limit + 1) }}+
+      {{ $countTags - $tag_limit }}+
     </a>
     @endif
     </div>
