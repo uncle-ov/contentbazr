@@ -106,7 +106,7 @@
             $('#sendCouponCode').attr('href', href);
           })
         
-        @if($show_checkout_modal)
+        @if(!empty($show_checkout_modal))
           $('#checkout').modal('show');
         @endif
         })
