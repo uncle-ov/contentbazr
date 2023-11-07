@@ -207,6 +207,8 @@ class StripeController extends Controller
       $planCurrent = $stripe->plans->retrieve($planId, []);
       $pricePlanOnStripe = ($planCurrent->amount / 100);
 
+      dd($pricePlanOnStripe);
+
       // We check if the plan changed price
       if ($pricePlanOnStripe != $planPrice) {
         // Delete old plan
