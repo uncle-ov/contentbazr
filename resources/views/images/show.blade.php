@@ -295,26 +295,27 @@
 	<h5 class="fw-light">{{trans('misc.tags')}}</h5>
     <!--<span>Tags: </span>-->
   @php
-	   $tags = explode(',', $response->tags);
-	   $countTags = count($tags);
-	 @endphp
+	  $tags = explode(',', $response->tags);
+	  $countTags = count($tags);
+    $tag_limit = 1;
+	@endphp
 
   <div class="tags_wrap">
 	  @for ($i = 0; $i < $countTags; ++$i)
       <a
         href="{{url('tags', str_replace(' ', '_', trim($tags[$i]))) }}"
-        class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i > 3 ? 'hide_tag' : '' }}"
+        class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i > $tag_limit ? 'hide_tag' : '' }}"
       >
         {{ $tags[$i] }}
       </a>
 	  @endfor
 
-    @if($countTags > 3)
+    @if($countTags > $tag_limit)
     <a
       href="#"
       class="btn btn-sm bg-white border e-none btn-category mb-2 show_hidden_tags"
     >
-      {{ $countTags - 4 }}+
+      {{ $countTags - ($tag_limit + 1) }}+
     </a>
     @endif
     </div>
