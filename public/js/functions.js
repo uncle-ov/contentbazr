@@ -1437,7 +1437,7 @@ $(document).ready(function() {
 
 	$('.hide_hidable_tags').on('click', function(e) {
 		e.preventDefault();
-		$(this).parent().find('.hide_hidable_tags').addClass('hide_tag');
+		$(this).parent().find('.cb_hidable_tags').addClass('hide_tag');
 
 		$('.show_hidden_tags').show();
 	})
