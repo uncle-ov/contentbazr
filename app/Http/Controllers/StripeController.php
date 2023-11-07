@@ -215,7 +215,7 @@ class StripeController extends Controller
         // Delete Product
         $stripe->products->delete($planCurrent->product, []);
 
-        dd($plan);
+        dd($plan, 'plan');
         // We create the plan with new price
         $this->createPlan($payment->key_secret, $plan, $this->request->interval);
       }
