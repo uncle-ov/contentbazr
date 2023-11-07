@@ -422,7 +422,7 @@ class HomeController extends Controller
       abort(404);
     }
     $current_url_path = '/pricing';
-    $coupon_applied = couponApplied();
+    $coupon_applied = false; //couponApplied();
     $invalid_coupon = isset($_GET['invalid_coupon']) ? true : false;
 
     $show_checkout_modal = false;
