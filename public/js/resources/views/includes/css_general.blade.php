@@ -3,7 +3,7 @@
 <link href="{{ asset('public/css/bootstrap.min.css') }}?v={{$settings->version}}v" rel="stylesheet">
 <link href="{{ asset('public/css/bootstrap-icons.css') }}" rel="stylesheet">
 <link href="{{ asset('public/js/fleximages/jquery.flex-images.css') }}" rel="stylesheet">
-<link href="{{ asset('public/css/styles.css') }}?v={{$settings->version}}n" rel="stylesheet">
+<link href="{{ asset('public/css/styles.css') }}?v={{$settings->version}}" rel="stylesheet">
 
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
 
