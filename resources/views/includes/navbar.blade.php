@@ -50,7 +50,7 @@
               </li>
 
               <li class="dropdown">
-                <a href="javascript:void(0);" class="nav-link px-2 link-dark dropdown-toggle" id="dropdownExplore" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="javascript:void(0);" class="highlighted_menu_item nav-link px-2 link-dark dropdown-toggle" id="dropdownExplore" data-bs-toggle="dropdown" aria-expanded="false">
                   {{trans('misc.categories')}}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-macos dropdown-menu-lg-end arrow-dm" aria-labelledby="dropdownCategories">

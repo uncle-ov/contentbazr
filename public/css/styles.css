@@ -1283,3 +1283,8 @@ ul.list-stats li {
         display:none;
     }
 }
+
+.highlighted_menu_item {
+  color: #d21212 !important;
+  font-weight: bold !important;
+}

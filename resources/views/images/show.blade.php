@@ -300,6 +300,9 @@
     $tag_limit = 7;
 	@endphp
 
+  <div><small>Click on the first tag (e.g., id1309) to see the same design in
+  other sizes /formats.</small></div>
+  
   <div class="tags_wrap">
 	  @for ($i = 0; $i < $countTags; ++$i)
       <a
@@ -323,8 +326,6 @@
     @endif
     </div>
   </div>
-    <div><small>Click on the first tag (e.g., id1309) to see the same design in
-other sizes /formats.</small></div>
 </div><!-- End Block -->
 
 @if ($images->count() != 0)
