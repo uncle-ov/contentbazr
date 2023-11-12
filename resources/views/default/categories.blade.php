@@ -25,7 +25,7 @@
         $sub_cats = json_decode($category->tags_data);
 
         foreach ($sub_cats as $slug => $distag) {
-          if(!empty($distag)) {
+          if(!empty($distag) && strlen($distag) > 2) {
             $all_tags[$distag] = URL('tags') . '/' . $slug;
           }
         }
