@@ -44,7 +44,7 @@
           <a href="{{ $url }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
             {{ $title }}
           </a>
-          @endif
+          @endforeach
           <a class="show_all">Show All</a>
         </div>
       </div>
