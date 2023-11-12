@@ -306,7 +306,7 @@
   <div class="tags_wrap">
 	  @for ($i = 0; $i < $countTags; ++$i)
       <a
-        href="{{url('tags', $response->category->slug . '_' . str_replace(' ', '_', trim($tags[$i]))) }}"
+        href="{{url('tags', $response->category->slug . '_' . str_replace(' ', '-', trim($tags[$i]))) }}"
         class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i >= $tag_limit ? 'cb_hidable_tags hide_tag' : '' }}"
       >
         {{ $tags[$i] }}
