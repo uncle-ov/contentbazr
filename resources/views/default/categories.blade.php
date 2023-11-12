@@ -18,23 +18,33 @@
 
     </div><!-- row -->
 
+    <?php
+      $all_tags = [];
+
+      foreach($categories as $category) {
+        $sub_cats = json_decode($category->tags_data);
+
+        foreach ($sub_cats as $slug => $distag) {
+          if(!empty($distag)) {
+            $all_tags[$distag] = URL('tags') . '/' . $slug;
+          }
+        }
+      }
+
+      ksort($all_tags);
+    ?>
+
     <div class="row">
       <div class="col-md-12">
         <h4 class="mt-5">Browse Tags</h4>
+        <p>Browse stock templates by subcategories tags</p>
 
         <div class="show_more_on_click">
-          <?php
-            foreach($categories as $category) {
-              $sub_cats = json_decode($category->tags_data);
-          ?>
-          <?php foreach ($sub_cats as $slug => $distag) { ?>
-          <?php if(!empty($distag)) { ?>
-          <a href="{{ URL('tags') . '/' . $slug }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
-            {{ $distag }}
+          @foreach($all_tags as $title => $url)
+          <a href="{{ $url }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
+            {{ $title }}
           </a>
-          <?php } ?>
-          <?php } ?>
-          <?php } ?>
+          @endif
           <a class="show_all">Show All</a>
         </div>
       </div>

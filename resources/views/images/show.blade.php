@@ -303,7 +303,6 @@
   <div style="margin: -5px 0 15px"><small>Click on the first tag (e.g., id1309) to see the same design in
   other sizes /formats.</small></div>
   
-  
   <div class="tags_wrap">
 	  @for ($i = 0; $i < $countTags; ++$i)
       <a
