@@ -19,8 +19,12 @@ function renderStreamableEmbed($response)
 {
   $video_link = $response->vimeo_link;
   $video_embed = stristr($video_link, '/e/') ? $video_link : str_replace('streamable.com', 'streamable.com/e', $video_link);
+
+  $dimension = $response->video_dimension;
+  $aspect_ratio = explode(':', $dimension);
+  $height = ($aspect_ratio[1] * 100) / $aspect_ratio[0];
   ?>
-  <div style="width:100%;height:0px;position:relative;padding-bottom:136.667%;">
+  <div style="width:100%;height:0px;position:relative;padding-bottom:<?php echo $height; ?>%;">
     <iframe src="<?php echo $video_embed; ?>" frameborder="0" width="100%" height="100%" allowfullscreen
       style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe>
   </div>
