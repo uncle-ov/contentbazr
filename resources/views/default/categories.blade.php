@@ -32,6 +32,7 @@
       }
 
       ksort($all_tags);
+      $previous_tag_title = '';
     ?>
 
     <div class="row">
@@ -41,9 +42,19 @@
 
         <div class="show_more_on_click">
           @foreach($all_tags as $title => $url)
+          @if(empty($previous_tag_title) || substr($title, 0, 1) != substr($previous_tag_title, 0, 1))
+          <div style="position: relative">
+            <hr>
+            <span style="position: absolute;display: table;top: -16px;padding-right: 10px;background: white;font-size: 20px;font-weight: bold;color: #999;">
+              {{ substr($tags[$i], 0, 1) }}
+            </span>
+          </div>
+          @endif
+    
           <a href="{{ $url }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
             {{ $title }}
           </a>
+          <?php $previous_tag_title = $title; ?>
           @endforeach
           <a class="show_all">Show All</a>
         </div>

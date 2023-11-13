@@ -305,14 +305,6 @@
   
   <div class="tags_wrap">
 	  @for ($i = 0; $i < $countTags; ++$i)
-      @if($i == 0 || substr($tags[$i], 0, 1) != substr($tags[($i - 1)], 0, 1))
-      <div style="position: relative">
-        <hr>
-        <span style="position: absolute;display: table;top: -16px;padding-right: 10px;background: white;font-size: 20px;font-weight: bold;color: #999;">
-          {{ substr($tags[$i], 0, 1) }}
-        </span>
-      </div>
-      @endif
       <a
         href="{{url('tags', $response->category->slug . '_' . str_replace(' ', '-', trim($tags[$i]))) }}"
         class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i >= $tag_limit ? 'cb_hidable_tags hide_tag' : '' }}"
