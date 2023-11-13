@@ -45,7 +45,7 @@
           @if(empty($previous_tag_title) || substr($title, 0, 1) != substr($previous_tag_title, 0, 1))
           <div style="position: relative">
             <hr>
-            <span style="position: absolute;display: table;top: -16px;padding-right: 10px;background: white;font-size: 20px;font-weight: bold;color: #999;">
+            <span style="text-transform: uppercase;position: absolute;display: table;top: -16px;padding-right: 10px;background: white;font-size: 20px;font-weight: bold;color: #999;">
               {{ substr($title, 0, 1) }}
             </span>
           </div>
