@@ -43,7 +43,7 @@
         <div class="show_more_on_click">
           @foreach($all_tags as $title => $url)
           @if(empty($previous_tag_title) || substr($title, 0, 1) != substr($previous_tag_title, 0, 1))
-            <span class="border btn btn-dark btn-sm mb-2">
+            <span class="border btn btn-dark btn-sm mb-2 disabled" style="font-weight: bold;">
               {{ ucfirst(substr($title, 0, 1)) }}
             </span>
           @endif
