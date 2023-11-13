@@ -46,7 +46,7 @@
           <div style="position: relative">
             <hr>
             <span style="position: absolute;display: table;top: -16px;padding-right: 10px;background: white;font-size: 20px;font-weight: bold;color: #999;">
-              {{ substr($tags[$i], 0, 1) }}
+              {{ substr($title, 0, 1) }}
             </span>
           </div>
           @endif
