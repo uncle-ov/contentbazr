@@ -62,6 +62,9 @@
     </div>
   </div>
 @endif
+@if (\Session::has('show_upgrade_plan_modal'))
+<a id="upgradeAccountPopup" href="{{ URL('public/images/upgrade_popup_image_sm.png') }}" class="glightbox"></a>
+@endif
 
 
     <main>
@@ -105,6 +108,8 @@
       
             $('#sendCouponCode').attr('href', href);
           })
+
+          $('#upgradeAccountPopup').click();
         
         @if(!empty($show_checkout_modal))
           $('#checkout').modal('show');

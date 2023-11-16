@@ -14,41 +14,42 @@ use App\Http\Controllers\Traits\FunctionsTrait;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+  /*
+  |--------------------------------------------------------------------------
+  | Login Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles authenticating users for the application and
+  | redirecting them to your home screen. The controller uses a trait
+  | to conveniently provide its functionality to your applications.
+  |
+  */
 
-    use AuthenticatesUsers;
-    use FunctionsTrait;
+  use AuthenticatesUsers;
+  use FunctionsTrait;
 
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
+  /**
+   * Where to redirect users after login / registration.
+   *
+   * @var string
+   */
+  protected $redirectTo = '/';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(Guard $auth)
-    {
-    	$this->auth = $auth;
-        $this->middleware('guest', ['except' => 'logout']);
-    }
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct(Guard $auth)
+  {
+    $this->auth = $auth;
+    $this->middleware('guest', ['except' => 'logout']);
+  }
 
-	public function login(Request $request) {
+  public function login(Request $request)
+  {
 
-	     // get our login input
+    // get our login input
     $login = $request->input('email');
     $urlReturn = $request->input('_url');
 
@@ -56,42 +57,38 @@ class LoginController extends Controller
     $login_type = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
     // merge our login field into the request with either email or username as key
-    $request->merge([ $login_type => $login ]);
+    $request->merge([$login_type => $login]);
 
     $settings = AdminSettings::first();
     $request['_captcha'] = $settings->captcha;
 
     $messages = [
-  'g-recaptcha-response.required_if' => trans('misc.captcha_error_required'),
-  'g-recaptcha-response.captcha' => trans('misc.captcha_error'),
-];
+      'g-recaptcha-response.required_if' => trans('misc.captcha_error_required'),
+      'g-recaptcha-response.captcha' => trans('misc.captcha_error'),
+    ];
 
     // let's validate and set our credentials
     if ($login_type == 'email') {
+      $this->validate($request, [
+        'email' => 'required|email',
+        'password' => 'required',
+        'g-recaptcha-response' => 'required_if:_captcha,==,on|captcha'
+      ], $messages);
 
-        $this->validate($request, [
-            'email'    => 'required|email',
-            'password' => 'required',
-            'g-recaptcha-response' => 'required_if:_captcha,==,on|captcha'
-        ], $messages);
-
-        $credentials = $request->only( 'email', 'password' );
-
+      $credentials = $request->only('email', 'password');
     } else {
+      $this->validate($request, [
+        'email' => 'required',
+        'password' => 'required',
+        'g-recaptcha-response' => 'required_if:_captcha,==,on|captcha'
+      ], $messages);
 
-        $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required',
-            'g-recaptcha-response' => 'required_if:_captcha,==,on|captcha'
-        ], $messages);
-
-        $credentials = $request->only( 'username', 'password' );
-
+      $credentials = $request->only('username', 'password');
     }
 
-     if ($this->auth->attempt($credentials, $request->has('remember'))) {
+    if ($this->auth->attempt($credentials, $request->has('remember'))) {
 
-			if ($this->auth->user()->status == 'active') {
+      if ($this->auth->user()->status == 'active') {
 
         // Check Two step authentication
         if ($this->auth->user()->two_factor_auth == 'yes') {
@@ -102,49 +99,53 @@ class LoginController extends Controller
           $this->auth->logout();
 
           return redirect()->back()
-          ->with(['required_2fa' => true]);
+            ->with(['required_2fa' => true]);
         }
 
-            if (isset($urlReturn) && url()->isValidUrl($urlReturn)) {
-                return redirect($urlReturn);
-              } else {
-                return redirect()->intended('/');
-              }
-
-        } else if ($this->auth->user()->status == 'suspended') {
-
-			$this->auth->logout();
-
-			return redirect()->back()
-				->withErrors([
-					'status' => trans('validation.user_suspended'),
-				]);
-        } else if( $this->auth->user()->status == 'pending' ) {
-
-			$this->auth->logout();
-
-			return redirect()->back()
-				->withErrors([
-					'status' => trans('validation.account_not_confirmed'),
-				]);
+        if (!$this->auth->user()->getSubscription()) {
+          \Session::flash('show_upgrade_plan_modal', 'alert');
         }
 
-	}
+        if (isset($urlReturn) && url()->isValidUrl($urlReturn)) {
+          return redirect($urlReturn);
+        } else {
+          return redirect()->intended('/');
+        }
+      } else if ($this->auth->user()->status == 'suspended') {
+
+        $this->auth->logout();
+
+        return redirect()->back()
+          ->withErrors([
+            'status' => trans('validation.user_suspended'),
+          ]);
+      } else if ($this->auth->user()->status == 'pending') {
+
+        $this->auth->logout();
+
+        return redirect()->back()
+          ->withErrors([
+            'status' => trans('validation.account_not_confirmed'),
+          ]);
+      }
+
+    }
 
     return redirect()->back()
-				->withInput($request->only('email', 'remember'))
-				->withErrors(['email' => $this->getFailedLoginMessage(),
-				]);
-	}
+      ->withInput($request->only('email', 'remember'))
+      ->withErrors([
+        'email' => $this->getFailedLoginMessage(),
+      ]);
+  }
 
-	/**
-	 * Get the failed login message.
-	 *
-	 * @return string
-	 */
-	protected function getFailedLoginMessage()
-	{
-		return trans('auth.error_logging');
-	}
+  /**
+   * Get the failed login message.
+   *
+   * @return string
+   */
+  protected function getFailedLoginMessage()
+  {
+    return trans('auth.error_logging');
+  }
 
 }
