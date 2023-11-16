@@ -63,7 +63,20 @@
   </div>
 @endif
 @if (\Session::has('show_upgrade_plan_modal'))
-<a id="upgradeAccountPopup" href="{{ URL('public/images/upgrade_popup_image_sm.png') }}" class="glightbox"></a>
+<div id="upgradeAccountPopup" style="position: fixed;top:0;left:0;right:0;bottom: 0;background: rgba(0,0,0,.8);z-index: 999999999;display: flex;justify-content: center;align-items: center;">
+  <div style="
+    position: relative;
+"><a href="#" id="closeUpgradeAccountPopup" style="
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    right: 35px;
+    top: -15px;
+    z-index: 99;
+">&times;</a><a href="{{ URL('pricing') }}" style="display: block;">
+    <img style="width: auto;max-width: 95%;" src="https://contentbazr.com/public/images/upgrade_popup_image_sm.png">
+  </a></div>
+</div>
 @endif
 
 
@@ -109,7 +122,10 @@
             $('#sendCouponCode').attr('href', href);
           })
 
-          $('#upgradeAccountPopup').click();
+          $('#closeUpgradeAccountPopup').on('click', function(e) {
+            $('#upgradeAccountPopup').hide();
+            e.preventDefault();
+          })
         
         @if(!empty($show_checkout_modal))
           $('#checkout').modal('show');
