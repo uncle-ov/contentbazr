@@ -279,6 +279,8 @@ class HomeController extends Controller
     $slug = Helper::extractCategoryTag($def_slug);
     $cat_slug = Helper::extractCategorySlug($def_slug);
 
+    dd($slug);
+
     if (strlen($slug) > 1) {
       $settings = AdminSettings::first();
 

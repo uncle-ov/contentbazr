@@ -1125,6 +1125,11 @@ class ImagesController extends Controller
 				imagealphablending($newImage, false);
 				imagesavealpha($newImage, true);
 				break;
+			case 'webp':
+				$source = imagecreatefromwebp($imageUrl);
+				imagealphablending($newImage, false);
+				imagesavealpha($newImage, true);
+				break;
 		}
 
 		if (request()->get('fit') == 'crop') {
@@ -1145,6 +1150,9 @@ class ImagesController extends Controller
 			case "png":
 			case "x-png":
 				imagepng($newImage);
+				break;
+			case "webp":
+				imagewebp($newImage, NULL, 75);
 				break;
 		}
 
