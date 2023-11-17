@@ -136,6 +136,13 @@ class Helper
 				//imagefill( $newImage, 0, 0, imagecolorallocate( $newImage, 255, 255, 255 ) );
 				//imagealphablending( $newImage, TRUE );
 				break;
+			case 'image/webp':
+				$source = imagecreatefromwebp($image);
+				imagealphablending($newImage, false);
+				imagesavealpha($newImage, true);
+				imagecopyresampled($newImage, $source, 0, 0, 0, 0, $newImageWidth, $newImageHeight, $width, $height);
+				imagewebp($newImage, $imageNew, 75);
+				break;
 		}
 		imagecopyresampled($newImage, $source, 0, 0, 0, 0, $newImageWidth, $newImageHeight, $width, $height);
 
