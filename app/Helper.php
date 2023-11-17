@@ -806,24 +806,20 @@ class Helper
 
 	public function extractCategoryTag($slug)
 	{
-		if (stristr($slug, '_') && stristr($slug, '-')) {
+		if (stristr($slug, '_')) {
 			$split = explode('_', $slug);
 
-			return str_replace('-', ' ', $split[1]);
+			return str_replace('-', ' ', end($split));
 		}
 
-		return str_replace('_', ' ', $slug);
+		return false;
 	}
 
 	public function extractCategorySlug($slug)
 	{
-		if (stristr($slug, '_') && stristr($slug, '-')) {
-			$split = explode('_', $slug);
+		$split = explode('_', $slug);
 
-			return $split[0];
-		}
-
-		return false;
+		return !empty($split[0]) ? str_replace('_', ' ', $split[0]) : false;
 	}
 
 	public function convertYouTubeToEmbed($youtubeUrl)
