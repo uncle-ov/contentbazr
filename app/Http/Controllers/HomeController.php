@@ -279,12 +279,11 @@ class HomeController extends Controller
     $slug = Helper::extractCategoryTag($def_slug);
     $cat_slug = Helper::extractCategorySlug($def_slug);
 
-    dd($slug);
-
     if (strlen($slug) > 1) {
       $settings = AdminSettings::first();
 
       $category = Categories::where('slug', 'like', '' . $cat_slug . '')->first();
+      dd($cat_slug, $category);
 
       if (!$category)
         abort('404');
