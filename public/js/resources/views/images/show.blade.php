@@ -243,7 +243,7 @@
                 $vimeo_embed = 'https://player.vimeo.com/video/' . str_replace('https://vimeo.com/', '', $response->vimeo_link);
             ?>
             <div class="item active">
-                <div style="width: <?php echo $video_width; ?>;margin:0 auto;">
+                <div style="width: <?php echo $video_width; ?>;margin:0 auto;max-width: 100%;">
                     <div class="embed-responsive embed-responsive-<?php echo str_replace(':', 'by', $response->video_dimension); ?>">
                         <iframe src="<?php echo $vimeo_embed; ?>?autoplay=1&muted=1" frameborder="0" allow="autoplay" allowfullscreen style="min-height: 200px;background:black;"></iframe>
                     </div>
