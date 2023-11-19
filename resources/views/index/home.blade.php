@@ -633,7 +633,7 @@
           <div class="col-12 p-0">
             <p class="py-4 m-0 text-muted">Explore our top-quality featured resources, chosen by our team</p>
           </div>
-          <a href="{{ url('featured') }}" class="btn btn-lg btn-main rounded-pill btn-outline-custom  px-4 arrow">
+          <a href="{{ url('category/industry') }}" class="btn btn-lg btn-main rounded-pill btn-outline-custom  px-4 arrow">
             View all
           </a>
         </div>

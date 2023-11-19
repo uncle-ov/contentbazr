@@ -20,7 +20,6 @@
 	href="{{ url('template', $image->id ) }}/{{str_slug($image->title)}}"
 	style="{{$background}}"
 	title="{{ $image->title }}"
-	data-toggle="tooltip"
 >
 
 	@if ($image->item_for_sale == 'sale')

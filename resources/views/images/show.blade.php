@@ -16,9 +16,9 @@
             
             $css_w = $previewWidth > $previewHeight ? '100%' : '400px';
         @endphp
-            <div style="margin: 0 auto; background: url('{{asset('public/img/pixel.gif')}}') repeat center center; max-width:{{$css_w}};">
+            <div style="margin: 0 auto; background: url('{{asset('public/img/pixel.gif')}}') repeat center center; width:{{$css_w}};max-width: 100%;">
                 <a href="{{ $url['url'] }}" class="glightbox" style="cursor: zoom-in;">
-                <img class="img-fluid lazyload" style="display: inline-block; width: {{$css_w}}" src="{{ $url['url'] }}" data-src="{{ $url['url'] }}" />
+                <img class="img-fluid lazyload" style="display: inline-block; width: {{$css_w}};max-width: 100%" src="{{ $url['url'] }}" data-src="{{ $url['url'] }}" />
                 </a>
             </div>
         @else
