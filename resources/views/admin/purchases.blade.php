@@ -110,7 +110,7 @@
 											</td>
                       <td><a href="{{url($purchase_username)}}" target="_blank">{{$purchase_username}} <i class="bi-box-arrow-up-right"></i></a></td>
                       <td>{{ $type }}</td>
-                      <td>{{$license}}</td>
+                      <td>{{$license ?? ''}}</td>
                       <td>
 												{{ Helper::amountFormatDecimal($purchase->price) }}
 

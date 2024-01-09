@@ -770,7 +770,7 @@ class Helper
 		return false;
 	} // End dataIPTC
 
-	public static function getThumbUrl($raw_thumbnail)
+	public static function getThumbUrl($raw_thumbnail, $small = false)
 	{
 		if (is_object($raw_thumbnail)) {
 			$thumb = $raw_thumbnail;
@@ -778,14 +778,14 @@ class Helper
 			$thumbs = json_decode($raw_thumbnail);
 			$thumb = $thumbs[0];
 		}
-		$size = $thumb->resolution_str;
+		$size = $small ? '50x50' : $thumb->resolution_str;
 
 		$thumburl = 'https://dev.contentbazr.com/azure/preview/' . $size . '/' . $thumb->name;
 
 		return $thumburl;
 	}
 
-	public function formatCategoryTags($category_tags, $category_slug)
+	public static function formatCategoryTags($category_tags, $category_slug)
 	{
 		if (empty($category_tags))
 			return ['tags' => '', 'data' => ''];
@@ -804,7 +804,7 @@ class Helper
 		return ['tags' => $category_tags, 'tags_data' => json_encode($formatted)];
 	}
 
-	public function extractCategoryTag($slug)
+	public static function extractCategoryTag($slug)
 	{
 		if (stristr($slug, '_')) {
 			$split = explode('_', $slug);
@@ -815,14 +815,14 @@ class Helper
 		return false;
 	}
 
-	public function extractCategorySlug($slug)
+	public static function extractCategorySlug($slug)
 	{
 		$split = explode('_', $slug);
 
 		return !empty($split[0]) ? str_replace('_', ' ', $split[0]) : false;
 	}
 
-	public function convertYouTubeToEmbed($youtubeUrl)
+	public static function convertYouTubeToEmbed($youtubeUrl)
 	{
 		$pattern = '/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/';
 		$replacement = 'https://www.youtube.com/embed/$1';
@@ -830,7 +830,7 @@ class Helper
 		return $embedUrl;
 	}
 
-	public function cleanupTags($tags)
+	public static function cleanupTags($tags)
 	{
 		$clean_tags = str_replace('\"', '', $tags);
 		$clean_tags = str_replace('"', '', $clean_tags);

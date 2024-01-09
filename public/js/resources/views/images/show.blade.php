@@ -7,6 +7,8 @@
 	
 	$usecase = !empty($response->use_case) ? explode(PHP_EOL, $response->use_case) : $default_use_case;
 
+  $this_template_thumbnail = Helper::getThumbUrl($response->thumbnail);
+
     function renderThumbnail($url, $settings) {
     ?>
         @if (empty($url['video']))
@@ -16,9 +18,9 @@
             
             $css_w = $previewWidth > $previewHeight ? '100%' : '400px';
         @endphp
-            <div style="margin: 0 auto; background: url('{{asset('public/img/pixel.gif')}}') repeat center center; max-width:{{$css_w}};">
+            <div style="margin: 0 auto; background: url('{{asset('public/img/pixel.gif')}}') repeat center center; width:{{$css_w}};max-width: 100%;">
                 <a href="{{ $url['url'] }}" class="glightbox" style="cursor: zoom-in;">
-                <img class="img-fluid lazyload" style="display: inline-block; width: {{$css_w}}" src="{{ $url['url'] }}" data-src="{{ $url['url'] }}" />
+                <img class="img-fluid lazyload" style="display: inline-block; width: {{$css_w}};max-width: 100%" src="{{ $url['url'] }}" data-src="{{ $url['url'] }}" />
                 </a>
             </div>
         @else
@@ -62,9 +64,6 @@
     $stock_name = '';
 ?>
 @extends('layouts.app')
-<style>
-
-</style>
 @section('title'){{ $response->title.' - '.trans_choice('misc.photos_plural', 1 ).' #'.$response->id.' - ' }}@endsection
 
 @section('description_custom'){{ $response->title.' - '.trans_choice('misc.photos_plural', 1 ).' #'.$response->id.' - ' }} @if ($response->description != ''){{ Helper::removeLineBreak(e($response->description)).' - ' }}@endif @endsection
@@ -75,7 +74,7 @@
 <meta property="og:type" content="website" />
 
 <meta property="og:site_name" content="{{$settings->title}}"/>
-<meta property="og:url" content="{{url("photo/$response->id").'/'.str_slug($response->title)}}"/>
+<meta property="og:url" content="{{url("template/$response->id").'/'.str_slug($response->title)}}"/>
 <meta property="og:image" content="{{$thumburl}}"/>
 <meta property="og:title" content="{{ $response->title.' - '.trans_choice('misc.photos_plural', 1 ).' #'.$response->id }}"/>
 <meta property="og:description" content="{{ Helper::removeLineBreak( e( $response->description ) ) }}"/>
@@ -105,7 +104,7 @@
 
         <div class="d-flex">
           <div class="flex-shrink-0">
-            <img class="img-fluid rounded img-thanks-share" width="100" src="{{ Helper::getThumbUrl($response->thumbnail) }}" />
+            <img class="img-fluid rounded img-thanks-share" width="100" src="{{ $this_template_thumbnail }}" />
           </div>
           <div class="flex-grow-1 ms-3">
             <h5>{{ __('misc.give_thanks') }} <i class="bi-stars text-warning"></i></h5>
@@ -114,7 +113,7 @@
             <ul class="list-inline mt-2 fs-5">
         			<li class="list-inline-item me-3"><a class="btn-facebook-share" title="Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank"><i class="fab fa-facebook"></i></a></li>
         			<li class="list-inline-item me-3"><a class="btn-twitter-share" title="Twitter" href="https://twitter.com/intent/tweet?url={{ url()->current() }}&text={{ e( $response->title ) }}" data-url="{{ url()->current() }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-        			<li class="list-inline-item me-3"><a class="btn-pinterest-share" title="Pinterest" href="//www.pinterest.com/pin/create/button/?url={{ url()->current() }}&media={{url('files/preview/'.$stock_resolution, $stock_name)}}&description={{ e( $response->title ) }}" target="_blank"><i class="fab fa-pinterest"></i></a></li>
+        			<li class="list-inline-item me-3"><a class="btn-pinterest-share" title="Pinterest" href="//www.pinterest.com/pin/create/button/?url={{ url()->current() }}&media={{ rawurlencode($this_template_thumbnail) }}&description={{ e( $response->title ) }}" target="_blank"><i class="fab fa-pinterest"></i></a></li>
               <li class="list-inline-item"><a class="btn-whatsapp-share" title="Whatsapp" href="whatsapp://send?text={{ url()->current() }}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
              </ul>
           </div>
@@ -240,13 +239,10 @@
           <div class="carousel-inner" role="listbox">
               <?php if(!empty($response->vimeo_link)):
                 $video_width = $response->video_dimension == '16:9' ? '100%' : '400px';
-                $vimeo_embed = 'https://player.vimeo.com/video/' . str_replace('https://vimeo.com/', '', $response->vimeo_link);
             ?>
             <div class="item active">
-                <div style="width: <?php echo $video_width; ?>;margin:0 auto;max-width: 100%;">
-                    <div class="embed-responsive embed-responsive-<?php echo str_replace(':', 'by', $response->video_dimension); ?>">
-                        <iframe src="<?php echo $vimeo_embed; ?>?autoplay=1&muted=1" frameborder="0" allow="autoplay" allowfullscreen style="min-height: 200px;background:black;"></iframe>
-                    </div>
+                <div style="width: <?php echo $video_width; ?>;margin:0 auto;">
+                  {{ renderEmbedVideo($response) }}
                 </div>
             </div>
             <?php endif; ?>
@@ -301,18 +297,37 @@
 	<h5 class="fw-light">{{trans('misc.tags')}}</h5>
     <!--<span>Tags: </span>-->
   @php
-	   $tags = explode(',', $response->tags);
-	   $countTags = count($tags);
-	 @endphp
+	  $tags = explode(',', $response->tags);
+	  $countTags = count($tags);
+    $tag_limit = 7;
+	@endphp
 
-	   @for ($i = 0; $i < $countTags; ++$i)
-	   <a href="{{url('tags', str_replace(' ', '_', trim($tags[$i]))) }}" class="btn btn-sm bg-white border e-none btn-category mb-2">
-	   	{{ $tags[$i] }}
-	   </a>
-	   @endfor
+  <div style="margin: -5px 0 15px"><small>Click on the first tag (e.g., id1309) to see the same design in
+  other sizes /formats.</small></div>
+  
+  <div class="tags_wrap">
+	  @for ($i = 0; $i < $countTags; ++$i)
+      <a
+        href="{{url('tags', $response->category->slug . '_' . str_replace(' ', '-', trim($tags[$i]))) }}"
+        class="btn btn-sm bg-white border e-none btn-category mb-2 cb_tag {{ $i >= $tag_limit ? 'cb_hidable_tags hide_tag' : '' }}"
+      >
+        {{ $tags[$i] }}
+      </a>
+	  @endfor
+    <a href="#" class="btn btn-sm bg-white border e-none btn-category mb-2 hide_hidable_tags cb_tag cb_hidable_tags hide_tag">
+      Show less
+    </a>
+
+    @if($countTags > $tag_limit)
+    <a
+      href="#"
+      class="btn btn-sm bg-white border e-none btn-category mb-2 show_hidden_tags"
+    >
+      {{ $countTags - $tag_limit }}+
+    </a>
+    @endif
     </div>
-    <div><small>Click on the first tag (e.g., id1309) to see the same design in
-other sizes /formats.</small></div>
+  </div>
 </div><!-- End Block -->
 
 @if ($images->count() != 0)
@@ -380,10 +395,10 @@ other sizes /formats.</small></div>
  	<div class="row mb-3">
 
 			<div class="col-md-12">
-				<a class="btn btn-sm bg-white border e-none btn-category d-block mb-2" href="{{ url('edit/photo',$response->id) }}">{{trans('admin.edit')}}</a>
+				<a class="btn btn-sm bg-white border e-none btn-category d-block mb-2" href="{{ url('edit/template',$response->id) }}">{{trans('admin.edit')}}</a>
 			</div>
 			<div class="col-md-12">
-        <form method="POST" action="{{ url('delete/photo', $response->id) }}" accept-charset="UTF-8" class="d-inline">
+        <form method="POST" action="{{ url('delete/template', $response->id) }}" accept-charset="UTF-8" class="d-inline">
           @csrf
           <button type="button" class="btn btn-sm bg-white border e-none btn-category text-danger d-block w-100" id="deletePhoto">
               <i class="bi bi-trash me-1 "></i> {{trans('admin.delete')}}
@@ -569,7 +584,16 @@ other sizes /formats.</small></div>
 
 
       <!-- btn-sale -->
-  		<button class="btn btn-custom btn-lg d-block w-100" data-type="small" id="downloadBtn" @if (auth()->check() && auth()->id() != $response->user_id) data-bs-toggle="modal" data-bs-target="#checkout" type="button" @else type="submit" @endif>
+  		<button
+        class="btn btn-custom btn-lg d-block w-100"
+        data-type="small"
+        id="downloadBtn"
+        @if (auth()->check() && auth()->id() != $response->user_id)
+        data-bs-toggle="modal" data-bs-target="#checkout" type="button"
+        @else
+        type="submit"
+        @endif
+      >
 
      @if (auth()->check() && auth()->id() == $response->user_id)
        <i class="bi-cloud-arrow-down me-1"></i> {{trans('misc.download')}}
@@ -577,7 +601,7 @@ other sizes /formats.</small></div>
        <i class="bi bi-cart2 me-1"></i>
        {{trans('misc.buy')}}
 
-       <span id="priceItem">{{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span id="itemPrice">{{$itemPrice}}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }} <small class="sm-currency-code">{{$settings->currency_code}}</small></span>
+       <span id="priceItem">{{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span id="itemPrice">{{$itemActualPrice}}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }} <small class="sm-currency-code">{{$settings->currency_code}}</small></span>
      @endif
 
   		</button>
@@ -650,7 +674,7 @@ other sizes /formats.</small></div>
 		<ul class="list-inline float-end m-0 fs-5">
 			<li class="list-inline-item"><a class="btn-facebook-share" title="Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank"><i class="fab fa-facebook"></i></a></li>
 			<li class="list-inline-item"><a class="btn-twitter-share" title="Twitter" href="https://twitter.com/intent/tweet?url={{ url()->current() }}&text={{ e( $response->title ) }}" data-url="{{ url()->current() }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-			<li class="list-inline-item"><a class="btn-pinterest-share" title="Pinterest" href="//www.pinterest.com/pin/create/button/?url={{ url()->current() }}&media={{url('files/preview/'.$stock_resolution, $stock_name)}}&description={{ e( $response->title ) }}" target="_blank"><i class="fab fa-pinterest"></i></a></li>
+			<li class="list-inline-item"><a class="btn-pinterest-share" title="Pinterest" href="//www.pinterest.com/pin/create/button/?url={{ url()->current() }}&media={{ rawurlencode($this_template_thumbnail) }}&description={{ e( $response->title ) }}" target="_blank"><i class="fab fa-pinterest"></i></a></li>
       <li class="list-inline-item"><a class="btn-whatsapp-share" title="Whatsapp" href="whatsapp://send?text={{ url()->current() }}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
      </ul>
 		</div>
@@ -739,7 +763,7 @@ other sizes /formats.</small></div>
 				  <div class="modal-body">
 
 				    <!-- form start -->
-			    <form method="POST" action="{{ url('report/photo') }}" enctype="multipart/form-data" id="formReport">
+			    <form method="POST" action="{{ url('report/template') }}" enctype="multipart/form-data" id="formReport">
 			    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			    	<input type="hidden" name="id" value="{{ $response->id }}">
 				    <!-- Start Form Group -->
@@ -782,8 +806,8 @@ other sizes /formats.</small></div>
  @if (auth()->check() && $response->user()->id != auth()->id() && $response->user()->paypal_account != '' || auth()->guest()  && $response->user()->paypal_account != '')
  <form id="form_pp" name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post"  style="display:none">
     <input type="hidden" name="cmd" value="_donations">
-    <input type="hidden" name="return" value="{{url('photo',$response->id)}}">
-    <input type="hidden" name="cancel_return"   value="{{url('photo',$response->id)}}">
+    <input type="hidden" name="return" value="{{url('template',$response->id)}}">
+    <input type="hidden" name="cancel_return"   value="{{url('template',$response->id)}}">
     <input type="hidden" name="currency_code" value="USD">
     <input type="hidden" name="item_name" value="{{trans('misc.support').' @'.$response->user()->username}} - {{$settings->title}}" >
     <input type="hidden" name="business" value="{{$response->user()->paypal_account}}">
@@ -792,39 +816,45 @@ other sizes /formats.</small></div>
 @endif
 
 @if (auth()->check() && $response->user()->id != auth()->id() && $response->item_for_sale == 'sale')
-<div class="modal fade" tabindex="-1"  id="checkout">
-  <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
-    <div class="modal-content">
-      <div class="modal-body p-lg-4">
-        <h5 class="mb-3">
-              <i class="bi bi-cart2 me-1"></i> {{ __('misc.checkout') }}
+  <div class="modal fade" tabindex="-1" id="checkout">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+      <div class="modal-content">
+        <div class="modal-body p-lg-4">
+          <h5 class="mb-3">
+            <i class="bi bi-cart2 me-1"></i> {{ __('misc.checkout') }}
 
-              <span class="float-end c-pointer" data-bs-dismiss="modal" aria-label="Close">
-                <i class="bi bi-x-lg"></i>
-              </span>
-            </h5>
-            <div class="container">
-              <div class="row">
+            <span class="float-end c-pointer" data-bs-dismiss="modal" aria-label="Close">
+              <i class="bi bi-x-lg"></i>
+            </span>
+          </h5>
+          <div class="container">
+            <div class="row">
 
-                <div class="col-md-6 ps-0">
-                  <div class="mb-3">
-                    <strong>{{ __('misc.payments_options') }}</strong>
-                  </div>
+              <div class="col-md-6 ps-0">
+                <div class="mb-3">
+                  <strong>{{ __('misc.payments_options') }}</strong>
+                </div>
 
-                  <form method="post" action="{{url('buy/stock', $token)}}" class="d-inline" id="formSendBuy">
-                    @csrf
+                <form method="post" action="{{ url('buy/stock', $token) }}" class="d-inline"
+                  id="formSendBuy">
+                  @csrf
 
-                    <input type="hidden" id="licenseOnModal" name="license" value="regular">
-                    <input type="hidden" id="typeOnModal" name="type" value="small">
-                    <input type="hidden" name="token" value="{{ $token }}">
+                  <input type="hidden" id="licenseOnModal" name="license" value="regular">
+                  <input type="hidden" id="typeOnModal" name="type" value="small">
+                  <input type="hidden" name="token" value="{{ $token }}">
 
-                    <input type="hidden" name="urlCancel" value="{{ url()->current() }}"  />
+                  <input type="hidden" name="urlCancel" value="{{ url()->current() }}" />
 
                   @foreach (PaymentGateways::where('enabled', '1')->orderBy('type', 'DESC')->get() as $payment)
                     <div class="form-check custom-radio mb-2">
-                      <input name="payment_gateway" value="{{$payment->id}}" id="payment_radio{{$payment->id}}" @if ($paymentsGatewaysEnabled == 1 && auth()->user()->funds == 0.00) checked @endif class="form-check-input radio-bws" type="radio">
-                      <label class="form-check-label" for="payment_radio{{$payment->id}}">
-                        <span><img class="me-1 rounded" src="{{ url('public/img/payments', $payment->logo) }}" width="20" /> <strong>{{ $payment->name }}</strong></span>
+                      <input name="payment_gateway" value="{{ $payment->id }}"
+                        id="payment_radio{{ $payment->id }}"
+                        @if ($paymentsGatewaysEnabled == 1 && auth()->user()->funds == 0.0) checked @endif
+                        class="form-check-input radio-bws" type="radio">
+                      <label class="form-check-label" for="payment_radio{{ $payment->id }}">
+                        <span><img class="me-1 rounded"
+                            src="{{ url('public/img/payments', $payment->logo) }}"
+                            width="20" /> <strong>{{ $payment->name }}</strong></span>
                         <small class="w-100 d-block">
                           @if ($payment->type == 'card')
                             {{ trans('misc.debit_credit_card') }}
@@ -843,105 +873,127 @@ other sizes /formats.</small></div>
                   @endforeach
 
                   <div class="form-check custom-radio mb-3">
-                    <input name="payment_gateway" @if (auth()->user()->funds == 0.00) disabled @endif value="wallet" id="wallet" class="form-check-input radio-bws" type="radio">
+                    <input name="payment_gateway" @if (auth()->user()->funds == 0.0) disabled @endif
+                      value="wallet" id="wallet" class="form-check-input radio-bws"
+                      type="radio">
                     <label class="form-check-label" for="wallet">
-                      <span><img class="me-1 rounded" src="{{ url('public/img/payments/wallet.png') }}" width="20" /> <strong>{{ __('misc.wallet') }}</strong></span>
+                      <span><img class="me-1 rounded"
+                          src="{{ url('public/img/payments/wallet.png') }}" width="20" />
+                        <strong>{{ __('misc.wallet') }}</strong></span>
                       <small class="w-100 d-block">
-                        {{ __('misc.available_balance') }}: <strong>{{Helper::amountFormatDecimal(auth()->user()->funds)}}</strong>
+                        {{ __('misc.available_balance') }}:
+                        <strong>{{ Helper::amountFormatDecimal(auth()->user()->funds) }}</strong>
                       </small>
                     </label>
                   </div>
+              </div>
+              <div class="col-md-6 ps-0">
+
+                <div class="mb-1">
+                  <strong>{{ __('misc.order_summary') }}</strong>
                 </div>
-                <div class="col-md-6 ps-0">
 
-                  <div class="mb-1">
-                    <strong>{{ __('misc.order_summary') }}</strong>
-                  </div>
+                <ul class="list-group list-group-flush mb-3">
 
-            <ul class="list-group list-group-flush mb-3">
+                  <li class="list-group-item py-1 px-0">
+                    <div class="row">
+                      <div class="col">
+                        <span id="summaryImage">{{ __('misc.small_photo') }}</span>
+                        <small id="summaryLicense"
+                          class="d-block w-100">{{ __('misc.license_regular') }}</small>
+                      </div>
 
-              <li class="list-group-item py-1 px-0">
-                <div class="row">
-                  <div class="col">
-                    <span id="summaryImage">{{ __('misc.small_photo') }}</span>
-                    <small id="summaryLicense" class="d-block w-100">{{ __('misc.license_regular') }}</small>
-                  </div>
+                      <div class="col-auto">
+                        <img class="rounded"
+                          src="{{ $this_template_thumbnail }}"
+                          style="max-height: 40px;" />
+                      </div>
 
-                  <div class="col-auto">
-                    <img class="rounded" src="{{ Helper::getThumbUrl($response->thumbnail) }}" style="max-height: 40px;" />
-                  </div>
-
-                </div>
-              </li>
-
-              	<li class="list-group-item py-1 px-0">
-                  <div class="row">
-                    <div class="col">
-                      <small>{{ __('misc.subtotal') }}:</small>
                     </div>
-                    <div class="col-auto">
-                      {{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<small class="subtotal font-weight-bold">{{number_format($itemPrice, 2)}}</small>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
+                  </li>
+
+                  <li class="list-group-item py-1 px-0">
+                    <div class="row">
+                      <div class="col">
+                        <small>{{ __('misc.subtotal') }}:</small>
+                      </div>
+                      <div class="col-auto">
+                        {{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<small
+                          class="subtotal font-weight-bold">{{ number_format($itemPrice, 2) }}</small>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
+                      </div>
                     </div>
-                  </div>
-                </li>
+                  </li>
 
-            @if (auth()->user()->isTaxable()->count())
+                  @if (auth()->user()->isTaxable()->count())
 
-              @php
-            		$number = 0;
-            	@endphp
+                    @php
+                      $number = 0;
+                    @endphp
 
-            	@foreach (auth()->user()->isTaxable() as $tax)
-            		@php
-            			$number++;
-            		@endphp
-      					<li class="list-group-item py-1 px-0 isTaxable">
-          	    <div class="row">
-          	      <div class="col">
-          	        <small>{{ $tax->name }} {{ $tax->percentage }}%:</small>
-          	      </div>
-          	      <div class="col-auto percentageAppliedTax{{$number}}" data="{{ $tax->percentage }}">
-          	        <small class="font-weight-bold">
-          	        {{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span class="amount{{$number}}">{{ Helper::calculatePercentage($itemPrice, $tax->percentage) }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
-          	        </small>
-          	      </div>
-          	    </div>
-          	  </li>
-              @endforeach
-            @endif
+                    @foreach (auth()->user()->isTaxable() as $tax)
+                      @php
+                        $number++;
+                      @endphp
+                      <li class="list-group-item py-1 px-0 isTaxable">
+                        <div class="row">
+                          <div class="col">
+                            <small>{{ $tax->name }} {{ $tax->percentage }}%:</small>
+                          </div>
+                          <div class="col-auto percentageAppliedTax{{ $number }}"
+                            data="{{ $tax->percentage }}">
+                            <small class="font-weight-bold">
+                              {{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span
+                                class="amount{{ $number }}">{{ Helper::calculatePercentage($itemPrice, $tax->percentage) }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
+                            </small>
+                          </div>
+                        </div>
+                      </li>
+                    @endforeach
+                  @endif
 
-          	<li class="list-group-item py-1 px-0">
-              <div class="row">
-                <div class="col">
-                  <small class="fw-bold">{{ __('misc.total') }}:</small>
+                  <li class="list-group-item py-1 px-0">
+                    <div class="row">
+                      <div class="col">
+                        <small class="fw-bold">{{ __('misc.total') }}:</small>
+                      </div>
+                      <div class="col-auto fw-bold">
+                        <small>{{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span
+                            id="total">{{ Helper::amountGross($itemPrice) }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }}
+                          {{ $settings->currency_code }}</small>
+                      </div>
+                    </div>
+                  </li>
+
+                  @include('includes.coupon_settings')
+                </ul>
+
+                <div class="alert alert-danger py-2 {{ $invalid_coupon ? '' : 'display-none' }}" id="errorPurchase">
+                  <ul class="list-unstyled m-0" id="showErrorsPurchase">
+                    @if(!empty($invalid_coupon))
+                    <li>Invalid coupon code.</li>
+                    @endif
+                  </ul>
                 </div>
-                <div class="col-auto fw-bold">
-                  <small>{{ $settings->currency_position == 'left' ? $settings->currency_symbol : null }}<span id="total">{{ Helper::amountGross($itemPrice) }}</span>{{ $settings->currency_position == 'right' ? $settings->currency_symbol : null }} {{ $settings->currency_code }}</small>
+
+                <button type="submit" @if ($paymentsGatewaysEnabled == 1 && auth()->user()->funds == 0.0) @else disabled @endif
+                  class="btn btn-success w-100" id="payButton"><i></i> {{ __('misc.pay') }}</button>
+                <div class="w-100 d-block text-center">
+                  <button type="button" class="btn btn-link e-none text-decoration-none text-reset"
+                    data-bs-dismiss="modal">{{ __('admin.cancel') }}</button>
                 </div>
               </div>
-            </li>
-          </ul>
 
-          <div class="alert alert-danger py-2 display-none" id="errorPurchase">
-              <ul class="list-unstyled m-0" id="showErrorsPurchase"></ul>
-            </div>
-
-            <button type="submit" @if ($paymentsGatewaysEnabled == 1 && auth()->user()->funds == 0.00) @else disabled @endif class="btn btn-success w-100" id="payButton"><i></i> {{ __('misc.pay') }}</button>
-            <div class="w-100 d-block text-center">
-              <button type="button" class="btn btn-link e-none text-decoration-none text-reset" data-bs-dismiss="modal">{{ __('admin.cancel') }}</button>
-            </div>
-          </div>
-
-          </form>
-        </div><!-- row -->
-      </div><!-- container -->
+              </form>
+            </div><!-- row -->
+          </div><!-- container -->
 
 
-      </div><!-- modal-body -->
-    </div><!-- modal-content -->
-  </div><!-- modal-dialog -->
-</div><!-- modal -->
+        </div><!-- modal-body -->
+      </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+  </div><!-- modal -->
 @endif
+
 
 </section>
 @endsection
@@ -1268,6 +1320,7 @@ $(document).on('click','.deleteComment',function () {
         }
       }
     });
+
 </script>
 
 @endsection

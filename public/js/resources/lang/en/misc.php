@@ -3,11 +3,11 @@
 return array(
 
 	/*
-		|--------------------------------------------------------------------------
-		| Miscellaneous Language Lines
-		|--------------------------------------------------------------------------
-		|
-		*/
+		 |--------------------------------------------------------------------------
+		 | Miscellaneous Language Lines
+		 |--------------------------------------------------------------------------
+		 |
+		 */
 	'title_2_index' => 'Free and Premium High Quality Templates',
 	'search' => 'Search',
 	'images' => 'Templates',
@@ -596,7 +596,7 @@ return array(
 	'downloads_per_day' => ':number downloads per day',
 	// Not remove :number
 	'cancel_subscription_any_time' => 'Cancel your subscription at any time',
-	'suscribe' => 'Suscribe',
+	'suscribe' => 'Subscribe',
 	'subscribed' => 'Subscribed',
 	'per_download' => 'per download',
 	'frequently_asked_questions' => 'Frequently asked questions',

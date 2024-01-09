@@ -741,22 +741,25 @@ class ImagesController extends Controller
 			abort(404);
 		}
 
-		if ($this->request->type != 'vector') {
-			$pathFile = config('path.uploads') . $this->request->type . '/' . $getImage->name;
-			$resolution = $getImage->resolution;
-		} else {
-			$pathFile = config('path.files') . $getImage->name;
-			$resolution = trans('misc.vector_graphic');
-		}
+		// 		if ($this->request->type != 'vector') {
+// 			$pathFile = config('path.uploads') . $this->request->type . '/' . $getImage->name;
+// 			$resolution = $getImage->resolution;
+// 		} else {
+// 			$pathFile = config('path.files') . $getImage->name;
+// 			$resolution = trans('misc.vector_graphic');
+// 		}
+
+		$file_path = '/uploads/files/' . $image->download . '.zip';
+		$file_title = Str::slug($image->title) . '.zip';
 
 		$headers = [
-			'Content-Type:' => ' image/' . $image->extension,
+			'Content-Type:' => ' application/zip',
 			'Cache-Control' => 'no-cache, no-store, must-revalidate',
 			'Pragma' => 'no-cache',
 			'Expires' => '0'
 		];
 
-		return Storage::download($pathFile, $image->title . ' - ' . $resolution . '.' . $getImage->extension, $headers);
+		return Storage::disk('azure')->download($file_path, $file_title, $headers);
 
 	} //<--- End Method
 
@@ -805,6 +808,7 @@ class ImagesController extends Controller
 				foreach ($input_field as $key => $file) {
 					$original_name = $file->getClientOriginalName();
 					$ext = $file->getClientOriginalExtension();
+					$f_size = $file->getSize();
 
 					$name = str_random(20) . '.' . $ext;
 					$dir = '/uploads/' . $field . '/';
@@ -837,7 +841,7 @@ class ImagesController extends Controller
 						'original_name' => $original_name,
 						'file' => $field . '/' . $name,
 						'extension' => $ext,
-						'size' => Helper::formatBytes($file->getSize(), 1),
+						'size' => Helper::formatBytes($f_size, 1),
 						'resolution_str' => $resolution,
 						'colors' => $colors,
 						'resolution' => [
@@ -986,7 +990,6 @@ class ImagesController extends Controller
 			$server->deleteCache($path);
 
 		} catch (\Exception $e) {
-
 			abort(404);
 			$server->deleteCache($path);
 		}
@@ -1038,7 +1041,7 @@ class ImagesController extends Controller
 			$server->deleteCache($path);
 
 		} catch (\Exception $e) {
-
+			dd($e);
 			abort(404);
 			$server->deleteCache($path);
 		}

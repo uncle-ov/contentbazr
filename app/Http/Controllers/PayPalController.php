@@ -30,9 +30,9 @@ class PayPalController extends Controller
   public function show()
   {
 
-    if (!$this->request->expectsJson()) {
-      abort(404);
-    }
+    // if (!$this->request->expectsJson()) {
+    //   abort(404);
+    // }
 
     // Get Payment Gateway
     $payment = PaymentGateways::findOrFail($this->request->payment_gateway);
@@ -107,24 +107,28 @@ class PayPalController extends Controller
       // Update Order Id
       Deposits::whereId($deposit->id)->update(['txn_id' => $order['id']]);
 
-      return response()->json([
-        'success' => true,
-        'url' => $order['links'][1]['href']
-      ]);
+      // return response()->json([
+      //   'success' => true,
+      //   'url' => $order['links'][1]['href']
+      // ]);
+
+      return redirect($order['links'][1]['href']);
 
     } catch (\Exception $e) {
 
-      \Log::debug($order);
+      //   \Log::debug($order);
 
-      // Delete Invoice
-      Invoices::whereDepositsId($deposit->id)->delete();
+      //   // Delete Invoice
+      //   Invoices::whereDepositsId($deposit->id)->delete();
 
-      // Delete deposit
-      Deposits::whereId($deposit->id)->delete();
+      //   // Delete deposit
+      //   Deposits::whereId($deposit->id)->delete();
 
-      return response()->json([
-        'errors' => ['error' => $e->getMessage()]
-      ]);
+      // return response()->json([
+      //   'errors' => ['error' => $e->getMessage()]
+      // ]);
+
+      return redirect('user/dashboard/add/funds')->withError($e->getMessage());
     }
   }
 

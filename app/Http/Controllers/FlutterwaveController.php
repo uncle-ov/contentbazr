@@ -31,9 +31,9 @@ class FlutterwaveController extends Controller
   public function show()
   {
 
-    if (!$this->request->expectsJson()) {
-      abort(404);
-    }
+    // if (!$this->request->expectsJson()) {
+    //   abort(404);
+    // }
 
     try {
 
@@ -84,16 +84,20 @@ class FlutterwaveController extends Controller
         ]);
       }
 
-      return response()->json([
-        'success' => true,
-        'url' => $payment['data']['link']
-      ]);
+      // return response()->json([
+      //   'success' => true,
+      //   'url' => $payment['data']['link']
+      // ]);
+
+      return redirect($payment['data']['link']);
 
     } catch (\Exception $e) {
-      return response()->json([
-        'success' => false,
-        'errors' => ['error' => $e->getMessage()],
-      ]);
+      // return response()->json([
+      //   'success' => false,
+      //   'errors' => ['error' => $e->getMessage()],
+      // ]);
+
+      redirect()->back()->with('error', $e->getMessage());
     }
   } // End Add funds
 

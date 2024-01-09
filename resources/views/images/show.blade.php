@@ -7,6 +7,8 @@
 	
 	$usecase = !empty($response->use_case) ? explode(PHP_EOL, $response->use_case) : $default_use_case;
 
+  $this_template_thumbnail = Helper::getThumbUrl($response->thumbnail);
+
     function renderThumbnail($url, $settings) {
     ?>
         @if (empty($url['video']))
@@ -102,7 +104,7 @@
 
         <div class="d-flex">
           <div class="flex-shrink-0">
-            <img class="img-fluid rounded img-thanks-share" width="100" src="{{ Helper::getThumbUrl($response->thumbnail) }}" />
+            <img class="img-fluid rounded img-thanks-share" width="100" src="{{ $this_template_thumbnail }}" />
           </div>
           <div class="flex-grow-1 ms-3">
             <h5>{{ __('misc.give_thanks') }} <i class="bi-stars text-warning"></i></h5>
@@ -111,7 +113,7 @@
             <ul class="list-inline mt-2 fs-5">
         			<li class="list-inline-item me-3"><a class="btn-facebook-share" title="Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank"><i class="fab fa-facebook"></i></a></li>
         			<li class="list-inline-item me-3"><a class="btn-twitter-share" title="Twitter" href="https://twitter.com/intent/tweet?url={{ url()->current() }}&text={{ e( $response->title ) }}" data-url="{{ url()->current() }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-        			<li class="list-inline-item me-3"><a class="btn-pinterest-share" title="Pinterest" href="//www.pinterest.com/pin/create/button/?url={{ url()->current() }}&media={{url('files/preview/'.$stock_resolution, $stock_name)}}&description={{ e( $response->title ) }}" target="_blank"><i class="fab fa-pinterest"></i></a></li>
+        			<li class="list-inline-item me-3"><a class="btn-pinterest-share" title="Pinterest" href="//www.pinterest.com/pin/create/button/?url={{ url()->current() }}&media={{ rawurlencode($this_template_thumbnail) }}&description={{ e( $response->title ) }}" target="_blank"><i class="fab fa-pinterest"></i></a></li>
               <li class="list-inline-item"><a class="btn-whatsapp-share" title="Whatsapp" href="whatsapp://send?text={{ url()->current() }}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
              </ul>
           </div>
@@ -672,7 +674,7 @@
 		<ul class="list-inline float-end m-0 fs-5">
 			<li class="list-inline-item"><a class="btn-facebook-share" title="Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank"><i class="fab fa-facebook"></i></a></li>
 			<li class="list-inline-item"><a class="btn-twitter-share" title="Twitter" href="https://twitter.com/intent/tweet?url={{ url()->current() }}&text={{ e( $response->title ) }}" data-url="{{ url()->current() }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-			<li class="list-inline-item"><a class="btn-pinterest-share" title="Pinterest" href="//www.pinterest.com/pin/create/button/?url={{ url()->current() }}&media={{url('files/preview/'.$stock_resolution, $stock_name)}}&description={{ e( $response->title ) }}" target="_blank"><i class="fab fa-pinterest"></i></a></li>
+			<li class="list-inline-item"><a class="btn-pinterest-share" title="Pinterest" href="//www.pinterest.com/pin/create/button/?url={{ url()->current() }}&media={{ rawurlencode($this_template_thumbnail) }}&description={{ e( $response->title ) }}" target="_blank"><i class="fab fa-pinterest"></i></a></li>
       <li class="list-inline-item"><a class="btn-whatsapp-share" title="Whatsapp" href="whatsapp://send?text={{ url()->current() }}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
      </ul>
 		</div>
@@ -903,7 +905,7 @@
 
                       <div class="col-auto">
                         <img class="rounded"
-                          src="{{ Helper::getThumbUrl($response->thumbnail) }}"
+                          src="{{ $this_template_thumbnail }}"
                           style="max-height: 40px;" />
                       </div>
 
